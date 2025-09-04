@@ -83,9 +83,6 @@ const ClientManagement: React.FC = () => {
     loadAssignedUsers();
   }, [filters]);
 
-  // Add loadClients to dependency array to fix ESLint warning
-  const loadClientsCallback = React.useCallback(loadClients, [filters]);
-
   const loadClients = async () => {
     try {
       setLoading(true);

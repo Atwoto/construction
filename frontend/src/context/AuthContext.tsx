@@ -185,6 +185,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
   }, []);
 
+  // Refresh token function
+  const refreshToken = async () => {
+    // Use mock auth if enabled
+    if (USE_MOCK_AUTH) {
+      console.log("Mock token refresh");
+      dispatch({
+        type: "AUTH_SUCCESS",
+        payload: { user: MOCK_USER, tokens: MOCK_TOKENS },
+      });
+      return;
+    }
+
+    try {
+      if (!state.tokens?.refreshToken) {
+        throw new Error("No refresh token available");
+      }
+
+      const response = await authService.refreshToken(
+        state.tokens.refreshToken
+      );
+      authService.storeTokens(response.tokens);
+
+      dispatch({
+        type: "AUTH_SUCCESS",
+        payload: { user: state.user!, tokens: response.tokens },
+      });
+    } catch (error) {
+      authService.clearStoredTokens();
+      dispatch({ type: "AUTH_LOGOUT" });
+      throw error;
+    }
+  };
+
   // Auto-refresh token before expiry
   useEffect(() => {
     if (!state.tokens || USE_MOCK_AUTH) return;
@@ -202,7 +235,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ); // Refresh every 15 minutes
 
     return () => clearInterval(refreshInterval);
-  }, [state.tokens, refreshToken]);
+  }, [state.tokens]);
 
   // Login function
   const login = async (credentials: LoginCredentials) => {
@@ -331,39 +364,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const errorMessage =
         error.response?.data?.error || "Password change failed";
       toast.error(errorMessage);
-      throw error;
-    }
-  };
-
-  // Refresh token function
-  const refreshToken = async () => {
-    // Use mock auth if enabled
-    if (USE_MOCK_AUTH) {
-      console.log("Mock token refresh");
-      dispatch({
-        type: "AUTH_SUCCESS",
-        payload: { user: MOCK_USER, tokens: MOCK_TOKENS },
-      });
-      return;
-    }
-
-    try {
-      if (!state.tokens?.refreshToken) {
-        throw new Error("No refresh token available");
-      }
-
-      const response = await authService.refreshToken(
-        state.tokens.refreshToken
-      );
-      authService.storeTokens(response.tokens);
-
-      dispatch({
-        type: "AUTH_SUCCESS",
-        payload: { user: state.user!, tokens: response.tokens },
-      });
-    } catch (error) {
-      authService.clearStoredTokens();
-      dispatch({ type: "AUTH_LOGOUT" });
       throw error;
     }
   };

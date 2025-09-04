@@ -68,9 +68,6 @@ const ProjectManagement = () => {
     loadSupportingData();
   }, [filters]);
 
-  // Add loadProjects to dependency array to fix ESLint warning
-  const loadProjectsCallback = React.useCallback(loadProjects, [filters]);
-
   const loadProjects = async () => {
     try {
       setLoading(true);
