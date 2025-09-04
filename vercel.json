@@ -1,28 +1,13 @@
 {
     "buildCommand": "cd frontend && npm run build",
     "outputDirectory": "frontend/build",
-    "installCommand": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../api && npm install",
+    "installCommand": "npm install && cd frontend && npm install && cd ../api && npm install",
+    "functions": {
+        "api/index.js": {
+            "maxDuration": 30
+        }
+    },
     "rewrites": [
-        {
-            "source": "/api/test-auth",
-            "destination": "/api/test-auth.js"
-        },
-        {
-            "source": "/api/test-supabase",
-            "destination": "/api/test-auth.js"
-        },
-        {
-            "source": "/api/test-project-controller",
-            "destination": "/api/test-project-controller.js"
-        },
-        {
-            "source": "/api/test-project-stats",
-            "destination": "/api/test-project-stats.js"
-        },
-        {
-            "source": "/api/test-logger",
-            "destination": "/api/test-logger.js"
-        },
         {
             "source": "/api/(.*)",
             "destination": "/api/index.js"
@@ -33,6 +18,10 @@
         }
     ],
     "env": {
-        "VERCEL": "1"
+        "VERCEL": "1",
+        "SUPABASE_URL": "https://rrkwxtdnefcymxaplnox.supabase.co",
+        "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM",
+        "NEXT_PUBLIC_SUPABASE_URL": "https://rrkwxtdnefcymxaplnox.supabase.co",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM"
     }
 }
