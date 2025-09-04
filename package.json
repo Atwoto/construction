@@ -1,0 +1,19 @@
+{
+  "name": "construction",
+  "version": "1.0.0",
+  "description": "A comprehensive Customer Relationship Management system specifically designed for construction companies to manage all aspects of their business operations.",
+  "main": "create-test-data.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "bcryptjs": "^3.0.2"
+  }
+}

@@ -1,0 +1,621 @@
+/* Import modern fonts for Construction CRM */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-gray-900 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    min-height: 100vh;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  /* Responsive form styles for laptop screens */
+  .form-container {
+    @apply max-w-4xl mx-auto px-4;
+  }
+  
+  .form-section {
+    @apply bg-white p-4 rounded-lg border shadow-sm;
+  }
+  
+  @media (min-width: 640px) {
+    .form-section {
+      @apply p-6;
+    }
+  }
+  
+  .form-grid {
+    @apply grid grid-cols-1 gap-4;
+  }
+  
+  @media (min-width: 640px) {
+    .form-grid {
+      @apply grid-cols-2 gap-6;
+    }
+  }
+  
+  .form-grid-full {
+    @apply sm:col-span-2;
+  }
+  /* Button variants */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-100 text-secondary-900 hover:bg-secondary-200 focus:ring-secondary-500;
+  }
+
+  .btn-outline {
+    @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-primary-500;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600 focus:ring-red-500;
+  }
+
+  .btn-success {
+    @apply bg-green-500 text-white hover:bg-green-600 focus:ring-green-500;
+  }
+
+  .form-input {
+    @apply block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm;
+  }
+
+  .form-input-error {
+    @apply block w-full rounded-md border border-red-300 px-3 py-2 shadow-sm focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 sm:text-sm;
+  }
+
+  .form-select {
+    @apply block w-full rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm;
+  }
+
+  .form-checkbox {
+    @apply h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500;
+  }
+
+  .form-radio {
+    @apply h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500;
+  }
+
+  /* Card components */
+  .card {
+    @apply rounded-lg bg-white shadow-md;
+  }
+
+  .card-header {
+    @apply px-6 py-4;
+  }
+
+  .card-content {
+    @apply px-6 py-4;
+  }
+
+  .card-footer {
+    @apply px-6 py-4;
+  }
+
+  .dashboard-card {
+    @apply rounded-lg bg-gradient-to-r from-white to-gray-50 shadow-sm;
+  }
+
+  .enhanced-card {
+    @apply rounded-xl bg-white shadow-lg;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply flex items-center px-3 py-2 text-sm font-medium text-gray-700;
+  }
+
+  .nav-link-active {
+    @apply bg-primary-100 text-primary-700;
+  }
+
+  .nav-link-inactive {
+    @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-success-100 text-success-800;
+  }
+
+  .badge-warning {
+    @apply bg-warning-100 text-warning-800;
+  }
+
+  .badge-danger {
+    @apply bg-danger-100 text-danger-800;
+  }
+
+  .badge-info {
+    @apply bg-primary-100 text-primary-800;
+  }
+
+  .badge-secondary {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  /* Tables */
+  .table {
+    @apply w-full divide-y divide-gray-200;
+  }
+
+  .table thead {
+    @apply bg-gray-50;
+  }
+
+  .table th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  .table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-500;
+  }
+
+  .table-row-hover {
+    @apply hover:bg-gray-50;
+  }
+
+  /* Utility classes */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+  }
+
+  .shadow-colored {
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.15);
+  }
+
+  .border-gradient {
+    @apply border border-gray-200;
+  }
+
+  /* Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #9ca3af transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply hover:-translate-y-1 hover:scale-105 transition-all duration-200;
+  }
+
+  .hover-glow {
+    @apply hover:shadow-lg transition-all duration-200;
+  }
+
+  .hover-lift-strong {
+    @apply hover:-translate-y-3 hover:scale-105 transition-all duration-300;
+  }
+
+  .hover-glow-strong {
+    @apply hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300;
+  }
+
+  .hover-rotate {
+    @apply hover:rotate-3 transition-transform duration-300;
+  }
+
+  .hover-bounce {
+    @apply hover:animate-bounce;
+  }
+
+  /* Background gradients */
+  .bg-clients {
+    @apply bg-gradient-to-br from-blue-500/10 via-indigo-500/5 to-purple-500/10;
+  }
+
+  .bg-revenue {
+    @apply bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-red-500/10;
+  }
+
+  .bg-tasks {
+    @apply bg-gradient-to-br from-emerald-500/10 via-green-500/5 to-teal-500/10;
+  }
+
+  /* Glass morphism effects */
+  .glass {
+    @apply bg-white/20 backdrop-blur-lg border border-white/30;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-lg border border-white/10;
+  }
+
+  /* Status indicators */
+  .status-urgent {
+    @apply bg-gradient-to-r from-red-500 to-orange-500;
+  }
+
+  .status-warning {
+    @apply bg-gradient-to-r from-yellow-500 to-amber-500;
+  }
+
+  .status-success {
+    @apply bg-gradient-to-r from-green-500 to-emerald-500;
+  }
+
+  .status-info {
+    @apply bg-gradient-to-r from-blue-500 to-indigo-500;
+  }
+
+  /* Animation delays */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+}
+
+/* Animation helpers */
+.animate-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-out {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-slide-in-stagger {
+  animation: slideInStagger 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-bounce-soft {
+  animation: bounceSoft 2s infinite;
+}
+
+.animate-count-up {
+  animation: countUp 2s ease-out forwards;
+}
+
+/* Pulse animations for urgent items */
+.animate-pulse-urgent {
+  animation: pulseUrgent 2s infinite;
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 1.5s infinite;
+}
+
+/* Floating particles background */
+.particles-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.particles-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1), transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1), transparent 50%);
+  animation: floatParticles 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Gradient borders */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4) border-box;
+  border: 2px solid transparent;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseUrgent {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    opacity: 0.8;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideInStagger {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional keyframes for enhanced animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes floatParticles {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-30px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(-60px) rotate(240deg);
+  }
+}
+
+/* Loading skeleton animations */
+.skeleton {
+  @apply bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse;
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Notification toast animations */
+.toast-enter {
+  animation: toastEnter 0.3s ease-out forwards;
+}
+
+.toast-exit {
+  animation: toastExit 0.3s ease-in forwards;
+}
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastExit {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* MiniChart specific animations */
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Chart hover effects */
+.mini-chart svg:hover .hover-line {
+  opacity: 0.5;
+}
+
+.mini-chart .hover-line {
+  transition: opacity 0.2s ease;
+}
