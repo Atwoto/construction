@@ -2,10 +2,10 @@
   "name": "construction-crm-backend",
   "version": "1.0.0",
   "description": "Backend API server for Construction CRM system",
-  "main": "src/server.js",
+  "main": "src/startServer.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "start": "node src/startServer.js",
+    "dev": "nodemon src/startServer.js",
     "vercel-build": "echo 'Building backend for Vercel'",
     "test": "jest",
     "test:watch": "jest --watch",

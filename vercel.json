@@ -1,7 +1,7 @@
 {
     "buildCommand": "cd frontend && npm run build",
     "outputDirectory": "frontend/build",
-    "installCommand": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "installCommand": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../api && npm install",
     "rewrites": [
         {
             "source": "/api/(.*)",
@@ -11,5 +11,14 @@
             "source": "/(.*)",
             "destination": "/index.html"
         }
-    ]
+    ],
+    "env": {
+        "SUPABASE_URL": "@supabase_url",
+        "SUPABASE_ANON_KEY": "@supabase_anon_key",
+        "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+        "JWT_SECRET": "@jwt_secret",
+        "JWT_EXPIRES_IN": "24h",
+        "JWT_REFRESH_SECRET": "@jwt_refresh_secret",
+        "JWT_REFRESH_EXPIRES_IN": "7d"
+    }
 }
