@@ -1,36 +1,11 @@
 import React from "react";
-import {
-  Client,
-  ClientStatus,
-  ClientSortField,
-  ClientPagination,
-} from "../../types/client";
+import { Client, ClientStatus, ClientSortField, ClientPagination } from "../../types/client";
+import { clientService } from "../../services/clientService";
 import { Button } from "../ui/shadcn-button";
 import { Checkbox } from "../ui/Checkbox";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../ui/Table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/DropdownMenu";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationEllipsis,
-} from "../ui/Pagination";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/Table";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/DropdownMenu";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "../ui/Pagination";
 import { ArrowUpDown, Loader2, MoreHorizontal } from "lucide-react";
 
 interface ClientTableProps {
@@ -88,11 +63,7 @@ const ClientTable: React.FC<ClientTableProps> = ({
 
   const renderSortIcon = (field: ClientSortField) => {
     if (sortBy !== field) return <ArrowUpDown className="ml-2 h-4 w-4" />;
-    return sortOrder === "ASC" ? (
-      <ArrowUpDown className="ml-2 h-4 w-4" />
-    ) : (
-      <ArrowUpDown className="ml-2 h-4 w-4" />
-    );
+    return sortOrder === "ASC" ? <ArrowUpDown className="ml-2 h-4 w-4" /> : <ArrowUpDown className="ml-2 h-4 w-4" />;
   };
 
   if (loading) {
@@ -112,18 +83,12 @@ const ClientTable: React.FC<ClientTableProps> = ({
               {onSelectionChange && (
                 <TableHead>
                   <Checkbox
-                    checked={
-                      selectedClients.length === clients.length &&
-                      clients.length > 0
-                    }
+                    checked={selectedClients.length === clients.length && clients.length > 0}
                     onCheckedChange={handleSelectAll}
                   />
                 </TableHead>
               )}
-              <TableHead
-                onClick={() => handleSort("companyName")}
-                className="cursor-pointer"
-              >
+              <TableHead onClick={() => handleSort("companyName")} className="cursor-pointer">
                 Company {renderSortIcon("companyName")}
               </TableHead>
               <TableHead>Contact</TableHead>
@@ -141,28 +106,16 @@ const ClientTable: React.FC<ClientTableProps> = ({
                   <TableCell>
                     <Checkbox
                       checked={selectedClients.includes(client.id)}
-                      onCheckedChange={(checked) =>
-                        handleSelectClient(client.id, checked as boolean)
-                      }
+                      onCheckedChange={(checked) => handleSelectClient(client.id, checked as boolean)}
                     />
                   </TableCell>
                 )}
-                <TableCell className="font-medium">
-                  {client.companyName}
-                </TableCell>
+                <TableCell className="font-medium">{client.companyName}</TableCell>
                 <TableCell>{client.contactPerson}</TableCell>
                 <TableCell>{client.status}</TableCell>
                 <TableCell>{client.estimatedValue}</TableCell>
-                <TableCell>
-                  {client.lastContactDate
-                    ? new Date(client.lastContactDate).toLocaleDateString()
-                    : "-"}
-                </TableCell>
-                <TableCell>
-                  {client.assignedUser
-                    ? `${client.assignedUser.firstName} ${client.assignedUser.lastName}`
-                    : "Unassigned"}
-                </TableCell>
+                <TableCell>{client.lastContactDate ? new Date(client.lastContactDate).toLocaleDateString() : '-'}</TableCell>
+                <TableCell>{client.assignedUser ? `${client.assignedUser.firstName} ${client.assignedUser.lastName}` : 'Unassigned'}</TableCell>
                 <TableCell className="text-right">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -172,36 +125,16 @@ const ClientTable: React.FC<ClientTableProps> = ({
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      {onView && (
-                        <DropdownMenuItem onClick={() => onView(client)}>
-                          View
-                        </DropdownMenuItem>
-                      )}
-                      {onEdit && (
-                        <DropdownMenuItem onClick={() => onEdit(client)}>
-                          Edit
-                        </DropdownMenuItem>
-                      )}
-                      {onDelete && (
-                        <DropdownMenuItem onClick={() => onDelete(client)}>
-                          Delete
-                        </DropdownMenuItem>
-                      )}
+                      {onView && <DropdownMenuItem onClick={() => onView(client)}>View</DropdownMenuItem>}
+                      {onEdit && <DropdownMenuItem onClick={() => onEdit(client)}>Edit</DropdownMenuItem>}
+                      {onDelete && <DropdownMenuItem onClick={() => onDelete(client)}>Delete</DropdownMenuItem>}
                       {onUpdateStatus && (
                         <>
                           <DropdownMenuSeparator />
-                          {[
-                            "lead",
-                            "opportunity",
-                            "active",
-                            "inactive",
-                            "lost",
-                          ].map((status) => (
+                          {["lead", "opportunity", "active", "inactive", "lost"].map((status) => (
                             <DropdownMenuItem
                               key={status}
-                              onClick={() =>
-                                onUpdateStatus(client, status as ClientStatus)
-                              }
+                              onClick={() => onUpdateStatus(client, status as ClientStatus)}
                               disabled={client.status === status}
                             >
                               Set as {status}
@@ -235,10 +168,7 @@ const ClientTable: React.FC<ClientTableProps> = ({
                   disabled={!pagination.hasPrev}
                 />
               </PaginationItem>
-              {Array.from(
-                { length: pagination.totalPages },
-                (_, i) => i + 1
-              ).map((page) => (
+              {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((page) => (
                 <PaginationItem key={page}>
                   <PaginationLink
                     isActive={page === pagination.currentPage}

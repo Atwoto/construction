@@ -2,20 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { User, AuthTokens, LoginCredentials, RegisterData, ApiResponse } from '../types';
 
 // API base configuration - Make sure this matches your backend port
-const getApiBaseUrl = () => {
-  // In production (Vercel), use relative URLs
-  if (window.location.hostname !== 'localhost') {
-    return '/api';
-  }
-  // In development, use the environment variable or fallback to localhost
-  return process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
-};
-
-const API_BASE_URL = getApiBaseUrl();
-
-console.log('🌐 API_BASE_URL:', API_BASE_URL);
-console.log('🔧 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
-console.log('🏠 hostname:', window.location.hostname);
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 // Create axios instance
 const api = axios.create({

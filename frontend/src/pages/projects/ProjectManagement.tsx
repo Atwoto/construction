@@ -101,26 +101,26 @@ const ProjectManagement = () => {
       // Load clients for the project form
       const clientsResponse = await clientService.getClients({});
       setClients(clientsResponse.clients || []);
-
+      
       // Load users for the project form
       const usersResponse = await userService.getUsers({});
       // Ensure usersResponse and usersResponse.users exist before mapping
       const usersArray = usersResponse?.users || [];
       // Convert UserServiceUser[] to User[] by mapping the properties
-      const convertedUsers: User[] = usersArray.map((user) => ({
+      const convertedUsers: User[] = usersArray.map(user => ({
         id: user.id,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        role: user.role as "admin" | "manager" | "employee",
+        role: user.role as 'admin' | 'manager' | 'employee',
         phone: user.phone,
         address: user.address,
         profilePicture: undefined,
-        isActive: user.status === "active",
+        isActive: user.status === 'active',
         isEmailVerified: true, // Default value
         lastLoginAt: user.lastLogin,
         createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
+        updatedAt: user.updatedAt
       }));
       setUsers(convertedUsers);
     } catch (error: any) {

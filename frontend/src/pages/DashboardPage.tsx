@@ -6,14 +6,18 @@ import { projectService } from "../services/projectService";
 import { ProjectStats } from "../types";
 import { ClientStats } from "../types/client";
 import { clientService } from "../services/clientService";
+import Card from "../components/common/Card";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import Button from "../components/common/Button";
 import {
   Card as ShadcnCard,
   CardHeader as ShadcnCardHeader,
   CardTitle as ShadcnCardTitle,
+  CardDescription as ShadcnCardDescription,
   CardContent as ShadcnCardContent,
+  CardFooter as ShadcnCardFooter,
 } from "../components/ui/shadcn-card";
+import { Badge } from "../components/ui/shadcn-badge";
 import { Avatar, AvatarFallback } from "../components/ui/Avatar";
 import {
   DropdownMenu,
@@ -439,7 +443,7 @@ function DashboardPage() {
                         </svg>
                       </div>
                       <div className="text-2xl font-bold text-yellow-600">
-                        {stats?.onHoldProjects || 0}
+                                                {stats?.onHoldProjects || 0}
                       </div>
                       <div className="text-sm text-yellow-700">On Hold</div>
                     </div>

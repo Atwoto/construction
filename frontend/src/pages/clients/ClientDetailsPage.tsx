@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
 import { clientService } from "../../services/clientService";
@@ -13,6 +13,7 @@ import { ClientContactForm, ClientForm } from "../../components/clients";
 
 const ClientDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { user } = useAuth();
 
   const [client, setClient] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);
@@ -304,7 +305,7 @@ const ClientDetailsPage: React.FC = () => {
         onClose={() => setShowDeleteContactConfirm(false)}
         onConfirm={handleDeleteContact}
         title="Delete Contact"
-        message={`Are you sure you want to delete ${selectedContact ? `${selectedContact.firstName} ${selectedContact.lastName}` : ""}?`}
+        message={`Are you sure you want to delete ${selectedContact ? `${selectedContact.firstName} ${selectedContact.lastName}` : ''}?`}
         confirmButtonClass="btn-danger"
       />
     </div>

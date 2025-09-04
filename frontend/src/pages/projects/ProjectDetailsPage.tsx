@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { projectService } from "../../services/projectService";
 import { Project } from "../../types";

@@ -1,7 +1,7 @@
 import React from "react";
 import { ClientStats as ClientStatsType } from "../../types/client";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/shadcn-card";
-import { Users, CheckCircle, Lightbulb, Target } from "lucide-react";
+import { Users, CheckCircle, Lightbulb, Target, Loader2 } from "lucide-react";
 
 interface ClientStatsProps {
   stats: ClientStatsType | null;
@@ -40,21 +40,9 @@ const ClientStats: React.FC<ClientStatsProps> = ({ stats, loading, error }) => {
   }
 
   const statsData = [
-    {
-      title: "Total Clients",
-      value: stats.totalClients,
-      icon: <Users className="h-6 w-6 text-gray-500" />,
-    },
-    {
-      title: "Active Clients",
-      value: stats.activeClients,
-      icon: <CheckCircle className="h-6 w-6 text-green-500" />,
-    },
-    {
-      title: "Leads",
-      value: stats.leads,
-      icon: <Lightbulb className="h-6 w-6 text-yellow-500" />,
-    },
+    { title: "Total Clients", value: stats.totalClients, icon: <Users className="h-6 w-6 text-gray-500" /> },
+    { title: "Active Clients", value: stats.activeClients, icon: <CheckCircle className="h-6 w-6 text-green-500" /> },
+    { title: "Leads", value: stats.leads, icon: <Lightbulb className="h-6 w-6 text-yellow-500" /> },
     {
       title: "Conversion Rate",
       value: `${stats.conversionRate.toFixed(1)}%`,
