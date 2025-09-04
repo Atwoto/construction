@@ -1,21 +1,12 @@
 // Test script to verify logger fix
-const fs = require('fs');
 const path = require('path');
 
 // Set VERCEL environment variable to simulate Vercel environment
 process.env.VERCEL = '1';
 
-// Import the logger
-const loggerPath = path.join(__dirname, 'backend/src/utils/logger.js');
+console.log('Testing logger fix...');
 
-// Test the logger
 try {
-  // Clear any existing logs directory to test creation
-  const logsDir = path.join('/tmp', 'logs');
-  if (fs.existsSync(logsDir)) {
-    fs.rmSync(logsDir, { recursive: true });
-  }
-  
   // Import logger after setting environment
   const logger = require('./backend/src/utils/logger.js');
   

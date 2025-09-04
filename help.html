@@ -1,34 +1,46 @@
-2025-09-04T21:49:23.634Z [error] Error: ENOENT: no such file or directory, mkdir '/var/task/backend/logs'
-    at Object.mkdirSync (node:fs:1364:26)
-    at Object.<anonymous> (/var/task/backend/src/utils/logger.js:7:6)
-    at Module.<anonymous> (/opt/rust/bytecode.js:2:1435)
-    at A.l._compile (/opt/rust/bytecode.js:2:3160)
-    at Object..js (node:internal/modules/cjs/loader:1895:10)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function.<anonymous> (node:internal/modules/cjs/loader:1282:12)
-    at /opt/rust/nodejs.js:2:13284
-    at Function.Mr (/opt/rust/nodejs.js:2:13662)
-    at De.e.<computed>.Me._load (/opt/rust/nodejs.js:2:13254) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'mkdir',
-  path: '/var/task/backend/logs'
-}
-Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
-Error: ENOENT: no such file or directory, mkdir '/var/task/backend/logs'
-    at Object.mkdirSync (node:fs:1364:26)
-    at Object.<anonymous> (/var/task/backend/src/utils/logger.js:7:6)
-    at Module.<anonymous> (/opt/rust/bytecode.js:2:1435)
-    at A.l._compile (/opt/rust/bytecode.js:2:3160)
-    at Object..js (node:internal/modules/cjs/loader:1895:10)
-    at Module.load (node:internal/modules/cjs/loader:1465:32)
-    at Function.<anonymous> (node:internal/modules/cjs/loader:1282:12)
-    at /opt/rust/nodejs.js:2:13284
-    at Function.Mr (/opt/rust/nodejs.js:2:13662)
-    at De.e.<computed>.Me._load (/opt/rust/nodejs.js:2:13254) {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'mkdir',
-  path: '/var/task/backend/logs'
-}
-Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+[01:30:58.117] Running build in Washington, D.C., USA (East) – iad1
+[01:30:58.117] Build machine configuration: 2 cores, 8 GB
+[01:30:58.131] Cloning github.com/Atwoto/construction (Branch: main, Commit: 7404ce9)
+[01:30:58.887] Cloning completed: 756.000ms
+[01:31:00.625] Restored build cache from previous deployment (2uVZxJ3EsoUkCTCZkaFFQzgsKbYL)
+[01:31:02.702] Running "vercel build"
+[01:31:03.078] Vercel CLI 47.0.4
+[01:31:03.876] Running "install" command: `npm install && cd frontend && npm install && cd ../backend && npm install && cd ../api && npm install`...
+[01:31:04.914] 
+[01:31:04.922] up to date, audited 17 packages in 788ms
+[01:31:04.937] 
+[01:31:04.939] found 0 vulnerabilities
+[01:31:07.768] 
+[01:31:07.769] up to date, audited 1639 packages in 3s
+[01:31:07.769] 
+[01:31:07.769] 316 packages are looking for funding
+[01:31:07.770]   run `npm fund` for details
+[01:31:07.773] 
+[01:31:07.773] 9 vulnerabilities (3 moderate, 6 high)
+[01:31:07.773] 
+[01:31:07.774] To address all issues (including breaking changes), run:
+[01:31:07.774]   npm audit fix --force
+[01:31:07.774] 
+[01:31:07.775] Run `npm audit` for details.
+[01:31:09.251] 
+[01:31:09.252] up to date, audited 828 packages in 1s
+[01:31:09.252] 
+[01:31:09.253] 155 packages are looking for funding
+[01:31:09.253]   run `npm fund` for details
+[01:31:09.261] 
+[01:31:09.263] 6 low severity vulnerabilities
+[01:31:09.264] 
+[01:31:09.264] To address issues that do not require attention, run:
+[01:31:09.264]   npm audit fix
+[01:31:09.264] 
+[01:31:09.264] To address all issues (including breaking changes), run:
+[01:31:09.265]   npm audit fix --force
+[01:31:09.265] 
+[01:31:09.265] Run `npm audit` for details.
+[01:31:09.547] npm error code EJSONPARSE
+[01:31:09.551] npm error path /vercel/path0/api/package.json
+[01:31:09.551] npm error JSON.parse Expected property name or '}' in JSON at position 1 (line 1 column 2) while parsing near "{\\n  \\\"name\\\": \\\"api-..."
+[01:31:09.552] npm error JSON.parse Failed to parse JSON data.
+[01:31:09.552] npm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+[01:31:09.552] npm error A complete log of this run can be found in: /vercel/.npm/_logs/2025-09-04T22_31_09_328Z-debug-0.log
+[01:31:09.560] Error: Command "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../api && npm install" exited with 1
