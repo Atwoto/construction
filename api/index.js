@@ -33,74 +33,92 @@ export default async function handler(req, res) {
     }
 
     // Login endpoint
-    if (url === "/api/auth/login" && method === "POST") {
-      const { email, password } = req.body;
-
-      if (!email || !password) {
-        return res.status(400).json({
-          success: false,
-          error: "Email and password are required",
+    if (url === "/api/auth/login") {
+      if (method === "GET") {
+        return res.status(200).json({
+          message: "Login endpoint is working",
+          method: "GET",
+          note: "Use POST with email and password to login",
+          timestamp: new Date().toISOString(),
         });
       }
 
-      // Initialize Supabase client
-      const supabase = createClient(
-        process.env.SUPABASE_URL,
-        process.env.SUPABASE_SERVICE_ROLE_KEY
-      );
+      if (method === "POST") {
+        console.log("Login POST request received:", {
+          body: req.body,
+          headers: req.headers,
+          contentType: req.headers["content-type"],
+        });
 
-      // Find user by email
-      const { data: user, error: userError } = await supabase
-        .from("users")
-        .select("*")
-        .eq("email", email.toLowerCase())
-        .single();
+        const { email, password } = req.body;
 
-      if (userError || !user) {
-        return res.status(401).json({
-          success: false,
-          error: "Invalid email or password",
+        if (!email || !password) {
+          return res.status(400).json({
+            success: false,
+            error: "Email and password are required",
+            receivedBody: req.body,
+          });
+        }
+
+        // Initialize Supabase client
+        const supabase = createClient(
+          process.env.SUPABASE_URL,
+          process.env.SUPABASE_SERVICE_ROLE_KEY
+        );
+
+        // Find user by email
+        const { data: user, error: userError } = await supabase
+          .from("users")
+          .select("*")
+          .eq("email", email.toLowerCase())
+          .single();
+
+        if (userError || !user) {
+          return res.status(401).json({
+            success: false,
+            error: "Invalid email or password",
+          });
+        }
+
+        // Verify password
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if (!isValidPassword) {
+          return res.status(401).json({
+            success: false,
+            error: "Invalid email or password",
+          });
+        }
+
+        // Generate JWT tokens
+        const accessToken = jwt.sign(
+          {
+            userId: user.id,
+            email: user.email,
+            role: user.role,
+          },
+          process.env.JWT_SECRET,
+          { expiresIn: process.env.JWT_EXPIRES_IN || "24h" }
+        );
+
+        const refreshToken = jwt.sign(
+          { userId: user.id },
+          process.env.JWT_REFRESH_SECRET,
+          { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d" }
+        );
+
+        // Remove password from user object
+        const { password: _, ...userWithoutPassword } = user;
+
+        // Return success response
+        return res.status(200).json({
+          success: true,
+          data: {
+            user: userWithoutPassword,
+            token: accessToken,
+            refreshToken: refreshToken,
+          },
         });
       }
-
-      // Verify password
-      const isValidPassword = await bcrypt.compare(password, user.password);
-      if (!isValidPassword) {
-        return res.status(401).json({
-          success: false,
-          error: "Invalid email or password",
-        });
-      }
-
-      // Generate JWT tokens
-      const accessToken = jwt.sign(
-        {
-          userId: user.id,
-          email: user.email,
-          role: user.role,
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: process.env.JWT_EXPIRES_IN || "24h" }
-      );
-
-      const refreshToken = jwt.sign(
-        { userId: user.id },
-        process.env.JWT_REFRESH_SECRET,
-        { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d" }
-      );
-
-      // Remove password from user object
-      const { password: _, ...userWithoutPassword } = user;
-
-      // Return success response
-      return res.status(200).json({
-        success: true,
-        data: {
-          user: userWithoutPassword,
-          token: accessToken,
-          refreshToken: refreshToken,
-        },
-      });
     }
 
     // Debug endpoint

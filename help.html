@@ -1,132 +1,28 @@
-[17:20:13.513] Running build in Washington, D.C., USA (East) – iad1
-[17:20:13.514] Build machine configuration: 2 cores, 8 GB
-[17:20:13.528] Cloning github.com/Atwoto/construction (Branch: main, Commit: 3db9157)
-[17:20:14.108] Cloning completed: 580.000ms
-[17:20:15.405] Restored build cache from previous deployment (CZRCvLWS3mW93PmNS1D35Vp6rd42)
-[17:20:17.488] Running "vercel build"
-[17:20:17.885] Vercel CLI 47.0.4
-[17:20:18.052] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
-[17:20:18.770] Installing dependencies...
-[17:20:21.359] 
-[17:20:21.360] up to date in 2s
-[17:20:21.361] 
-[17:20:21.361] 316 packages are looking for funding
-[17:20:21.361]   run `npm fund` for details
-[17:20:21.401] Running "npm run build"
-[17:20:21.538] 
-[17:20:21.539] > construction-crm-frontend@1.0.0 build
-[17:20:21.539] > CI=false react-scripts build
-[17:20:21.539] 
-[17:20:23.217] Creating an optimized production build...
-[17:20:50.657] Compiled with warnings.
-[17:20:50.658] 
-[17:20:50.658] [eslint] 
-[17:20:50.658] src/components/clients/ClientFilters.tsx
-[17:20:50.658]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.658]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.664]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
-[17:20:50.665] 
-[17:20:50.665] src/components/clients/ClientForm.tsx
-[17:20:50.665]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.665]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
-[17:20:50.666]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
-[17:20:50.666]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
-[17:20:50.666]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
-[17:20:50.666] 
-[17:20:50.667] src/components/clients/ClientStats.tsx
-[17:20:50.667]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.667] 
-[17:20:50.667] src/components/clients/ClientTable.tsx
-[17:20:50.668]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
-[17:20:50.668]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.668] 
-[17:20:50.669] src/components/projects/ProjectStats.tsx
-[17:20:50.669]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.669]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.669] 
-[17:20:50.670] src/components/ui/shadcn-card.tsx
-[17:20:50.670]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
-[17:20:50.670] 
-[17:20:50.670] src/context/AuthContext.tsx
-[17:20:50.671]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
-[17:20:50.671]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
-[17:20:50.671]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[17:20:50.674] 
-[17:20:50.674] src/pages/ComponentTestPage.tsx
-[17:20:50.675]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
-[17:20:50.675]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.675]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.675]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.676]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
-[17:20:50.676]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
-[17:20:50.676]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
-[17:20:50.676]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
-[17:20:50.676] 
-[17:20:50.677] src/pages/DashboardPage.tsx
-[17:20:50.677]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
-[17:20:50.677]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.677]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
-[17:20:50.678]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
-[17:20:50.678] 
-[17:20:50.678] src/pages/ProfilePage.tsx
-[17:20:50.681]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
-[17:20:50.681] 
-[17:20:50.681] src/pages/clients/ClientDetailsPage.tsx
-[17:20:50.681]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[17:20:50.682]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[17:20:50.682] 
-[17:20:50.682] src/pages/clients/ClientManagement.tsx
-[17:20:50.682]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[17:20:50.683] 
-[17:20:50.683] src/pages/projects/ProjectDetailsPage.tsx
-[17:20:50.688]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[17:20:50.689]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[17:20:50.689] 
-[17:20:50.689] src/pages/projects/ProjectManagement.tsx
-[17:20:50.689]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
-[17:20:50.690]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[17:20:50.690] 
-[17:20:50.690] Search for the keywords to learn more about each warning.
-[17:20:50.690] To ignore, add // eslint-disable-next-line to the line before.
-[17:20:50.690] 
-[17:20:50.691] File sizes after gzip:
-[17:20:50.691] 
-[17:20:50.701]   230.52 kB (-33.84 kB)  build/static/js/main.5286113c.js
-[17:20:50.702]   17.56 kB (+20 B)       build/static/css/main.bd08566c.css
-[17:20:50.702]   1.78 kB                build/static/js/453.3388fa3d.chunk.js
-[17:20:50.702] 
-[17:20:50.703] The project was built assuming it is hosted at /.
-[17:20:50.703] You can control this with the homepage field in your package.json.
-[17:20:50.703] 
-[17:20:50.703] The build folder is ready to be deployed.
-[17:20:50.703] You may serve it with a static server:
-[17:20:50.703] 
-[17:20:50.703]   npm install -g serve
-[17:20:50.703]   serve -s build
-[17:20:50.703] 
-[17:20:50.703] Find out more about deployment here:
-[17:20:50.703] 
-[17:20:50.703]   https://cra.link/deployment
-[17:20:50.703] 
-[17:20:50.818] Installing dependencies...
-[17:21:14.593] npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
-[17:21:14.639] npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
-[17:21:14.927] npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
-[17:21:15.321] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-[17:21:15.321] npm warn deprecated npmlog@5.0.1: This package is no longer supported.
-[17:21:15.370] npm warn deprecated path-match@1.2.4: This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions
-[17:21:15.609] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-[17:21:15.637] npm warn deprecated gauge@3.0.2: This package is no longer supported.
-[17:21:15.714] npm warn deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
-[17:21:16.524] npm warn deprecated multer@1.4.5-lts.2: Multer 1.x is impacted by a number of vulnerabilities, which have been patched in 2.x. You should upgrade to the latest 2.x version.
-[17:21:16.698] npm warn deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
-[17:21:16.762] npm warn deprecated uuid@3.3.2: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
-[17:21:19.133] 
-[17:21:19.134] added 441 packages in 28s
-[17:21:19.135] 
-[17:21:19.135] 35 packages are looking for funding
-[17:21:19.135]   run `npm fund` for details
-[17:21:21.481] Build Completed in /vercel/output [1m]
-[17:21:21.708] Deploying outputs...
-[17:21:29.096] Deployment completed
-[17:21:29.904] Creating build cache...
+AuthContext.tsx:19 USE_MOCK_AUTH: false
+content-script.js:22 Document already loaded, running initialization immediately
+content-script.js:4 Attempting to initialize AdUnit
+content-script.js:6 AdUnit initialized successfully
+login:1 Error while trying to use the following icon from the Manifest: https://construction-six-lovat.vercel.app/logo192.png (Download error or resource isn't a valid image)
+AuthContext.tsx:212 🔐 Login function called with: ngcoboharry12@gmail.com
+hook.js:608 Login API error: Bn
+overrideMethod @ hook.js:608
+hook.js:608 ❌ Login error: Bn
+overrideMethod @ hook.js:608
+hook.js:608 Login failed: Bn
+overrideMethod @ hook.js:608
+localhost:5001/api/auth/login:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+AuthContext.tsx:212 🔐 Login function called with: ngcoboharry12@gmail.com
+hook.js:608 Login API error: Bn
+overrideMethod @ hook.js:608
+hook.js:608 ❌ Login error: Bn
+overrideMethod @ hook.js:608
+hook.js:608 Login failed: Bn
+overrideMethod @ hook.js:608
+localhost:5001/api/auth/login:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
+hook.js:608 Registration API error: Bn
+overrideMethod @ hook.js:608
+hook.js:608 Registration error: Bn
+overrideMethod @ hook.js:608
+hook.js:608 Registration failed: Bn
+overrideMethod @ hook.js:608
+localhost:5001/api/auth/register:1  Failed to load resource: net::ERR_CONNECTION_REFUSED
