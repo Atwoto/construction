@@ -1,5 +1,34 @@
-2025-09-04T20:43:42.780Z [error] Cannot find module 'jsonwebtoken'
-Require stack:
-- /var/task/api/auth/login.js
-Did you forget to add it to "dependencies" in `package.json`?
+2025-09-04T21:49:23.634Z [error] Error: ENOENT: no such file or directory, mkdir '/var/task/backend/logs'
+    at Object.mkdirSync (node:fs:1364:26)
+    at Object.<anonymous> (/var/task/backend/src/utils/logger.js:7:6)
+    at Module.<anonymous> (/opt/rust/bytecode.js:2:1435)
+    at A.l._compile (/opt/rust/bytecode.js:2:3160)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1282:12)
+    at /opt/rust/nodejs.js:2:13284
+    at Function.Mr (/opt/rust/nodejs.js:2:13662)
+    at De.e.<computed>.Me._load (/opt/rust/nodejs.js:2:13254) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'mkdir',
+  path: '/var/task/backend/logs'
+}
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Error: ENOENT: no such file or directory, mkdir '/var/task/backend/logs'
+    at Object.mkdirSync (node:fs:1364:26)
+    at Object.<anonymous> (/var/task/backend/src/utils/logger.js:7:6)
+    at Module.<anonymous> (/opt/rust/bytecode.js:2:1435)
+    at A.l._compile (/opt/rust/bytecode.js:2:3160)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1282:12)
+    at /opt/rust/nodejs.js:2:13284
+    at Function.Mr (/opt/rust/nodejs.js:2:13662)
+    at De.e.<computed>.Me._load (/opt/rust/nodejs.js:2:13254) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'mkdir',
+  path: '/var/task/backend/logs'
+}
 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
