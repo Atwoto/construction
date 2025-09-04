@@ -1,124 +1,57 @@
-[15:56:04.974] Running build in Washington, D.C., USA (East) – iad1
-[15:56:04.975] Build machine configuration: 2 cores, 8 GB
-[15:56:05.006] Cloning github.com/Atwoto/construction (Branch: main, Commit: 47d5452)
-[15:56:05.555] Cloning completed: 549.000ms
-[15:56:06.850] Restored build cache from previous deployment (GQ6wM3esKbhDdfshpFSKLe8bf2MZ)
-[15:56:08.931] Running "vercel build"
-[15:56:09.322] Vercel CLI 47.0.4
-[15:56:09.482] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
-[15:56:10.130] Installing dependencies...
-[15:56:12.966] 
-[15:56:12.966] up to date in 3s
-[15:56:12.967] 
-[15:56:12.968] 316 packages are looking for funding
-[15:56:12.968]   run `npm fund` for details
-[15:56:13.007] Running "npm run build"
-[15:56:13.114] 
-[15:56:13.115] > construction-crm-frontend@1.0.0 build
-[15:56:13.115] > CI=false react-scripts build
-[15:56:13.115] 
-[15:56:14.554] Creating an optimized production build...
-[15:56:43.042] Compiled with warnings.
-[15:56:43.043] 
-[15:56:43.044] [eslint] 
-[15:56:43.044] src/components/clients/ClientFilters.tsx
-[15:56:43.045]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.045]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.045]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
-[15:56:43.046] 
-[15:56:43.046] src/components/clients/ClientForm.tsx
-[15:56:43.046]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.047]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
-[15:56:43.047]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
-[15:56:43.047]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
-[15:56:43.047]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
-[15:56:43.048] 
-[15:56:43.048] src/components/clients/ClientStats.tsx
-[15:56:43.048]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.049] 
-[15:56:43.049] src/components/clients/ClientTable.tsx
-[15:56:43.049]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
-[15:56:43.050]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.050] 
-[15:56:43.050] src/components/projects/ProjectStats.tsx
-[15:56:43.050]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.051]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.051] 
-[15:56:43.051] src/components/ui/shadcn-card.tsx
-[15:56:43.052]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
-[15:56:43.052] 
-[15:56:43.052] src/context/AuthContext.tsx
-[15:56:43.052]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
-[15:56:43.053]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
-[15:56:43.053]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[15:56:43.053] 
-[15:56:43.054] src/pages/ComponentTestPage.tsx
-[15:56:43.054]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
-[15:56:43.055]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.055]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.055]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.056]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
-[15:56:43.056]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
-[15:56:43.056]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
-[15:56:43.057]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
-[15:56:43.057] 
-[15:56:43.057] src/pages/DashboardPage.tsx
-[15:56:43.057]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
-[15:56:43.058]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.058]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
-[15:56:43.058]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
-[15:56:43.059] 
-[15:56:43.059] src/pages/ProfilePage.tsx
-[15:56:43.059]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
-[15:56:43.060] 
-[15:56:43.060] src/pages/clients/ClientDetailsPage.tsx
-[15:56:43.060]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[15:56:43.060]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[15:56:43.061] 
-[15:56:43.061] src/pages/clients/ClientManagement.tsx
-[15:56:43.061]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[15:56:43.061] 
-[15:56:43.062] src/pages/projects/ProjectDetailsPage.tsx
-[15:56:43.062]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[15:56:43.062]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[15:56:43.063] 
-[15:56:43.063] src/pages/projects/ProjectManagement.tsx
-[15:56:43.063]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
-[15:56:43.064]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[15:56:43.064] 
-[15:56:43.064] Search for the keywords to learn more about each warning.
-[15:56:43.064] To ignore, add // eslint-disable-next-line to the line before.
-[15:56:43.065] 
-[15:56:43.065] File sizes after gzip:
-[15:56:43.065] 
-[15:56:43.086]   230.52 kB (-33.84 kB)  build/static/js/main.5286113c.js
-[15:56:43.086]   17.56 kB (+20 B)       build/static/css/main.bd08566c.css
-[15:56:43.087]   1.78 kB                build/static/js/453.3388fa3d.chunk.js
-[15:56:43.087] 
-[15:56:43.087] The project was built assuming it is hosted at /.
-[15:56:43.088] You can control this with the homepage field in your package.json.
-[15:56:43.088] 
-[15:56:43.088] The build folder is ready to be deployed.
-[15:56:43.088] You may serve it with a static server:
-[15:56:43.089] 
-[15:56:43.089]   npm install -g serve
-[15:56:43.089]   serve -s build
-[15:56:43.089] 
-[15:56:43.090] Find out more about deployment here:
-[15:56:43.090] 
-[15:56:43.090]   https://cra.link/deployment
-[15:56:43.090] 
-[15:56:43.176] Warning: Detected "engines": { "node": ">=16.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
-[15:56:43.185] Installing dependencies...
-[15:56:44.184] 
-[15:56:44.185] up to date in 941ms
-[15:56:44.185] 
-[15:56:44.185] 155 packages are looking for funding
-[15:56:44.186]   run `npm fund` for details
-[15:56:46.619] Build Completed in /vercel/output [37s]
-[15:56:46.837] Deploying outputs...
-[15:56:54.047] Deployment completed
-[15:56:54.828] Creating build cache...
-[15:58:23.162] Created build cache: 1:28.334 (m:ss.mmm)
-[15:58:23.163] Uploading build cache [93.75 MB]
-[15:58:24.824] Build cache uploaded: 1.661s
+[16:39:30.745] Running build in Washington, D.C., USA (East) – iad1
+[16:39:30.746] Build machine configuration: 2 cores, 8 GB
+[16:39:30.762] Cloning github.com/Atwoto/construction (Branch: main, Commit: 283fc53)
+[16:39:30.776] Skipping build cache, deployment was triggered without cache.
+[16:39:31.296] Cloning completed: 534.000ms
+[16:39:31.647] Running "vercel build"
+[16:39:32.055] Vercel CLI 47.0.4
+[16:39:33.069] Running "install" command: `cd frontend && npm install`...
+[16:39:37.457] npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+[16:39:38.106] npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+[16:39:38.150] npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+[16:39:38.151] npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+[16:39:38.365] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[16:39:38.390] npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+[16:39:38.787] npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+[16:39:38.787] npm warn deprecated
+[16:39:38.787] npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+[16:39:38.813] npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+[16:39:40.330] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[16:39:40.557] npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+[16:39:40.589] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[16:39:41.159] npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+[16:39:41.832] npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+[16:39:42.011] npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+[16:39:43.219] npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+[16:39:43.291] npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+[16:39:43.937] npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+[16:39:43.938] npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+[16:39:43.939] npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+[16:39:43.940] npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+[16:39:43.943] npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+[16:39:43.980] npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+[16:39:45.407] npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+[16:39:48.639] npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[16:40:02.719] 
+[16:40:02.720] added 1638 packages, and audited 1639 packages in 29s
+[16:40:02.720] 
+[16:40:02.721] 316 packages are looking for funding
+[16:40:02.721]   run `npm fund` for details
+[16:40:02.728] 
+[16:40:02.729] 9 vulnerabilities (3 moderate, 6 high)
+[16:40:02.729] 
+[16:40:02.729] To address all issues (including breaking changes), run:
+[16:40:02.730]   npm audit fix --force
+[16:40:02.730] 
+[16:40:02.730] Run `npm audit` for details.
+[16:40:02.737] npm notice
+[16:40:02.737] npm notice New major version of npm available! 10.9.3 -> 11.6.0
+[16:40:02.738] npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.0
+[16:40:02.738] npm notice To update run: npm install -g npm@11.6.0
+[16:40:02.738] npm notice
+[16:40:03.015] npm error Missing script: "build"
+[16:40:03.016] npm error
+[16:40:03.016] npm error To see a list of scripts, run:
+[16:40:03.016] npm error   npm run
+[16:40:03.018] npm error A complete log of this run can be found in: /vercel/.npm/_logs/2025-09-04T13_40_02_959Z-debug-0.log
+[16:40:03.025] Error: Command "npm run build" exited with 1
