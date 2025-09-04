@@ -1,7 +1,7 @@
 import React from "react";
 import { ClientStats as ClientStatsType } from "../../types/client";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/shadcn-card";
-import { Users, CheckCircle, Lightbulb, Target, Loader2 } from "lucide-react";
+import { Users, CheckCircle, Lightbulb, Target } from "lucide-react";
 
 interface ClientStatsProps {
   stats: ClientStatsType | null;

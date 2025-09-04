@@ -1,7 +1,5 @@
 import React from "react";
 import { ProjectStats } from "../../types";
-import { projectService } from "../../services/projectService";
-import LoadingSpinner from "../common/LoadingSpinner";
 import Card from "../common/Card";
 
 interface ProjectStatsProps {
