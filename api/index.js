@@ -1,98 +1,37 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const compression = require('compression');
-require('dotenv').config();
+// Simple API router for Vercel serverless functions
+export default function handler(req, res) {
+  // Set CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-// Import your existing controllers and middleware
-const { initializeModels } = require('../backend/src/config/database');
-const { errorHandler } = require('../backend/src/middleware/errorHandler');
-
-// Import route modules
-const authRoutes = require('../backend/src/routes/authRoutes');
-const userRoutes = require('../backend/src/routes/userRoutes');
-const clientRoutes = require('../backend/src/routes/clientRoutes');
-const clientContactRoutes = require('../backend/src/routes/clientContactRoutes');
-const projectRoutes = require('../backend/src/routes/projectRoutes');
-const invoiceRoutes = require('../backend/src/routes/invoiceRoutes');
-const employeeRoutes = require('../backend/src/routes/employeeRoutes');
-const inventoryRoutes = require('../backend/src/routes/inventoryRoutes');
-const documentRoutes = require('../backend/src/routes/documentRoutes');
-const reportRoutes = require('../backend/src/routes/reportRoutes');
-
-const app = express();
-
-// Initialize models (only once)
-let modelsInitialized = false;
-if (!modelsInitialized) {
-  try {
-    initializeModels();
-    modelsInitialized = true;
-  } catch (error) {
-    console.error('Database initialization error:', error);
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
   }
-}
 
-// Security middleware
-app.use(helmet({
-  crossOriginEmbedderPolicy: false,
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https:"],
-    },
-  },
-}));
+  const { url, method } = req;
 
-// CORS configuration
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-}));
+  // Route to specific handlers
+  if (url === "/api/health") {
+    return res.status(200).json({
+      status: "OK",
+      timestamp: new Date().toISOString(),
+      message: "Construction CRM API is running!",
+      environment: process.env.NODE_ENV || "development",
+    });
+  }
 
-// Body parsing middleware
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// Compression middleware
-app.use(compression());
-
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+  // For now, return a generic response for all other routes
   res.status(200).json({
-    status: 'OK',
+    message: "Construction CRM API",
+    url,
+    method,
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development',
-    message: 'Construction CRM API is running!',
+    note: "Individual endpoints are being set up...",
   });
-});
-
-// API routes - using your existing routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/clients', clientRoutes);
-app.use('/api', clientContactRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/invoices', invoiceRoutes);
-app.use('/api/employees', employeeRoutes);
-app.use('/api/inventory', inventoryRoutes);
-app.use('/api/documents', documentRoutes);
-app.use('/api/reports', reportRoutes);
-
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({
-    error: 'Route not found',
-    message: `Cannot ${req.method} ${req.originalUrl}`,
-  });
-});
-
-// Global error handler
-app.use(errorHandler);
-
-// Export for Vercel
-module.exports = app;
+}
