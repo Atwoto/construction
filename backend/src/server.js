@@ -106,8 +106,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// API routes - use /api prefix only in standalone mode
-const apiPrefix = process.env.VERCEL ? '' : '/api';
+// API routes
+const apiPrefix = '/api';
 app.use(apiPrefix + '/auth', authRoutes);
 app.use(apiPrefix + '/users', userRoutes);
 app.use(apiPrefix + '/clients', clientRoutes);
