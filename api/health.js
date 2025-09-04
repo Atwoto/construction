@@ -1,5 +1,5 @@
-// Simple health check for now to test deployment
-module.exports = (req, res) => {
+// Simple health check API endpoint
+export default function handler(req, res) {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -14,24 +14,12 @@ module.exports = (req, res) => {
     return;
   }
 
-  // Health check endpoint
-  if (req.url === "/api/health" || req.url === "/health") {
-    res.status(200).json({
-      status: "OK",
-      timestamp: new Date().toISOString(),
-      message: "API is working!",
-      url: req.url,
-      method: req.method,
-    });
-    return;
-  }
-
-  // Default response
+  // Health check response
   res.status(200).json({
-    message: "Construction CRM API",
     status: "OK",
     timestamp: new Date().toISOString(),
+    message: "Construction CRM API is working!",
     url: req.url,
     method: req.method,
   });
-};
+}

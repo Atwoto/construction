@@ -1,29 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "frontend/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "build"
-            }
-        },
-        {
-            "src": "api/index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "/api/index.js"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/index.html"
-        }
-    ],
     "buildCommand": "cd frontend && npm run build",
     "outputDirectory": "frontend/build",
-    "installCommand": "cd frontend && npm install"
+    "installCommand": "cd frontend && npm install",
+    "rewrites": [
+        {
+            "source": "/api/health",
+            "destination": "/api/health.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
 }
