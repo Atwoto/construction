@@ -58,7 +58,7 @@ app.use(helmet({
 
 // CORS configuration
 const corsOrigin = process.env.VERCEL 
-  ? [process.env.CORS_ORIGIN, 'https://construction.vercel.app'] 
+  ? [process.env.CORS_ORIGIN || '*', 'https://construction.vercel.app'] 
   : process.env.CORS_ORIGIN || 'http://localhost:3000';
 
 app.use(cors({

@@ -11,8 +11,8 @@ const app = express();
 // Add CORS middleware
 app.use(cors());
 
-// Mount the backend app on /api
-app.use('/api', backendApp);
+// Use the backend app directly (no prefix since it's handled in the backend)
+app.use(backendApp);
 
 // Export the serverless function
 module.exports = app;
