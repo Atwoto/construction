@@ -1,121 +1,117 @@
-[15:27:35.123] Running build in Washington, D.C., USA (East) – iad1
-[15:27:35.124] Build machine configuration: 2 cores, 8 GB
-[15:27:35.153] Cloning github.com/Atwoto/construction (Branch: main, Commit: 3e26575)
-[15:27:35.722] Cloning completed: 568.000ms
-[15:27:36.959] Restored build cache from previous deployment (5247iTPVDbkmx4QnwY5MhrvMg3KC)
-[15:27:39.087] Running "vercel build"
-[15:27:39.492] Vercel CLI 47.0.4
-[15:27:39.677] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
-[15:27:40.258] Installing dependencies...
-[15:27:43.260] 
-[15:27:43.261] up to date in 3s
-[15:27:43.262] 
-[15:27:43.262] 316 packages are looking for funding
-[15:27:43.262]   run `npm fund` for details
-[15:27:43.298] Running "npm run build"
-[15:27:43.410] 
-[15:27:43.410] > construction-crm-frontend@1.0.0 build
-[15:27:43.410] > CI=false react-scripts build
-[15:27:43.411] 
-[15:27:44.871] Creating an optimized production build...
-[15:28:13.031] Compiled with warnings.
-[15:28:13.031] 
-[15:28:13.032] [eslint] 
-[15:28:13.032] src/components/clients/ClientFilters.tsx
-[15:28:13.032]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.033]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.033]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
-[15:28:13.033] 
-[15:28:13.033] src/components/clients/ClientForm.tsx
-[15:28:13.033]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.034]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
-[15:28:13.034]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
-[15:28:13.034]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
-[15:28:13.034]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
-[15:28:13.035] 
-[15:28:13.035] src/components/clients/ClientStats.tsx
-[15:28:13.035]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.035] 
-[15:28:13.036] src/components/clients/ClientTable.tsx
-[15:28:13.036]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
-[15:28:13.036]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.036] 
-[15:28:13.037] src/components/projects/ProjectStats.tsx
-[15:28:13.037]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.037]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.037] 
-[15:28:13.038] src/components/ui/shadcn-card.tsx
-[15:28:13.038]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
-[15:28:13.038] 
-[15:28:13.038] src/context/AuthContext.tsx
-[15:28:13.039]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
-[15:28:13.039]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
-[15:28:13.039]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[15:28:13.040] 
-[15:28:13.040] src/pages/ComponentTestPage.tsx
-[15:28:13.040]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
-[15:28:13.040]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.041]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.041]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.043]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
-[15:28:13.044]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
-[15:28:13.044]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
-[15:28:13.044]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
-[15:28:13.045] 
-[15:28:13.045] src/pages/DashboardPage.tsx
-[15:28:13.045]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
-[15:28:13.045]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.045]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
-[15:28:13.046]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
-[15:28:13.046] 
-[15:28:13.046] src/pages/ProfilePage.tsx
-[15:28:13.046]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
-[15:28:13.047] 
-[15:28:13.047] src/pages/clients/ClientDetailsPage.tsx
-[15:28:13.047]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[15:28:13.047]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[15:28:13.047] 
-[15:28:13.048] src/pages/clients/ClientManagement.tsx
-[15:28:13.048]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[15:28:13.048] 
-[15:28:13.048] src/pages/projects/ProjectDetailsPage.tsx
-[15:28:13.050]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[15:28:13.050]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[15:28:13.050] 
-[15:28:13.051] src/pages/projects/ProjectManagement.tsx
-[15:28:13.051]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
-[15:28:13.051]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[15:28:13.068] 
-[15:28:13.068] Search for the keywords to learn more about each warning.
-[15:28:13.068] To ignore, add // eslint-disable-next-line to the line before.
-[15:28:13.068] 
-[15:28:13.068] File sizes after gzip:
-[15:28:13.068] 
-[15:28:13.184]   230.52 kB (-33.84 kB)  build/static/js/main.5286113c.js
-[15:28:13.185]   17.56 kB (+20 B)       build/static/css/main.bd08566c.css
-[15:28:13.186]   1.78 kB                build/static/js/453.3388fa3d.chunk.js
-[15:28:13.186] 
-[15:28:13.186] The project was built assuming it is hosted at /.
-[15:28:13.186] You can control this with the homepage field in your package.json.
-[15:28:13.186] 
-[15:28:13.187] The build folder is ready to be deployed.
-[15:28:13.187] You may serve it with a static server:
-[15:28:13.187] 
-[15:28:13.187]   npm install -g serve
-[15:28:13.188]   serve -s build
-[15:28:13.188] 
-[15:28:13.188] Find out more about deployment here:
-[15:28:13.188] 
-[15:28:13.188]   https://cra.link/deployment
-[15:28:13.189] 
-[15:28:13.536] Warning: Detected "engines": { "node": ">=16.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
-[15:28:13.546] Installing dependencies...
-[15:28:14.569] 
-[15:28:14.569] up to date in 963ms
-[15:28:14.570] 
-[15:28:14.570] 155 packages are looking for funding
-[15:28:14.571]   run `npm fund` for details
-[15:28:17.154] Build Completed in /vercel/output [37s]
-[15:28:17.368] Deploying outputs...
-[15:28:24.586] Deployment completed
-[15:28:25.363] Creating build cache...
+[15:47:39.613] Running build in Washington, D.C., USA (East) – iad1
+[15:47:39.614] Build machine configuration: 2 cores, 8 GB
+[15:47:39.629] Cloning github.com/Atwoto/construction (Branch: main, Commit: 12bee74)
+[15:47:40.197] Cloning completed: 568.000ms
+[15:47:41.588] Restored build cache from previous deployment (EDHpCYmmiusaZKQ7NRr2cqseUWgo)
+[15:47:43.701] Running "vercel build"
+[15:47:45.174] Vercel CLI 47.0.4
+[15:47:45.350] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+[15:47:45.808] Installing dependencies...
+[15:47:48.440] 
+[15:47:48.441] up to date in 2s
+[15:47:48.442] 
+[15:47:48.442] 316 packages are looking for funding
+[15:47:48.442]   run `npm fund` for details
+[15:47:48.480] Running "npm run build"
+[15:47:48.591] 
+[15:47:48.592] > construction-crm-frontend@1.0.0 build
+[15:47:48.592] > CI=false react-scripts build
+[15:47:48.592] 
+[15:47:50.116] Creating an optimized production build...
+[15:48:19.260] Compiled with warnings.
+[15:48:19.260] 
+[15:48:19.260] [eslint] 
+[15:48:19.261] src/components/clients/ClientFilters.tsx
+[15:48:19.261]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.261]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.262]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
+[15:48:19.262] 
+[15:48:19.262] src/components/clients/ClientForm.tsx
+[15:48:19.262]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.263]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
+[15:48:19.263]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
+[15:48:19.263]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
+[15:48:19.263]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
+[15:48:19.264] 
+[15:48:19.264] src/components/clients/ClientStats.tsx
+[15:48:19.264]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.264] 
+[15:48:19.264] src/components/clients/ClientTable.tsx
+[15:48:19.264]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
+[15:48:19.264]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.264] 
+[15:48:19.264] src/components/projects/ProjectStats.tsx
+[15:48:19.264]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.265]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.265] 
+[15:48:19.265] src/components/ui/shadcn-card.tsx
+[15:48:19.265]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
+[15:48:19.265] 
+[15:48:19.265] src/context/AuthContext.tsx
+[15:48:19.265]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
+[15:48:19.265]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+[15:48:19.265]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[15:48:19.265] 
+[15:48:19.265] src/pages/ComponentTestPage.tsx
+[15:48:19.265]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
+[15:48:19.266]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.266]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.266]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.266]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
+[15:48:19.268]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
+[15:48:19.269]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
+[15:48:19.269]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
+[15:48:19.269] 
+[15:48:19.269] src/pages/DashboardPage.tsx
+[15:48:19.269]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
+[15:48:19.270]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.270]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
+[15:48:19.270]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
+[15:48:19.270] 
+[15:48:19.270] src/pages/ProfilePage.tsx
+[15:48:19.271]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
+[15:48:19.271] 
+[15:48:19.271] src/pages/clients/ClientDetailsPage.tsx
+[15:48:19.271]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
+[15:48:19.271]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[15:48:19.272] 
+[15:48:19.272] src/pages/clients/ClientManagement.tsx
+[15:48:19.272]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[15:48:19.272] 
+[15:48:19.272] src/pages/projects/ProjectDetailsPage.tsx
+[15:48:19.278]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
+[15:48:19.278]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[15:48:19.278] 
+[15:48:19.280] src/pages/projects/ProjectManagement.tsx
+[15:48:19.287]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+[15:48:19.287]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[15:48:19.288] 
+[15:48:19.288] Search for the keywords to learn more about each warning.
+[15:48:19.288] To ignore, add // eslint-disable-next-line to the line before.
+[15:48:19.288] 
+[15:48:19.288] File sizes after gzip:
+[15:48:19.289] 
+[15:48:19.302]   230.52 kB (-33.84 kB)  build/static/js/main.5286113c.js
+[15:48:19.302]   17.56 kB (+20 B)       build/static/css/main.bd08566c.css
+[15:48:19.302]   1.78 kB                build/static/js/453.3388fa3d.chunk.js
+[15:48:19.303] 
+[15:48:19.304] The project was built assuming it is hosted at /.
+[15:48:19.304] You can control this with the homepage field in your package.json.
+[15:48:19.304] 
+[15:48:19.304] The build folder is ready to be deployed.
+[15:48:19.305] You may serve it with a static server:
+[15:48:19.305] 
+[15:48:19.305]   npm install -g serve
+[15:48:19.305]   serve -s build
+[15:48:19.306] 
+[15:48:19.306] Find out more about deployment here:
+[15:48:19.306] 
+[15:48:19.306]   https://cra.link/deployment
+[15:48:19.307] 
+[15:48:19.408] Build Completed in /vercel/output [34s]
+[15:48:19.505] Deploying outputs...
+[15:48:22.403] Deployment completed
+[15:48:23.179] Creating build cache...
+[15:49:24.268] Created build cache: 1:01.085 (m:ss.mmm)
+[15:49:24.269] Uploading build cache [93.75 MB]
+[15:49:26.116] Build cache uploaded: 1.850s
