@@ -1,141 +1,50 @@
-# Construction CRM System
+# Construction CRM
 
 A comprehensive Customer Relationship Management system specifically designed for construction companies to manage all aspects of their business operations.
 
-## Tech Stack
+## Deployment Guide
 
-- **Frontend**: React.js with modern hooks and context API
-- **Backend**: Node.js with Express.js framework
-- **Database**: PostgreSQL with Sequelize ORM
-- **Authentication**: JWT (JSON Web Tokens)
-- **API Architecture**: RESTful APIs
-- **Styling**: Tailwind CSS
-- **File Storage**: Local file system
+### Vercel Deployment
 
-## Project Structure
+1. Set up the following environment variables in your Vercel project:
+   - `SUPABASE_URL` - Your Supabase project URL
+   - `SUPABASE_ANON_KEY` - Your Supabase anon key
+   - `SUPABASE_SERVICE_ROLE_KEY` - Your Supabase service role key
+   - `JWT_SECRET` - Secret for JWT tokens
+   - `JWT_EXPIRES_IN` - Token expiration time
+   - `JWT_REFRESH_SECRET` - Secret for refresh tokens
+   - `JWT_REFRESH_EXPIRES_IN` - Refresh token expiration time
 
-```
-construction-crm/
-├── frontend/          # React.js application
-├── backend/           # Node.js/Express API
-├── database/          # SQL scripts and migrations
-├── docs/             # Documentation
-└── README.md         # Project overview
-```
+2. Deploy to Vercel using the provided `vercel.json` configuration.
 
-## Core Features
+### Local Development
 
-### 1. Authentication & User Management
-- Multi-role authentication system (Admin, Manager, Employee)
-- JWT-based secure authentication
-- Password reset functionality
-- User profile management
-- Role-based access control
+1. Install dependencies:
+   ```bash
+   npm install
+   cd frontend && npm install
+   cd ../backend && npm install
+   ```
 
-### 2. Client Management Module
-- Complete client database with contact information
-- Lead management pipeline (Lead → Opportunity → Active Client)
-- Communication history tracking
-- Client status management
-- Search and filter functionality
+2. Create environment files:
+   - Copy `backend/.env.example` to `backend/.env` and update the values
+   - Copy `frontend/.env.example` to `frontend/.env` and update the values
 
-### 3. Project Management Module
-- Comprehensive project tracking system
-- Project lifecycle management
-- Milestone and task management
-- Progress tracking with visual indicators
-- Budget tracking
-- Timeline/Gantt chart visualization
+3. Start the development servers:
+   ```bash
+   # Terminal 1: Start backend
+   cd backend
+   npm run dev
+   
+   # Terminal 2: Start frontend
+   cd frontend
+   npm start
+   ```
 
-### 4. Financial Management Module
-- Professional invoice generation and management
-- Quote/Estimate system
-- Expense tracking and categorization
-- Payment status monitoring
-- Financial reporting and analytics
+## Troubleshooting
 
-### 5. Workforce Management Module
-- Employee database with complete profiles
-- Skills and certification tracking
-- Project assignment management
-- Work schedule management
-- Time tracking for payroll
+If you're having issues with authentication:
 
-### 6. Inventory & Procurement Module
-- Materials and equipment database
-- Stock level monitoring
-- Supplier management
-- Purchase order generation
-- Low stock alerts
-
-### 7. Document Management System
-- Secure document storage and organization
-- Document categorization
-- Version control for documents
-- Document sharing with clients
-- Expiry date tracking for licenses/permits
-
-### 8. Reporting & Analytics Module
-- Real-time dashboard with KPIs
-- Financial reports (P&L, Cash Flow, Revenue)
-- Project performance reports
-- Client analysis reports
-- Employee productivity reports
-
-### 9. Communication Tools
-- Internal team messaging system
-- Client communication tracking
-- Automated notification system
-- Email integration for client updates
-
-## Installation
-
-### Prerequisites
-- Node.js (v16 or higher)
-- PostgreSQL (v12 or higher)
-- npm or yarn
-
-### Backend Setup
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-### Frontend Setup
-```bash
-cd frontend
-npm install
-npm start
-```
-
-### Database Setup
-```bash
-cd database
-# Run migration scripts (to be implemented)
-```
-
-## Development Phases
-
-- **Phase 1**: Foundation setup, database, authentication
-- **Phase 2**: Core features (client management, basic project management)
-- **Phase 3**: Advanced features (financial management, reporting)
-- **Phase 4**: Testing, optimization, documentation
-
-## API Documentation
-
-API documentation will be available at `/api/docs` when the server is running.
-
-## Security Features
-
-- Password hashing with bcrypt
-- JWT token management with refresh tokens
-- Input validation and sanitization
-- SQL injection prevention
-- XSS protection
-- CORS configuration
-- Rate limiting on API endpoints
-
-## License
-
-This project is licensed under the MIT License.
+1. Make sure the Supabase credentials are correctly configured
+2. Check that the CORS settings allow requests from your frontend domain
+3. Verify that the API routes are correctly configured for your deployment environment

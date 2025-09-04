@@ -57,8 +57,12 @@ app.use(helmet({
 }));
 
 // CORS configuration
+const corsOrigin = process.env.VERCEL 
+  ? [process.env.CORS_ORIGIN, 'https://construction.vercel.app'] 
+  : process.env.CORS_ORIGIN || 'http://localhost:3000';
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: corsOrigin,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -93,21 +97,32 @@ app.get('/health', (req, res) => {
   });
 });
 
-// API routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/clients', clientRoutes);
-app.use('/api', clientContactRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/invoices', invoiceRoutes);
-app.use('/api/employees', employeeRoutes);
-app.use('/api/inventory', inventoryRoutes);
-app.use('/api/documents', documentRoutes);
-app.use('/api/reports', reportRoutes);
+// Additional health check for Vercel
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    message: 'Construction CRM API is running',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// API routes - use /api prefix only in standalone mode
+const apiPrefix = process.env.VERCEL ? '' : '/api';
+app.use(apiPrefix + '/auth', authRoutes);
+app.use(apiPrefix + '/users', userRoutes);
+app.use(apiPrefix + '/clients', clientRoutes);
+app.use(apiPrefix + '/client-contacts', clientContactRoutes);
+app.use(apiPrefix + '/projects', projectRoutes);
+app.use(apiPrefix + '/invoices', invoiceRoutes);
+app.use(apiPrefix + '/employees', employeeRoutes);
+app.use(apiPrefix + '/inventory', inventoryRoutes);
+app.use(apiPrefix + '/documents', documentRoutes);
+app.use(apiPrefix + '/reports', reportRoutes);
 
 // Swagger documentation
 const specs = swaggerJsdoc(swaggerOptions);
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+const docsPrefix = process.env.VERCEL ? '' : '/api';
+app.use(docsPrefix + '/docs', swaggerUi.serve, swaggerUi.setup(specs, {
   explorer: true,
   customCss: '.swagger-ui .topbar { display: none }',
   customSiteTitle: 'Construction CRM API Documentation',
