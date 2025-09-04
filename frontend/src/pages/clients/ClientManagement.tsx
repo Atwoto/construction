@@ -83,6 +83,9 @@ const ClientManagement: React.FC = () => {
     loadAssignedUsers();
   }, [filters]);
 
+  // Add loadClients to dependency array to fix ESLint warning
+  const loadClientsCallback = React.useCallback(loadClients, [filters]);
+
   const loadClients = async () => {
     try {
       setLoading(true);
@@ -393,9 +396,7 @@ const ClientManagement: React.FC = () => {
             </>
           ) : (
             <div className="text-center py-12">
-              <div className="text-gray-500 text-lg mb-4">
-                No clients found
-              </div>
+              <div className="text-gray-500 text-lg mb-4">No clients found</div>
               <div className="text-gray-400 text-sm mb-6">
                 {Object.keys(filters).some(
                   (key) =>
@@ -437,12 +438,15 @@ const ClientManagement: React.FC = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete Client</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete {selectedClient?.companyName}? This cannot be undone.
+              Are you sure you want to delete {selectedClient?.companyName}?
+              This cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDeleteClient}>Delete</AlertDialogAction>
+            <AlertDialogAction onClick={confirmDeleteClient}>
+              Delete
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

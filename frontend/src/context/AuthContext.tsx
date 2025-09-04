@@ -7,16 +7,11 @@ import React, {
 } from "react";
 import toast from "react-hot-toast";
 import { authService } from "../services/authService";
-import {
-  User,
-  AuthTokens,
-  LoginCredentials as TypesLoginCredentials,
-  RegisterData as TypesRegisterData,
-} from "../types";
+import { User, AuthTokens } from "../types";
 
 // Mock authentication flag - set to true to enable mock auth
-const USE_MOCK_AUTH = process.env.REACT_APP_USE_MOCK_AUTH === 'true';
-console.log('USE_MOCK_AUTH:', USE_MOCK_AUTH);
+const USE_MOCK_AUTH = process.env.REACT_APP_USE_MOCK_AUTH === "true";
+console.log("USE_MOCK_AUTH:", USE_MOCK_AUTH);
 
 // Mock user data for testing
 const MOCK_USER = {
@@ -153,16 +148,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const initAuth = async () => {
       // For development, auto-login with admin credentials
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV === "development") {
         try {
-          console.log('🔐 Auto-logging in with admin credentials for development...');
+          console.log(
+            "🔐 Auto-logging in with admin credentials for development..."
+          );
           await login({
-            email: 'admin@constructioncrm.com',
-            password: 'Admin123!'
+            email: "admin@constructioncrm.com",
+            password: "Admin123!",
           });
           return;
         } catch (error) {
-          console.error('❌ Auto-login failed:', error);
+          console.error("❌ Auto-login failed:", error);
         }
       }
 
@@ -205,12 +202,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ); // Refresh every 15 minutes
 
     return () => clearInterval(refreshInterval);
-  }, [state.tokens]);
+  }, [state.tokens, refreshToken]);
 
   // Login function
   const login = async (credentials: LoginCredentials) => {
     console.log("🔐 Login function called with:", credentials.email);
-    
+
     try {
       dispatch({ type: "AUTH_START" });
       const response = await authService.login(credentials);
@@ -225,7 +222,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log("✅ Login successful for:", response.user.email);
     } catch (error: any) {
       console.error("❌ Login error:", error);
-      const errorMessage = error.response?.data?.message || error.response?.data?.error || "Login failed";
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Login failed";
       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
       toast.error(errorMessage);
       throw error;
@@ -258,7 +258,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       toast.success("Registration successful!");
     } catch (error: any) {
       console.error("Registration error:", error);
-      const errorMessage = error.response?.data?.message || error.response?.data?.error || "Registration failed";
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Registration failed";
       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
       toast.error(errorMessage);
       throw error;

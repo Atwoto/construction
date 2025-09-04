@@ -1,35 +1,29 @@
 import React from "react";
-import { 
+import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter
+  CardFooter,
 } from "../components/ui/shadcn-card";
 import { Button } from "../components/ui/shadcn-button";
 import { Badge } from "../components/ui/shadcn-badge";
 import { Input } from "../components/ui/shadcn-input";
-import { 
+import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator
+  DropdownMenuSeparator,
 } from "../components/ui/DropdownMenu";
-import { 
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent
-} from "../components/ui/Tooltip";
 import { Avatar, AvatarFallback } from "../components/ui/Avatar";
-import { MoreHorizontal, TrendingUp, Users, Building, DollarSign } from "lucide-react";
 
 function ComponentTestPage() {
   return (
     <div className="space-y-6 p-6">
       <h1 className="text-3xl font-bold">UI Component Test</h1>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Card Test */}
         <Card>
@@ -44,7 +38,7 @@ function ComponentTestPage() {
             <Button>Card Action</Button>
           </CardFooter>
         </Card>
-        
+
         {/* Badge Test */}
         <Card>
           <CardHeader>
@@ -57,7 +51,7 @@ function ComponentTestPage() {
             <Badge variant="outline">Outline</Badge>
           </CardContent>
         </Card>
-        
+
         {/* Button Test */}
         <Card>
           <CardHeader>
@@ -72,7 +66,7 @@ function ComponentTestPage() {
             <Button variant="link">Link</Button>
           </CardContent>
         </Card>
-        
+
         {/* Input Test */}
         <Card>
           <CardHeader>
@@ -83,7 +77,7 @@ function ComponentTestPage() {
             <Input placeholder="Disabled input" disabled />
           </CardContent>
         </Card>
-        
+
         {/* Avatar Test */}
         <Card>
           <CardHeader>
@@ -94,11 +88,13 @@ function ComponentTestPage() {
               <AvatarFallback>AB</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarFallback className="bg-primary-500 text-white">CD</AvatarFallback>
+              <AvatarFallback className="bg-primary-500 text-white">
+                CD
+              </AvatarFallback>
             </Avatar>
           </CardContent>
         </Card>
-        
+
         {/* Dropdown Test */}
         <Card>
           <CardHeader>

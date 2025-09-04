@@ -1,7 +1,6 @@
 import React from "react";
 import { ProjectStats } from "../../types";
-import { projectService } from "../../services/projectService";
-import LoadingSpinner from "../common/LoadingSpinner";
+
 import Card from "../common/Card";
 
 interface ProjectStatsProps {
@@ -43,9 +42,10 @@ const ProjectStatsComponent: React.FC<ProjectStatsProps> = ({
   }
 
   // Calculate completion rate from the available data
-  const completionRate = stats.totalProjects > 0 
-    ? (stats.completedProjects / stats.totalProjects) * 100 
-    : 0;
+  const completionRate =
+    stats.totalProjects > 0
+      ? (stats.completedProjects / stats.totalProjects) * 100
+      : 0;
 
   const statsData = [
     { title: "Total Projects", value: stats.totalProjects, icon: "🏗️" },

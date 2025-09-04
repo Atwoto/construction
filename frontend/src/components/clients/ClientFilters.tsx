@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  ClientListParams,
-  ClientStatus,
-  ClientSource,
-  CompanySize,
-} from "../../types/client";
+import { ClientListParams } from "../../types/client";
 import { UserSummary } from "../../types/client";
 import {
   CLIENT_STATUSES,
@@ -44,7 +39,10 @@ const ClientFilters: React.FC<ClientFiltersProps> = ({
     onFilterChange({ [field]: value });
   };
 
-  const handleSelectChange = (field: keyof ClientListParams, value: string | undefined) => {
+  const handleSelectChange = (
+    field: keyof ClientListParams,
+    value: string | undefined
+  ) => {
     // When value is undefined (e.g., "all" selected), we want to remove the filter
     // So we set it to undefined which will be handled properly by the parent component
     onFilterChange({ [field]: value });

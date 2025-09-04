@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { useAuth } from '../context/AuthContext';
-import { User } from '../types';
-import Button from '../components/common/Button';
-import Input from '../components/common/Input';
-import LoadingSpinner from '../components/common/LoadingSpinner';
+import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
+
+import Button from "../components/common/Button";
+import Input from "../components/common/Input";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 
 const ProfilePage: React.FC = () => {
   const { user, updateProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: user?.firstName || '',
-    lastName: user?.lastName || '',
-    email: user?.email || '',
-    phone: user?.phone || '',
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
   });
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!user) return;
 
     try {
       setLoading(true);
       await updateProfile(formData);
       setIsEditing(false);
-      toast.success('Profile updated successfully!');
+      toast.success("Profile updated successfully!");
     } catch (error: any) {
-      toast.error(error.message || 'Failed to update profile');
+      toast.error(error.message || "Failed to update profile");
     } finally {
       setLoading(false);
     }
@@ -40,10 +40,10 @@ const ProfilePage: React.FC = () => {
 
   const handleCancel = () => {
     setFormData({
-      firstName: user?.firstName || '',
-      lastName: user?.lastName || '',
-      email: user?.email || '',
-      phone: user?.phone || '',
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
     });
     setIsEditing(false);
   };
@@ -67,10 +67,7 @@ const ProfilePage: React.FC = () => {
           </p>
         </div>
         {!isEditing && (
-          <Button
-            variant="primary"
-            onClick={() => setIsEditing(true)}
-          >
+          <Button variant="primary" onClick={() => setIsEditing(true)}>
             ✏️ Edit Profile
           </Button>
         )}
@@ -83,7 +80,8 @@ const ProfilePage: React.FC = () => {
           <div className="flex items-center space-x-4">
             <div className="h-16 w-16 rounded-full bg-white/20 flex items-center justify-center">
               <span className="text-2xl font-bold text-white">
-                {user.firstName?.charAt(0)}{user.lastName?.charAt(0)}
+                {user.firstName?.charAt(0)}
+                {user.lastName?.charAt(0)}
               </span>
             </div>
             <div className="text-white">
@@ -112,14 +110,18 @@ const ProfilePage: React.FC = () => {
                 <Input
                   label="First Name"
                   value={formData.firstName}
-                  onChange={(e) => handleInputChange('firstName', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("firstName", e.target.value)
+                  }
                   required
                   placeholder="Enter your first name"
                 />
                 <Input
                   label="Last Name"
                   value={formData.lastName}
-                  onChange={(e) => handleInputChange('lastName', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("lastName", e.target.value)
+                  }
                   required
                   placeholder="Enter your last name"
                 />
@@ -129,7 +131,7 @@ const ProfilePage: React.FC = () => {
                 label="Email Address"
                 type="email"
                 value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                onChange={(e) => handleInputChange("email", e.target.value)}
                 required
                 placeholder="Enter your email address"
               />
@@ -138,7 +140,7 @@ const ProfilePage: React.FC = () => {
                 label="Phone Number"
                 type="tel"
                 value={formData.phone}
-                onChange={(e) => handleInputChange('phone', e.target.value)}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
                 placeholder="Enter your phone number"
               />
 
@@ -151,11 +153,7 @@ const ProfilePage: React.FC = () => {
                 >
                   Cancel
                 </Button>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  loading={loading}
-                >
+                <Button type="submit" variant="primary" loading={loading}>
                   💾 Save Changes
                 </Button>
               </div>
@@ -169,7 +167,7 @@ const ProfilePage: React.FC = () => {
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg border">
                     <span className="text-gray-900">
-                      {user.firstName || 'Not provided'}
+                      {user.firstName || "Not provided"}
                     </span>
                   </div>
                 </div>
@@ -179,7 +177,7 @@ const ProfilePage: React.FC = () => {
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg border">
                     <span className="text-gray-900">
-                      {user.lastName || 'Not provided'}
+                      {user.lastName || "Not provided"}
                     </span>
                   </div>
                 </div>
@@ -200,7 +198,7 @@ const ProfilePage: React.FC = () => {
                 </label>
                 <div className="p-3 bg-gray-50 rounded-lg border">
                   <span className="text-gray-900">
-                    {user.phone || 'Not provided'}
+                    {user.phone || "Not provided"}
                   </span>
                 </div>
               </div>
@@ -223,12 +221,14 @@ const ProfilePage: React.FC = () => {
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg border">
                     <span className="text-gray-900">
-                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      }) : 'N/A'}
+                      {user.createdAt
+                        ? new Date(user.createdAt).toLocaleDateString("en-US", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : "N/A"}
                     </span>
                   </div>
                 </div>
@@ -238,12 +238,14 @@ const ProfilePage: React.FC = () => {
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg border">
                     <span className="text-gray-900">
-                      {user.updatedAt ? new Date(user.updatedAt).toLocaleDateString('en-US', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      }) : 'N/A'}
+                      {user.updatedAt
+                        ? new Date(user.updatedAt).toLocaleDateString("en-US", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })
+                        : "N/A"}
                     </span>
                   </div>
                 </div>
@@ -262,18 +264,18 @@ const ProfilePage: React.FC = () => {
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border">
             <div>
               <h4 className="font-medium text-gray-900">Password</h4>
-              <p className="text-sm text-gray-600">
-                Last updated: Never
-              </p>
+              <p className="text-sm text-gray-600">Last updated: Never</p>
             </div>
             <Button variant="outline" size="sm">
               Change Password
             </Button>
           </div>
-          
+
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border">
             <div>
-              <h4 className="font-medium text-gray-900">Two-Factor Authentication</h4>
+              <h4 className="font-medium text-gray-900">
+                Two-Factor Authentication
+              </h4>
               <p className="text-sm text-gray-600">
                 Add an extra layer of security to your account
               </p>
