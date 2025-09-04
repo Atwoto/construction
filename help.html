@@ -1,135 +1,74 @@
-[22:45:12.696] Running build in Washington, D.C., USA (East) – iad1
-[22:45:12.696] Build machine configuration: 2 cores, 8 GB
-[22:45:12.713] Cloning github.com/Atwoto/construction (Branch: main, Commit: aa232fd)
-[22:45:13.382] Cloning completed: 669.000ms
-[22:45:15.198] Restored build cache from previous deployment (CdEd2Q34zSino6WQJBxX3jthPRgL)
-[22:45:17.134] Running "vercel build"
-[22:45:17.545] Vercel CLI 47.0.4
-[22:45:18.375] Running "install" command: `npm install && cd frontend && npm install && cd ../backend && npm install`...
-[22:45:19.848] 
-[22:45:19.851] removed 425 packages, changed 1 package, and audited 17 packages in 1s
-[22:45:19.852] 
-[22:45:19.852] found 0 vulnerabilities
-[22:45:22.786] 
-[22:45:22.786] up to date, audited 1639 packages in 3s
-[22:45:22.787] 
-[22:45:22.787] 316 packages are looking for funding
-[22:45:22.788]   run `npm fund` for details
-[22:45:22.796] 
-[22:45:22.796] 9 vulnerabilities (3 moderate, 6 high)
-[22:45:22.797] 
-[22:45:22.797] To address all issues (including breaking changes), run:
-[22:45:22.797]   npm audit fix --force
-[22:45:22.797] 
-[22:45:22.798] Run `npm audit` for details.
-[22:45:25.096] npm warn deprecated supertest@6.3.4: Please upgrade to supertest v7.1.3+, see release notes at https://github.com/forwardemail/supertest/releases/tag/v7.1.3 - maintenance is supported by Forward Email @ https://forwardemail.net
-[22:45:25.417] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-[22:45:25.718] npm warn deprecated multer@1.4.5-lts.2: Multer 1.x is impacted by a number of vulnerabilities, which have been patched in 2.x. You should upgrade to the latest 2.x version.
-[22:45:25.788] npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
-[22:45:25.819] npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
-[22:45:26.248] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-[22:45:26.344] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-[22:45:27.188] npm warn deprecated babel-eslint@10.1.0: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
-[22:45:27.231] npm warn deprecated superagent@8.1.2: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
-[22:45:27.428] npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
-[22:45:27.431] npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
-[22:45:27.706] npm warn deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
-[22:45:27.978] npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
-[22:45:28.049] npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
-[22:45:29.491] npm warn deprecated eslint@6.8.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-[22:45:29.496] npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-[22:45:29.497] npm warn deprecated eslint@6.8.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-[22:45:31.696] 
-[22:45:31.696] added 827 packages, and audited 828 packages in 9s
-[22:45:31.697] 
-[22:45:31.697] 155 packages are looking for funding
-[22:45:31.697]   run `npm fund` for details
-[22:45:31.709] 
-[22:45:31.709] 6 low severity vulnerabilities
-[22:45:31.710] 
-[22:45:31.710] To address issues that do not require attention, run:
-[22:45:31.710]   npm audit fix
-[22:45:31.710] 
-[22:45:31.710] To address all issues (including breaking changes), run:
-[22:45:31.710]   npm audit fix --force
-[22:45:31.710] 
-[22:45:31.710] Run `npm audit` for details.
-[22:45:31.951] 
-[22:45:31.951] > construction-crm-frontend@1.0.0 build
-[22:45:31.951] > react-scripts build
-[22:45:31.952] 
-[22:45:33.385] Creating an optimized production build...
-[22:46:09.952] 
-[22:46:09.953] Treating warnings as errors because process.env.CI = true.
-[22:46:09.954] Most CI servers set it automatically.
-[22:46:09.954] 
-[22:46:09.978] Failed to compile.
-[22:46:09.978] 
-[22:46:09.991] [eslint] 
-[22:46:09.991] src/components/clients/ClientFilters.tsx
-[22:46:09.992]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.992]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.992]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
-[22:46:09.993] 
-[22:46:09.993] src/components/clients/ClientForm.tsx
-[22:46:09.993]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.993]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
-[22:46:09.993]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
-[22:46:09.993]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
-[22:46:09.993]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
-[22:46:09.993] 
-[22:46:09.993] src/components/clients/ClientStats.tsx
-[22:46:09.993]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.993] 
-[22:46:09.993] src/components/clients/ClientTable.tsx
-[22:46:09.994]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.994] 
-[22:46:09.994] src/components/projects/ProjectStats.tsx
-[22:46:09.994]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.994] 
-[22:46:09.994] src/components/ui/shadcn-card.tsx
-[22:46:09.994]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
-[22:46:09.994] 
-[22:46:09.994] src/context/AuthContext.tsx
-[22:46:09.994]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[22:46:09.994] 
-[22:46:09.994] src/pages/ComponentTestPage.tsx
-[22:46:09.994]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.994]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
-[22:46:09.995] 
-[22:46:09.995] src/pages/DashboardPage.tsx
-[22:46:09.995]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
-[22:46:09.995]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
-[22:46:09.995] 
-[22:46:09.995] src/pages/ProfilePage.tsx
-[22:46:09.996]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
-[22:46:09.996] 
-[22:46:09.997] src/pages/clients/ClientDetailsPage.tsx
-[22:46:09.997]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[22:46:09.997]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[22:46:09.998] 
-[22:46:09.998] src/pages/clients/ClientManagement.tsx
-[22:46:09.998]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[22:46:09.999] 
-[22:46:09.999] src/pages/projects/ProjectDetailsPage.tsx
-[22:46:09.999]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
-[22:46:09.999]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
-[22:46:10.000] 
-[22:46:10.000] src/pages/projects/ProjectManagement.tsx
-[22:46:10.000]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
-[22:46:10.000]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[22:46:10.001] 
-[22:46:10.010] 
-[22:46:10.167] Error: Command "cd frontend && npm run build" exited with 1
+[23:10:12.502] Running build in Washington, D.C., USA (East) – iad1
+[23:10:12.502] Build machine configuration: 2 cores, 8 GB
+[23:10:12.541] Cloning github.com/Atwoto/construction (Branch: main, Commit: 250c99c)
+[23:10:13.216] Cloning completed: 674.000ms
+[23:10:14.426] Restored build cache from previous deployment (CdEd2Q34zSino6WQJBxX3jthPRgL)
+[23:10:16.333] Running "vercel build"
+[23:10:16.712] Vercel CLI 47.0.4
+[23:10:17.468] Running "install" command: `npm install && cd frontend && npm install && cd ../backend && npm install`...
+[23:10:18.864] 
+[23:10:18.865] removed 425 packages, changed 1 package, and audited 17 packages in 1s
+[23:10:18.865] 
+[23:10:18.866] found 0 vulnerabilities
+[23:10:21.612] 
+[23:10:21.612] up to date, audited 1639 packages in 3s
+[23:10:21.613] 
+[23:10:21.614] 316 packages are looking for funding
+[23:10:21.614]   run `npm fund` for details
+[23:10:21.621] 
+[23:10:21.622] 9 vulnerabilities (3 moderate, 6 high)
+[23:10:21.622] 
+[23:10:21.622] To address all issues (including breaking changes), run:
+[23:10:21.623]   npm audit fix --force
+[23:10:21.623] 
+[23:10:21.623] Run `npm audit` for details.
+[23:10:24.147] npm warn deprecated supertest@6.3.4: Please upgrade to supertest v7.1.3+, see release notes at https://github.com/forwardemail/supertest/releases/tag/v7.1.3 - maintenance is supported by Forward Email @ https://forwardemail.net
+[23:10:24.262] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[23:10:24.691] npm warn deprecated multer@1.4.5-lts.2: Multer 1.x is impacted by a number of vulnerabilities, which have been patched in 2.x. You should upgrade to the latest 2.x version.
+[23:10:24.748] npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+[23:10:24.779] npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+[23:10:25.239] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[23:10:25.314] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[23:10:25.575] npm warn deprecated superagent@8.1.2: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
+[23:10:26.157] npm warn deprecated babel-eslint@10.1.0: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+[23:10:26.406] npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+[23:10:26.425] npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+[23:10:26.664] npm warn deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+[23:10:26.892] npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+[23:10:27.022] npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+[23:10:28.331] npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[23:10:28.348] npm warn deprecated eslint@6.8.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[23:10:28.349] npm warn deprecated eslint@6.8.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[23:10:35.577] 
+[23:10:35.578] added 827 packages, and audited 828 packages in 14s
+[23:10:35.578] 
+[23:10:35.578] 155 packages are looking for funding
+[23:10:35.578]   run `npm fund` for details
+[23:10:35.591] 
+[23:10:35.591] 6 low severity vulnerabilities
+[23:10:35.591] 
+[23:10:35.592] To address issues that do not require attention, run:
+[23:10:35.592]   npm audit fix
+[23:10:35.592] 
+[23:10:35.592] To address all issues (including breaking changes), run:
+[23:10:35.592]   npm audit fix --force
+[23:10:35.593] 
+[23:10:35.593] Run `npm audit` for details.
+[23:10:35.819] 
+[23:10:35.819] > construction-crm-frontend@1.0.0 build
+[23:10:35.819] > CI=false react-scripts build
+[23:10:35.820] 
+[23:10:37.232] Creating an optimized production build...
+[23:11:15.191] Failed to compile.
+[23:11:15.191] 
+[23:11:15.192] TS2448: Block-scoped variable 'loadClients' used before its declaration.
+[23:11:15.192]   [0m [90m 82 |[39m     loadStats()[33m;[39m
+[23:11:15.192]    [90m 83 |[39m     loadAssignedUsers()[33m;[39m
+[23:11:15.192]   [31m[1m>[22m[39m[90m 84 |[39m   }[33m,[39m [filters[33m,[39m loadClients])[33m;[39m
+[23:11:15.192]    [90m    |[39m                [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[23:11:15.192]    [90m 85 |[39m
+[23:11:15.193]    [90m 86 |[39m   [36mconst[39m loadClients [33m=[39m [36masync[39m () [33m=>[39m {
+[23:11:15.193]    [90m 87 |[39m     [36mtry[39m {[0m
+[23:11:15.193] 
+[23:11:15.193] 
+[23:11:15.259] Error: Command "cd frontend && npm run build" exited with 1
