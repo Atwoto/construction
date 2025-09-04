@@ -1,156 +1,133 @@
-// Main API handler for Vercel serverless functions
-import { createClient } from "@supabase/supabase-js";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+const express = require('express');
+const serverless = require('serverless-http');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
+require('dotenv').config();
 
-export default async function handler(req, res) {
-  // Set CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+const { initializeModels } = require('./src/config/database');
+const { errorHandler } = require('./src/middleware/errorHandler');
+const logger = require('./src/utils/logger');
 
-  // Handle preflight requests
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
+// Import route modules
+const authRoutes = require('./src/routes/authRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+const clientRoutes = require('./src/routes/clientRoutes');
+const clientContactRoutes = require('./src/routes/clientContactRoutes');
+const projectRoutes = require('./src/routes/projectRoutes');
+const invoiceRoutes = require('./src/routes/invoiceRoutes');
+const employeeRoutes = require('./src/routes/employeeRoutes');
+const inventoryRoutes = require('./src/routes/inventoryRoutes');
+const documentRoutes = require('./src/routes/documentRoutes');
+const reportRoutes = require('./src/routes/reportRoutes');
 
-  const { url, method } = req;
-  console.log(`API Request: ${method} ${url}`);
+// Swagger documentation
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerOptions = require('./src/config/swagger');
 
-  try {
-    // Health check endpoint
-    if (url === "/api/health") {
-      return res.status(200).json({
-        status: "OK",
-        timestamp: new Date().toISOString(),
-        message: "Construction CRM API is running!",
-        environment: process.env.NODE_ENV || "development",
-      });
+const app = express();
+
+// Trust proxy for accurate IP addresses
+app.set('trust proxy', 1);
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
+  message: {
+    error: 'Too many requests from this IP, please try again later.',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Security middleware
+app.use(helmet({
+  crossOriginEmbedderPolicy: false,
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", "data:", "https:"],
+    },
+  },
+}));
+
+// CORS configuration
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+}));
+
+// Body parsing middleware
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Compression middleware
+app.use(compression());
+
+// Apply rate limiting to all requests
+app.use(limiter);
+
+// Logging middleware
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('combined', {
+    stream: {
+      write: (message) => logger.info(message.trim())
     }
-
-    // Login endpoint
-    if (url === "/api/auth/login") {
-      if (method === "GET") {
-        return res.status(200).json({
-          message: "Login endpoint is working",
-          method: "GET",
-          note: "Use POST with email and password to login",
-          timestamp: new Date().toISOString(),
-        });
-      }
-
-      if (method === "POST") {
-        console.log("Login POST request received:", {
-          body: req.body,
-          headers: req.headers,
-          contentType: req.headers["content-type"],
-        });
-
-        const { email, password } = req.body;
-
-        if (!email || !password) {
-          return res.status(400).json({
-            success: false,
-            error: "Email and password are required",
-            receivedBody: req.body,
-          });
-        }
-
-        // Initialize Supabase client
-        const supabase = createClient(
-          process.env.SUPABASE_URL,
-          process.env.SUPABASE_SERVICE_ROLE_KEY
-        );
-
-        // Find user by email
-        const { data: user, error: userError } = await supabase
-          .from("users")
-          .select("*")
-          .eq("email", email.toLowerCase())
-          .single();
-
-        if (userError || !user) {
-          return res.status(401).json({
-            success: false,
-            error: "Invalid email or password",
-          });
-        }
-
-        // Verify password
-        const isValidPassword = await bcrypt.compare(password, user.password);
-        if (!isValidPassword) {
-          return res.status(401).json({
-            success: false,
-            error: "Invalid email or password",
-          });
-        }
-
-        // Generate JWT tokens
-        const accessToken = jwt.sign(
-          {
-            userId: user.id,
-            email: user.email,
-            role: user.role,
-          },
-          process.env.JWT_SECRET,
-          { expiresIn: process.env.JWT_EXPIRES_IN || "24h" }
-        );
-
-        const refreshToken = jwt.sign(
-          { userId: user.id },
-          process.env.JWT_REFRESH_SECRET,
-          { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d" }
-        );
-
-        // Remove password from user object
-        const { password: _, ...userWithoutPassword } = user;
-
-        // Return success response
-        return res.status(200).json({
-          success: true,
-          data: {
-            user: userWithoutPassword,
-            token: accessToken,
-            refreshToken: refreshToken,
-          },
-        });
-      }
-    }
-
-    // Debug endpoint
-    if (url === "/api/debug") {
-      return res.status(200).json({
-        message: "API Debug Endpoint",
-        method,
-        url,
-        headers: req.headers,
-        body: req.body,
-        query: req.query,
-        timestamp: new Date().toISOString(),
-        environment: {
-          NODE_ENV: process.env.NODE_ENV,
-          SUPABASE_URL: process.env.SUPABASE_URL ? "Set" : "Not Set",
-          JWT_SECRET: process.env.JWT_SECRET ? "Set" : "Not Set",
-        },
-      });
-    }
-
-    // Default response for unmatched routes
-    res.status(404).json({
-      error: "Route not found",
-      message: `Cannot ${method} ${url}`,
-      availableRoutes: ["/api/health", "/api/auth/login", "/api/debug"],
-    });
-  } catch (error) {
-    console.error("API Error:", error);
-    res.status(500).json({
-      success: false,
-      error: "Internal server error",
-      message: error.message,
-    });
-  }
+  }));
 }
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV,
+    version: require('./package.json').version,
+  });
+});
+
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/clients', clientRoutes);
+app.use('/api/client-contacts', clientContactRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/invoices', invoiceRoutes);
+app.use('/api/employees', employeeRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/reports', reportRoutes);
+
+// Swagger documentation
+const specs = swaggerJsdoc(swaggerOptions);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Construction CRM API Documentation',
+}));
+
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({
+    error: 'Route not found',
+    message: `Cannot ${req.method} ${req.originalUrl}`,
+  });
+});
+
+// Global error handler
+app.use(errorHandler);
+
+// Initialize models
+initializeModels();
+
+// Export the serverless function
+module.exports = app;
+module.exports.handler = serverless(app);

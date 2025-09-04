@@ -2,9 +2,10 @@ import axios, { AxiosResponse } from 'axios';
 import { User, AuthTokens, LoginCredentials, RegisterData, ApiResponse } from '../types';
 
 // API base configuration - Make sure this matches your backend port
-const API_BASE_URL = process.env.NODE_ENV === 'development' 
-  ? process.env.REACT_APP_API_URL || 'http://localhost:5001/api' 
-  : '/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 
+  (process.env.NODE_ENV === 'development' 
+    ? 'http://localhost:5000/api' 
+    : '/api');
 
 // Create axios instance
 const api = axios.create({

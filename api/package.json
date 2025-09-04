@@ -1,0 +1,12 @@
+{
+  "name": "construction-crm-api",
+  "version": "1.0.0",
+  "description": "API for Construction CRM system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "serverless-http": "^3.2.0"
+  }
+}
