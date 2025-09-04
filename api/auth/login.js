@@ -1,7 +1,7 @@
 // Login API endpoint
-const { createClient } = require("@supabase/supabase-js");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+import { createClient } from "@supabase/supabase-js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export default async function handler(req, res) {
   // Set CORS headers
