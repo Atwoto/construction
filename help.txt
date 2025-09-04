@@ -1,0 +1,120 @@
+[15:01:45.292] Running build in Washington, D.C., USA (East) – iad1
+[15:01:45.292] Build machine configuration: 2 cores, 8 GB
+[15:01:45.332] Cloning github.com/Atwoto/construction (Branch: main, Commit: 17b6235)
+[15:01:45.500] Previous build caches not available
+[15:01:45.879] Cloning completed: 546.000ms
+[15:01:46.241] Running "vercel build"
+[15:01:46.637] Vercel CLI 47.0.4
+[15:01:46.815] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+[15:01:48.561] Installing dependencies...
+[15:01:52.644] npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+[15:01:53.003] npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+[15:01:53.116] npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+[15:01:53.253] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[15:01:53.281] npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+[15:01:53.699] npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+[15:01:53.811] npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+[15:01:53.811] npm warn deprecated
+[15:01:53.812] npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+[15:01:53.851] npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+[15:01:55.186] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[15:01:55.414] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[15:01:55.454] npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+[15:01:56.139] npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+[15:01:56.611] npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+[15:01:56.885] npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+[15:01:58.106] npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+[15:01:58.139] npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+[15:01:58.716] npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+[15:01:58.717] npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+[15:01:58.741] npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+[15:01:58.743] npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+[15:01:58.808] npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+[15:01:59.283] npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+[15:02:00.111] npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+[15:02:03.037] npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[15:02:16.042] 
+[15:02:16.042] added 1638 packages in 27s
+[15:02:16.043] 
+[15:02:16.043] 316 packages are looking for funding
+[15:02:16.043]   run `npm fund` for details
+[15:02:16.130] Running "npm run build"
+[15:02:16.242] 
+[15:02:16.242] > construction-crm-frontend@1.0.0 build
+[15:02:16.243] > react-scripts build
+[15:02:16.243] 
+[15:02:17.405] Creating an optimized production build...
+[15:03:02.516] 
+[15:03:02.521] Treating warnings as errors because process.env.CI = true.
+[15:03:02.521] Most CI servers set it automatically.
+[15:03:02.522] 
+[15:03:02.522] Failed to compile.
+[15:03:02.522] 
+[15:03:02.523] [eslint] 
+[15:03:02.523] src/components/clients/ClientFilters.tsx
+[15:03:02.523]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.523]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.524]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
+[15:03:02.524] 
+[15:03:02.524] src/components/clients/ClientForm.tsx
+[15:03:02.524]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.525]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
+[15:03:02.525]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
+[15:03:02.525]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
+[15:03:02.525]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
+[15:03:02.526] 
+[15:03:02.526] src/components/clients/ClientStats.tsx
+[15:03:02.526]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.527] 
+[15:03:02.527] src/components/clients/ClientTable.tsx
+[15:03:02.527]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
+[15:03:02.527]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.528] 
+[15:03:02.528] src/components/projects/ProjectStats.tsx
+[15:03:02.528]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.528]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.529] 
+[15:03:02.529] src/components/ui/shadcn-card.tsx
+[15:03:02.529]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
+[15:03:02.529] 
+[15:03:02.530] src/context/AuthContext.tsx
+[15:03:02.530]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
+[15:03:02.530]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+[15:03:02.530]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[15:03:02.531] 
+[15:03:02.531] src/pages/ComponentTestPage.tsx
+[15:03:02.531]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
+[15:03:02.532]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.532]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.532]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.532]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
+[15:03:02.533]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
+[15:03:02.533]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
+[15:03:02.533]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
+[15:03:02.533] 
+[15:03:02.534] src/pages/DashboardPage.tsx
+[15:03:02.534]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
+[15:03:02.534]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.540]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
+[15:03:02.540]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
+[15:03:02.540] 
+[15:03:02.541] src/pages/ProfilePage.tsx
+[15:03:02.541]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
+[15:03:02.541] 
+[15:03:02.542] src/pages/clients/ClientDetailsPage.tsx
+[15:03:02.542]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
+[15:03:02.542]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[15:03:02.542] 
+[15:03:02.543] src/pages/clients/ClientManagement.tsx
+[15:03:02.543]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[15:03:02.544] 
+[15:03:02.544] src/pages/projects/ProjectDetailsPage.tsx
+[15:03:02.544]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
+[15:03:02.544]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[15:03:02.545] 
+[15:03:02.545] src/pages/projects/ProjectManagement.tsx
+[15:03:02.545]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+[15:03:02.546]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[15:03:02.546] 
+[15:03:02.546] 
+[15:03:02.598] Error: Command "npm run build" exited with 1
