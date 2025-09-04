@@ -329,9 +329,6 @@ router.get('/status/:status', projectController.getProjectsByStatus);
  *       500:
  *         description: Server error
  */
-router.get('/stats', authenticate, projectController.getProjectStats);
-router.get('/overdue', authenticate, projectController.getOverdueProjects);
-router.get('/status/:status', projectController.getProjectsByStatus);
 router.get('/:id', canAccessProject, projectController.getProjectById);
 
 /**

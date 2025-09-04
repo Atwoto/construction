@@ -1,3 +1,4 @@
+// Simple health check for the API
 export default function handler(request, response) {
   response.status(200).json({
     status: 'OK',

@@ -1,56 +1,118 @@
-# Construction CRM - Deployment Guide
+# Deployment Guide for Construction CRM
 
-## Local Development
+This guide explains how to deploy the Construction CRM application to Vercel.
 
-1. Install dependencies:
-   ```bash
-   npm install
-   cd frontend && npm install && cd ..
-   cd backend && npm install && cd ..
+## Prerequisites
+
+1. Vercel account (free at [vercel.com](https://vercel.com))
+2. Supabase account (free at [supabase.com](https://supabase.com))
+3. GitHub account (optional but recommended)
+
+## Architecture Overview
+
+The Construction CRM consists of:
+- Frontend: React application
+- Backend: Node.js/Express API
+- Database: Supabase (PostgreSQL)
+
+## Deployment Steps
+
+### 1. Prepare Your Supabase Project
+
+1. Create a new Supabase project at [supabase.com](https://supabase.com)
+2. Run the SQL script from `supabase_tables.sql` in your Supabase SQL editor
+3. Note down your Supabase credentials:
+   - Project URL
+   - Anonymous key
+   - Service role key
+
+### 2. Set Up Environment Variables
+
+#### Frontend Environment Variables
+Create the following environment variables in your Vercel frontend project:
+```
+REACT_APP_API_URL=https://your-backend-url.vercel.app/api
+REACT_APP_USE_MOCK_AUTH=false
+```
+
+#### Backend Environment Variables
+Create the following environment variables in your Vercel backend project:
+```
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+CORS_ORIGIN=https://your-frontend-url.vercel.app
+```
+
+### 3. Deploy the Backend
+
+1. Push your backend code to a GitHub repository
+2. Import the repository to Vercel
+3. Set the build command to `npm install`
+4. Set the output directory to `.`
+5. Add the environment variables from step 2
+6. Deploy
+
+### 4. Deploy the Frontend
+
+1. Push your frontend code to a GitHub repository
+2. Import the repository to Vercel
+3. Set the build command to `npm run build`
+4. Set the output directory to `build`
+5. Add the environment variables from step 2
+6. Deploy
+
+### 5. Configure CORS
+
+After deploying both applications, update the `CORS_ORIGIN` environment variable in your backend with the URL of your deployed frontend.
+
+## Local Testing
+
+Before deploying, you can test the production configuration locally:
+
+1. In the frontend directory:
+   ```
+   npm run build
+   npx serve -s build
    ```
 
-2. Create environment files:
-   - Copy `.env.example` to `.env` in both root and backend directories
-   - Update the values with your configuration
-
-3. Start the development servers:
-   ```bash
-   # Terminal 1: Start backend
-   cd backend
-   npm run dev
-   
-   # Terminal 2: Start frontend
-   cd frontend
-   npm start
+2. In the backend directory:
+   ```
+   NODE_ENV=production node src/server.js
    ```
 
-## Vercel Deployment
+## Troubleshooting
 
-The application is configured for deployment to Vercel with the following structure:
+### Common Issues
 
-- Frontend: React application in the `frontend` directory
-- Backend: Express API in the `backend` directory
-- API Routes: Handled by `api/index.js` which uses `serverless-http`
+1. **CORS errors**: Make sure `CORS_ORIGIN` is set correctly in your backend environment variables
+2. **API connection errors**: Verify that `REACT_APP_API_URL` points to your deployed backend
+3. **Database connection errors**: Check that all Supabase environment variables are set correctly
 
-### Environment Variables
+### Environment Variables Checklist
 
-Set the following environment variables in Vercel:
+Make sure all these environment variables are set in Vercel:
 
-- `SUPABASE_URL` - Your Supabase project URL
-- `SUPABASE_ANON_KEY` - Your Supabase anon key
-- `SUPABASE_SERVICE_ROLE_KEY` - Your Supabase service role key
-- `JWT_SECRET` - Secret for JWT tokens
-- `JWT_EXPIRES_IN` - Token expiration time
-- `JWT_REFRESH_SECRET` - Secret for refresh tokens
-- `JWT_REFRESH_EXPIRES_IN` - Refresh token expiration time
+Backend:
+- SUPABASE_URL
+- SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+- CORS_ORIGIN
 
-### Deployment Process
+Frontend:
+- REACT_APP_API_URL
 
-1. Push to your GitHub repository
-2. Connect the repository to Vercel
-3. Configure the environment variables in Vercel dashboard
-4. Deploy!
+## Updating the Application
 
-The `vercel.json` file handles the routing:
-- `/api/*` routes are handled by the serverless function
-- All other routes serve the React frontend
+To update your deployed application:
+
+1. Push changes to your GitHub repository
+2. Vercel will automatically redeploy your application
+3. For environment variable changes, update them in the Vercel dashboard
+
+## Security Considerations
+
+1. Never commit sensitive keys to version control
+2. Use Vercel's environment variable management for secrets
+3. Regularly rotate your API keys
+4. Monitor your application logs for suspicious activity

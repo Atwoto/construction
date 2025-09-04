@@ -1,12 +1,15 @@
 {
   "name": "construction-crm-api",
   "version": "1.0.0",
-  "description": "API for Construction CRM system",
+  "description": "API handler for Construction CRM",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "serverless-http": "^3.2.0"
+    "express": "^4.18.2",
+    "serverless-http": "^3.2.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0"
   }
 }

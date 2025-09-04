@@ -416,8 +416,6 @@ router.get('/select', authenticate, getClientsForSelect);
  *       500:
  *         description: Internal server error
  */
-router.get('/stats', authenticate, getClientStats);
-router.get('/select', authenticate, getClientsForSelect);
 router.get('/:id', authenticate, getClientById);
 
 /**

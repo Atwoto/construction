@@ -97,7 +97,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/clients', clientRoutes);
-app.use('/api/client-contacts', clientContactRoutes);
+app.use('/api', clientContactRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/invoices', invoiceRoutes);
 app.use('/api/employees', employeeRoutes);
