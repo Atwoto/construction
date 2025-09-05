@@ -3,6 +3,7 @@ import React, {
   useContext,
   useReducer,
   useEffect,
+  useCallback,
   ReactNode,
 } from "react";
 import toast from "react-hot-toast";
@@ -331,7 +332,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   // Refresh token function
-  const refreshToken = async () => {
+  const refreshToken = useCallback(async () => {
     // Use mock auth if enabled
     if (USE_MOCK_AUTH) {
       console.log("Mock token refresh");
@@ -361,7 +362,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       dispatch({ type: "AUTH_LOGOUT" });
       throw error;
     }
-  };
+  }, [state.tokens, state.user]);
 
   // Clear error function
   const clearError = () => {

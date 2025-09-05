@@ -1,50 +1,57 @@
-[19:33:02.149] Running build in Washington, D.C., USA (East) – iad1
-[19:33:02.149] Build machine configuration: 2 cores, 8 GB
-[19:33:02.168] Cloning github.com/Atwoto/construction (Branch: main, Commit: 5eb29ec)
-[19:33:02.684] Cloning completed: 511.000ms
-[19:33:03.588] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
-[19:33:05.631] Running "vercel build"
-[19:33:06.026] Vercel CLI 47.0.5
-[19:33:07.131] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
-[19:33:08.260] 
-[19:33:08.261] up to date, audited 17 packages in 751ms
-[19:33:08.262] 
-[19:33:08.262] found 0 vulnerabilities
-[19:33:11.048] 
-[19:33:11.049] up to date, audited 1639 packages in 3s
-[19:33:11.049] 
-[19:33:11.050] 316 packages are looking for funding
-[19:33:11.050]   run `npm fund` for details
-[19:33:11.053] 
-[19:33:11.054] 9 vulnerabilities (3 moderate, 6 high)
-[19:33:11.055] 
-[19:33:11.055] To address all issues (including breaking changes), run:
-[19:33:11.055]   npm audit fix --force
-[19:33:11.055] 
-[19:33:11.056] Run `npm audit` for details.
-[19:33:12.679] 
-[19:33:12.679] up to date, audited 828 packages in 2s
-[19:33:12.680] 
-[19:33:12.680] 155 packages are looking for funding
-[19:33:12.680]   run `npm fund` for details
-[19:33:12.688] 
-[19:33:12.689] 6 low severity vulnerabilities
-[19:33:12.690] 
-[19:33:12.690] To address issues that do not require attention, run:
-[19:33:12.690]   npm audit fix
-[19:33:12.691] 
-[19:33:12.691] To address all issues (including breaking changes), run:
-[19:33:12.691]   npm audit fix --force
-[19:33:12.691] 
-[19:33:12.691] Run `npm audit` for details.
-[19:33:12.913] 
-[19:33:12.913] > construction-crm-frontend@1.0.0 build
-[19:33:12.913] > react-scripts build
-[19:33:12.913] 
-[19:33:14.383] Creating an optimized production build...
-[19:33:45.961] Failed to compile.
-[19:33:45.962] 
-[19:33:45.962] Attempted import error: 'Button' is not exported from '../components/common/Button' (imported as 'Button').
-[19:33:45.962] 
-[19:33:45.962] 
-[19:33:46.012] Error: Command "cd frontend && npm run build" exited with 1
+[19:44:35.230] Running build in Washington, D.C., USA (East) – iad1
+[19:44:35.231] Build machine configuration: 2 cores, 8 GB
+[19:44:35.253] Cloning github.com/Atwoto/construction (Branch: main, Commit: d477b01)
+[19:44:35.790] Cloning completed: 536.000ms
+[19:44:37.182] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
+[19:44:39.336] Running "vercel build"
+[19:44:39.754] Vercel CLI 47.0.5
+[19:44:40.557] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
+[19:44:41.581] 
+[19:44:41.582] up to date, audited 17 packages in 763ms
+[19:44:41.583] 
+[19:44:41.584] found 0 vulnerabilities
+[19:44:44.765] 
+[19:44:44.765] up to date, audited 1639 packages in 3s
+[19:44:44.765] 
+[19:44:44.766] 316 packages are looking for funding
+[19:44:44.767]   run `npm fund` for details
+[19:44:44.774] 
+[19:44:44.775] 9 vulnerabilities (3 moderate, 6 high)
+[19:44:44.775] 
+[19:44:44.776] To address all issues (including breaking changes), run:
+[19:44:44.776]   npm audit fix --force
+[19:44:44.776] 
+[19:44:44.776] Run `npm audit` for details.
+[19:44:46.320] 
+[19:44:46.320] up to date, audited 828 packages in 1s
+[19:44:46.321] 
+[19:44:46.321] 155 packages are looking for funding
+[19:44:46.321]   run `npm fund` for details
+[19:44:46.333] 
+[19:44:46.333] 6 low severity vulnerabilities
+[19:44:46.333] 
+[19:44:46.334] To address issues that do not require attention, run:
+[19:44:46.334]   npm audit fix
+[19:44:46.334] 
+[19:44:46.334] To address all issues (including breaking changes), run:
+[19:44:46.334]   npm audit fix --force
+[19:44:46.335] 
+[19:44:46.335] Run `npm audit` for details.
+[19:44:46.581] 
+[19:44:46.582] > construction-crm-frontend@1.0.0 build
+[19:44:46.582] > react-scripts build
+[19:44:46.582] 
+[19:44:48.124] Creating an optimized production build...
+[19:45:20.829] Failed to compile.
+[19:45:20.829] 
+[19:45:20.829] TS2448: Block-scoped variable 'refreshToken' used before its declaration.
+[19:45:20.829]   [0m [90m 204 |[39m
+[19:45:20.829]    [90m 205 |[39m     [36mreturn[39m () [33m=>[39m clearInterval(refreshInterval)[33m;[39m
+[19:45:20.829]   [31m[1m>[22m[39m[90m 206 |[39m   }[33m,[39m [state[33m.[39mtokens[33m,[39m refreshToken])[33m;[39m
+[19:45:20.830]    [90m     |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[19:45:20.831]    [90m 207 |[39m
+[19:45:20.831]    [90m 208 |[39m   [90m// Login function[39m
+[19:45:20.836]    [90m 209 |[39m   [36mconst[39m login [33m=[39m [36masync[39m (credentials[33m:[39m [33mLoginCredentials[39m) [33m=>[39m {[0m
+[19:45:20.836] 
+[19:45:20.837] 
+[19:45:20.898] Error: Command "cd frontend && npm run build" exited with 1
