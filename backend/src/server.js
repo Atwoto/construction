@@ -151,13 +151,18 @@ app.use(apiPrefix + '/documents', documentRoutes);
 app.use(apiPrefix + '/reports', reportRoutes);
 
 // Swagger documentation
-const specs = swaggerJsdoc(swaggerOptions);
-const docsPrefix = process.env.VERCEL ? '' : '/api';
-app.use(docsPrefix + '/docs', swaggerUi.serve, swaggerUi.setup(specs, {
-  explorer: true,
-  customCss: '.swagger-ui .topbar { display: none }',
-  customSiteTitle: 'Construction CRM API Documentation',
-}));
+if (!process.env.VERCEL) {
+  const swaggerJsdoc = require('swagger-jsdoc');
+  const swaggerUi = require('swagger-ui-express');
+  const swaggerOptions = require('./config/swagger');
+  const specs = swaggerJsdoc(swaggerOptions);
+  const docsPrefix = '/api';
+  app.use(docsPrefix + '/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+    explorer: true,
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Construction CRM API Documentation',
+  }));
+}
 
 // 404 handler
 app.use('*', (req, res) => {
