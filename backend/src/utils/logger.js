@@ -1,16 +1,23 @@
 const fs = require('fs');
 const path = require('path');
 
-// Ensure logs directory exists
+// In Vercel environment, we should avoid file system operations as much as possible
+const isVercel = !!process.env.VERCEL;
+
+// Ensure logs directory exists (only in non-Vercel environments)
 // Use /tmp directory in Vercel environment as it's the only writable directory
-const logsDir = process.env.VERCEL ? path.join('/tmp', 'logs') : path.join(__dirname, '../../logs');
-try {
-  if (!fs.existsSync(logsDir)) {
-    fs.mkdirSync(logsDir, { recursive: true });
+const logsDir = isVercel ? path.join('/tmp', 'logs') : path.join(__dirname, '../../logs');
+
+// Only try to create logs directory in non-Vercel environments
+if (!isVercel) {
+  try {
+    if (!fs.existsSync(logsDir)) {
+      fs.mkdirSync(logsDir, { recursive: true });
+    }
+  } catch (err) {
+    // If we can't create the logs directory, that's okay - we'll just log to console
+    console.warn('Could not create logs directory, logging to console only:', err.message);
   }
-} catch (err) {
-  // If we can't create the logs directory, that's okay - we'll just log to console
-  console.warn('Could not create logs directory, logging to console only:', err.message);
 }
 
 // Log levels
@@ -38,12 +45,15 @@ function formatMessage(level, message, meta = null) {
 }
 
 /**
- * Write log to file
+ * Write log to file (skip in Vercel environment)
  * @param {string} level - Log level
  * @param {string} message - Log message
  * @param {any} meta - Additional metadata
  */
 function writeToFile(level, message, meta) {
+  // Skip file logging completely in Vercel environment
+  if (isVercel) return;
+  
   // Skip file logging in test environment or if logs directory doesn't exist
   if (process.env.NODE_ENV === 'test' || !fs.existsSync(logsDir)) return;
 
@@ -103,7 +113,10 @@ function log(level, message, meta = null) {
   
   if (levelNum <= currentLogLevel) {
     logToConsole(level, message, meta);
-    writeToFile(level, message, meta);
+    // Only write to file in non-Vercel environments
+    if (!isVercel) {
+      writeToFile(level, message, meta);
+    }
   }
 }
 
