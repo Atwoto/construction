@@ -1,99 +1,40 @@
-AuthContext.tsx:17 USE_MOCK_AUTH: false
-content-script.js:22 Document already loaded, running initialization immediately
-content-script.js:4 Attempting to initialize AdUnit
-content-script.js:6 AdUnit initialized successfully
-construction-six-lovat.vercel.app/:1 Error while trying to use the following icon from the Manifest: https://construction-six-lovat.vercel.app/logo192.png (Download error or resource isn't a valid image)
-api/auth/profile:1  Failed to load resource: the server responded with a status of 504 ()
-hook.js:608 Auth initialization failed: Bn
-overrideMethod @ hook.js:608
-AuthContext.tsx:210 🔐 Login function called with: ngcoboharry12@gmail.com
-AuthContext.tsx:223 ✅ Login successful for: ngcoboharry12@gmail.com
-projectService.ts:250 📈 Fetching project stats from API
-clientService.ts:128 📈 Fetching client stats from API
-hook.js:608 Dashboard data loading error: Error: Request timeout - dashboard data is taking too long to load
-    at DashboardPage.tsx:54:33
-overrideMethod @ hook.js:608
-g @ DashboardPage.tsx:67
-await in g
-(anonymous) @ DashboardPage.tsx:44
-rl @ react-dom.production.min.js:243
-jc @ react-dom.production.min.js:285
-lc @ react-dom.production.min.js:272
-Va @ react-dom.production.min.js:127
-(anonymous) @ react-dom.production.min.js:282
-wc @ react-dom.production.min.js:280
-ac @ react-dom.production.min.js:269
-j @ scheduler.production.min.js:13
-T @ scheduler.production.min.js:14
-clientService.ts:129  GET https://construction-six-lovat.vercel.app/api/clients/stats 504 (Gateway Timeout)
-(anonymous) @ xhr.js:195
-xhr @ xhr.js:15
-pa @ dispatchRequest.js:51
-Promise.then
-_request @ Axios.js:163
-request @ Axios.js:40
-(anonymous) @ Axios.js:213
-(anonymous) @ bind.js:5
-getClientStats @ clientService.ts:129
-g @ DashboardPage.tsx:59
-(anonymous) @ DashboardPage.tsx:44
-rl @ react-dom.production.min.js:243
-jc @ react-dom.production.min.js:285
-lc @ react-dom.production.min.js:272
-Va @ react-dom.production.min.js:127
-(anonymous) @ react-dom.production.min.js:282
-wc @ react-dom.production.min.js:280
-ac @ react-dom.production.min.js:269
-j @ scheduler.production.min.js:13
-T @ scheduler.production.min.js:14
-hook.js:608 ❌ Error fetching client stats: Bn {message: 'Request failed with status code 504', name: 'AxiosError', code: 'ERR_BAD_RESPONSE', config: {…}, request: XMLHttpRequest, …}
-overrideMethod @ hook.js:608
-getClientStats @ clientService.ts:133
-await in getClientStats
-g @ DashboardPage.tsx:59
-(anonymous) @ DashboardPage.tsx:44
-rl @ react-dom.production.min.js:243
-jc @ react-dom.production.min.js:285
-lc @ react-dom.production.min.js:272
-Va @ react-dom.production.min.js:127
-(anonymous) @ react-dom.production.min.js:282
-wc @ react-dom.production.min.js:280
-ac @ react-dom.production.min.js:269
-j @ scheduler.production.min.js:13
-T @ scheduler.production.min.js:14
-projectService.ts:255  GET https://construction-six-lovat.vercel.app/api/projects/stats 504 (Gateway Timeout)
-(anonymous) @ xhr.js:195
-xhr @ xhr.js:15
-pa @ dispatchRequest.js:51
-Promise.then
-_request @ Axios.js:163
-request @ Axios.js:40
-(anonymous) @ Axios.js:213
-(anonymous) @ bind.js:5
-getProjectStats @ projectService.ts:255
-g @ DashboardPage.tsx:58
-(anonymous) @ DashboardPage.tsx:44
-rl @ react-dom.production.min.js:243
-jc @ react-dom.production.min.js:285
-lc @ react-dom.production.min.js:272
-Va @ react-dom.production.min.js:127
-(anonymous) @ react-dom.production.min.js:282
-wc @ react-dom.production.min.js:280
-ac @ react-dom.production.min.js:269
-j @ scheduler.production.min.js:13
-T @ scheduler.production.min.js:14
-hook.js:608 ❌ Error fetching project stats: Bn {message: 'Request failed with status code 504', name: 'AxiosError', code: 'ERR_BAD_RESPONSE', config: {…}, request: XMLHttpRequest, …}
-overrideMethod @ hook.js:608
-getProjectStats @ projectService.ts:259
-await in getProjectStats
-g @ DashboardPage.tsx:58
-(anonymous) @ DashboardPage.tsx:44
-rl @ react-dom.production.min.js:243
-jc @ react-dom.production.min.js:285
-lc @ react-dom.production.min.js:272
-Va @ react-dom.production.min.js:127
-(anonymous) @ react-dom.production.min.js:282
-wc @ react-dom.production.min.js:280
-ac @ react-dom.production.min.js:269
-j @ scheduler.production.min.js:13
-T @ scheduler.production.min.js:14
+{
+    "message": "timeout of 25000ms exceeded",
+    "name": "AxiosError",
+    "stack": "AxiosError: timeout of 25000ms exceeded\n    at m.ontimeout (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:417092)\n    at ya.request (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:427528)\n    at async Object.getProjectStats (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:479421)\n    at async Promise.all (index 0)\n    at async g (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:604067)",
+    "config": {
+        "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+        },
+        "adapter": [
+            "xhr",
+            "http",
+            "fetch"
+        ],
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 25000,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {},
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJlbWFpbCI6Im5nY29ib2hhcnJ5MTJAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU3MDc1ODE2LCJleHAiOjE3NTcxNjIyMTZ9.z2N7qPFH0x-IqkdA5AEwzf7RYuo04ieZHzIfFf2EBII"
+        },
+        "baseURL": "/api",
+        "params": {},
+        "method": "get",
+        "url": "/projects/stats",
+        "allowAbsoluteUrls": true
+    },
+    "code": "ECONNABORTED"
+}
