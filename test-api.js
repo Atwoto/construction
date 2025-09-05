@@ -1,34 +1,32 @@
 const axios = require('axios');
 
-// Test the API directly
 async function testApi() {
   try {
-    console.log('Testing API connection...');
+    console.log('Testing health endpoint...');
     
-    // Using the correct API URL for your local environment
-    const apiUrl = 'http://localhost:5000/api/clients';
+    // Test health endpoint
+    const healthResponse = await axios.get('http://localhost:5001/health');
+    console.log('Health check result:', healthResponse.data);
     
-    console.log('Making request to:', apiUrl);
-    
-    const response = await axios.get(apiUrl, {
-      timeout: 5000 // 5 second timeout
-    });
-    
-    console.log('API Response Status:', response.status);
-    console.log('API Response Headers:', response.headers);
-    console.log('API Response Data:', JSON.stringify(response.data, null, 2));
+    // Test API auth endpoint
+    console.log('Testing auth endpoint...');
+    try {
+      const authResponse = await axios.get('http://localhost:5001/api/auth/profile');
+      console.log('Auth endpoint result:', authResponse.data);
+    } catch (error) {
+      if (error.response) {
+        console.log('Auth endpoint status:', error.response.status);
+        console.log('Auth endpoint error data:', error.response.data);
+      } else {
+        console.log('Auth endpoint error:', error.message);
+      }
+    }
   } catch (error) {
-    console.error('API Error:');
-    console.error('Error Code:', error.code);
-    console.error('Error Message:', error.message);
-    
     if (error.response) {
-      console.error('Response Status:', error.response.status);
-      console.error('Response Headers:', error.response.headers);
-      console.error('Response Data:', JSON.stringify(error.response.data, null, 2));
-    } else if (error.request) {
-      console.error('No response received. Request details:');
-      console.error('Request:', error.request);
+      console.log('Health check failed with status:', error.response.status);
+      console.log('Health check error data:', error.response.data);
+    } else {
+      console.log('Health check error:', error.message);
     }
   }
 }

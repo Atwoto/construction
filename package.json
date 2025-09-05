@@ -12,8 +12,8 @@
     "server": "nodemon backend/src/server.js",
     "client": "npm start --prefix frontend",
     "build": "npm run build --prefix frontend",
-    "render-build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "postinstall": "npm run build"
+    "render-build": "npm ci && npm ci --prefix frontend && npm run build --prefix frontend",
+    "postinstall": "echo \"Postinstall complete\""
   },
   "keywords": [],
   "author": "",
