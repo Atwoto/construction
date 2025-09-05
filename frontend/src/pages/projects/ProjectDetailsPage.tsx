@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { projectService } from "../../services/projectService";
 import { Project } from "../../types";
-import { useAuth } from "../../context/AuthContext";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Button from "../../components/common/Button";
 import ProjectForm from "../../components/projects/ProjectForm";

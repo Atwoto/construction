@@ -1,358 +1,69 @@
-Compiled with problems:
-×
-ERROR in ./src/context/AuthContext.tsx
-Module build failed (from ./node_modules/babel-loader/lib/index.js):
-SyntaxError: C:\Users\HARRY\Desktop\construction\frontend\src\context\AuthContext.tsx: Unexpected token (244:6)
-
-  242 |       toast.success("Login successful!");
-  243 |       console.log("✅ Login successful for:", response.user.email);
-> 244 |     } catch (error: any) {
-      |       ^
-  245 |       console.error("❌ Login error:", error);
-  246 |       const errorMessage = error.response?.data?.message || error.response?.data?.error || "Login failed";
-  247 |       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
-    at constructor (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:367:19)
-    at TypeScriptParserMixin.raise (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:6630:19)
-    at TypeScriptParserMixin.unexpected (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:6650:16)
-    at TypeScriptParserMixin.parseExprAtom (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11447:16)
-    at TypeScriptParserMixin.parseExprAtom (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:4797:20)
-    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11081:23)
-    at TypeScriptParserMixin.parseUpdate (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11066:21)
-    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11046:23)
-    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:9857:18)
-    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10899:61)
-    at TypeScriptParserMixin.parseExprOps (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10904:23)
-    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10881:23)
-    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10831:21)
-    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:9806:20)
-    at TypeScriptParserMixin.parseExpressionBase (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10784:23)
-    at C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10780:39
-    at TypeScriptParserMixin.allowInAnd (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12427:16)
-    at TypeScriptParserMixin.parseExpression (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10780:17)
-    at TypeScriptParserMixin.parseStatementContent (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12900:23)
-    at TypeScriptParserMixin.parseStatementContent (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:9532:18)
-    at TypeScriptParserMixin.parseStatementLike (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12772:17)
-    at TypeScriptParserMixin.parseModuleItem (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12749:17)
-    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:13321:36)
-    at TypeScriptParserMixin.parseBlockBody (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
-    at TypeScriptParserMixin.parseProgram (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12630:10)
-    at TypeScriptParserMixin.parseTopLevel (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12620:25)
-    at TypeScriptParserMixin.parse (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:14497:10)
-    at TypeScriptParserMixin.parse (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10149:18)
-    at parse (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:14531:38)
-    at parser (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\parser\index.js:41:34)
-    at parser.next (<anonymous>)
-    at normalizeFile (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
-    at normalizeFile.next (<anonymous>)
-    at run (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\transformation\index.js:22:50)
-    at run.next (<anonymous>)
-    at transform (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\transform.js:22:33)
-    at transform.next (<anonymous>)
-    at step (C:\Users\HARRY\Desktop\construction\frontend\node_modules\gensync\index.js:261:32)
-    at C:\Users\HARRY\Desktop\construction\frontend\node_modules\gensync\index.js:273:13
-    at async.call.result.err.err (C:\Users\HARRY\Desktop\construction\frontend\node_modules\gensync\index.js:223:11)
-ERROR
-[eslint] 
-src\context\AuthContext.tsx
-  Line 244:6:  Parsing error: 'try' expected
-
-ERROR in ./src/context/AuthContext.tsx
-Module build failed (from ./node_modules/babel-loader/lib/index.js):
-SyntaxError: C:\Users\HARRY\Desktop\construction\frontend\src\context\AuthContext.tsx: Unexpected token (244:6)
-
-  242 |       toast.success("Login successful!");
-  243 |       console.log("✅ Login successful for:", response.user.email);
-> 244 |     } catch (error: any) {
-      |       ^
-  245 |       console.error("❌ Login error:", error);
-  246 |       const errorMessage = error.response?.data?.message || error.response?.data?.error || "Login failed";
-  247 |       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
-    at constructor (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:367:19)
-    at TypeScriptParserMixin.raise (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:6630:19)
-    at TypeScriptParserMixin.unexpected (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:6650:16)
-    at TypeScriptParserMixin.parseExprAtom (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11447:16)
-    at TypeScriptParserMixin.parseExprAtom (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:4797:20)
-    at TypeScriptParserMixin.parseExprSubscripts (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11081:23)
-    at TypeScriptParserMixin.parseUpdate (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11066:21)
-    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:11046:23)
-    at TypeScriptParserMixin.parseMaybeUnary (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:9857:18)
-    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10899:61)
-    at TypeScriptParserMixin.parseExprOps (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10904:23)
-    at TypeScriptParserMixin.parseMaybeConditional (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10881:23)
-    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10831:21)
-    at TypeScriptParserMixin.parseMaybeAssign (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:9806:20)
-    at TypeScriptParserMixin.parseExpressionBase (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10784:23)
-    at C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10780:39
-    at TypeScriptParserMixin.allowInAnd (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12427:16)
-    at TypeScriptParserMixin.parseExpression (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10780:17)
-    at TypeScriptParserMixin.parseStatementContent (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12900:23)
-    at TypeScriptParserMixin.parseStatementContent (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:9532:18)
-    at TypeScriptParserMixin.parseStatementLike (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12772:17)
-    at TypeScriptParserMixin.parseModuleItem (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12749:17)
-    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:13321:36)
-    at TypeScriptParserMixin.parseBlockBody (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:13314:10)
-    at TypeScriptParserMixin.parseProgram (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12630:10)
-    at TypeScriptParserMixin.parseTopLevel (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:12620:25)
-    at TypeScriptParserMixin.parse (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:14497:10)
-    at TypeScriptParserMixin.parse (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:10149:18)
-    at parse (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\parser\lib\index.js:14531:38)
-    at parser (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\parser\index.js:41:34)
-    at parser.next (<anonymous>)
-    at normalizeFile (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
-    at normalizeFile.next (<anonymous>)
-    at run (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\transformation\index.js:22:50)
-    at run.next (<anonymous>)
-    at transform (C:\Users\HARRY\Desktop\construction\frontend\node_modules\@babel\core\lib\transform.js:22:33)
-    at transform.next (<anonymous>)
-    at step (C:\Users\HARRY\Desktop\construction\frontend\node_modules\gensync\index.js:261:32)
-    at C:\Users\HARRY\Desktop\construction\frontend\node_modules\gensync\index.js:273:13
-    at async.call.result.err.err (C:\Users\HARRY\Desktop\construction\frontend\node_modules\gensync\index.js:223:11)
-ERROR
-[eslint] 
-src\context\AuthContext.tsx
-  Line 244:6:  Parsing error: 'try' expected
-
-ERROR in src/App.tsx:191:10
-TS2786: 'AuthProvider' cannot be used as a JSX component.
-  Its return type 'void' is not a valid JSX element.
-    189 |     <div className="App">
-    190 |       <Router>
-  > 191 |         <AuthProvider>
-        |          ^^^^^^^^^^^^
-    192 |           <TooltipProvider>
-    193 |             <AppRoutes />
-    194 |             <Toaster
-ERROR in src/context/AuthContext.tsx:158:17
-TS2304: Cannot find name 'login'.
-    156 |         try {
-    157 |           console.log('🔐 Auto-logging in with admin credentials for development...');
-  > 158 |           await login({
-        |                 ^^^^^
-    159 |             email: 'admin@constructioncrm.com',
-    160 |             password: 'Admin123!'
-    161 |           });
-ERROR in src/context/AuthContext.tsx:243:46
-TS2552: Cannot find name 'response'. Did you mean 'Response'?
-    241 |
-    242 |       toast.success("Login successful!");
-  > 243 |       console.log("✅ Login successful for:", response.user.email);
-        |                                              ^^^^^^^^
-    244 |     } catch (error: any) {
-    245 |       console.error("❌ Login error:", error);
-    246 |       const errorMessage = error.response?.data?.message || error.response?.data?.error || "Login failed";
-ERROR in src/context/AuthContext.tsx:244:7
-TS1005: 'try' expected.
-    242 |       toast.success("Login successful!");
-    243 |       console.log("✅ Login successful for:", response.user.email);
-  > 244 |     } catch (error: any) {
-        |       ^^^^^
-    245 |       console.error("❌ Login error:", error);
-    246 |       const errorMessage = error.response?.data?.message || error.response?.data?.error || "Login failed";
-    247 |       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
-ERROR in src/context/AuthContext.tsx:247:7
-TS2304: Cannot find name 'dispatch'.
-    245 |       console.error("❌ Login error:", error);
-    246 |       const errorMessage = error.response?.data?.message || error.response?.data?.error || "Login failed";
-  > 247 |       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
-        |       ^^^^^^^^
-    248 |       toast.error(errorMessage);
-    249 |       throw error;
-    250 |     }
-ERROR in src/context/AuthContext.tsx:251:3
-TS1128: Declaration or statement expected.
-    249 |       throw error;
-    250 |     }
-  > 251 |   };
-        |   ^
-    252 |
-    253 |   // Register function
-    254 |   const register = async (data: RegisterData) => {
-ERROR in src/context/AuthContext.tsx:258:7
-TS2304: Cannot find name 'dispatch'.
-    256 |     if (USE_MOCK_AUTH) {
-    257 |       console.log("Mock registration with data:", data);
-  > 258 |       dispatch({
-        |       ^^^^^^^^
-    259 |         type: "AUTH_SUCCESS",
-    260 |         payload: { user: MOCK_USER, tokens: MOCK_TOKENS },
-    261 |       });
-ERROR in src/context/AuthContext.tsx:267:7
-TS2304: Cannot find name 'dispatch'.
-    265 |
-    266 |     try {
-  > 267 |       dispatch({ type: "AUTH_START" });
-        |       ^^^^^^^^
-    268 |       const response = await authService.register(data);
-    269 |
-    270 |       authService.storeTokens(response.tokens);
-ERROR in src/context/AuthContext.tsx:271:7
-TS2304: Cannot find name 'dispatch'.
-    269 |
-    270 |       authService.storeTokens(response.tokens);
-  > 271 |       dispatch({
-        |       ^^^^^^^^
-    272 |         type: "AUTH_SUCCESS",
-    273 |         payload: { user: response.user, tokens: response.tokens },
-    274 |       });
-ERROR in src/context/AuthContext.tsx:280:7
-TS2304: Cannot find name 'dispatch'.
-    278 |       console.error("Registration error:", error);
-    279 |       const errorMessage = error.response?.data?.message || error.response?.data?.error || "Registration failed";
-  > 280 |       dispatch({ type: "AUTH_FAILURE", payload: errorMessage });
-        |       ^^^^^^^^
-    281 |       toast.error(errorMessage);
-    282 |       throw error;
-    283 |     }
-ERROR in src/context/AuthContext.tsx:291:7
-TS2304: Cannot find name 'dispatch'.
-    289 |     if (USE_MOCK_AUTH) {
-    290 |       console.log("Mock logout");
-  > 291 |       dispatch({ type: "AUTH_LOGOUT" });
-        |       ^^^^^^^^
-    292 |       toast.success("Mock logged out successfully");
-    293 |       return;
-    294 |     }
-ERROR in src/context/AuthContext.tsx:302:7
-TS2304: Cannot find name 'dispatch'.
-    300 |     } finally {
-    301 |       authService.clearStoredTokens();
-  > 302 |       dispatch({ type: "AUTH_LOGOUT" });
-        |       ^^^^^^^^
-    303 |       toast.success("Logged out successfully");
-    304 |     }
-    305 |   };
-ERROR in src/context/AuthContext.tsx:312:32
-TS2304: Cannot find name 'state'.
-    310 |     if (USE_MOCK_AUTH) {
-    311 |       console.log("Mock profile update with data:", data);
-  > 312 |       const updatedUser = { ...state.user, ...data } as User;
-        |                                ^^^^^
-    313 |       dispatch({ type: "UPDATE_USER", payload: updatedUser });
-    314 |       toast.success("Mock profile updated successfully!");
-    315 |       return;
-ERROR in src/context/AuthContext.tsx:313:7
-TS2304: Cannot find name 'dispatch'.
-    311 |       console.log("Mock profile update with data:", data);
-    312 |       const updatedUser = { ...state.user, ...data } as User;
-  > 313 |       dispatch({ type: "UPDATE_USER", payload: updatedUser });
-        |       ^^^^^^^^
-    314 |       toast.success("Mock profile updated successfully!");
-    315 |       return;
-    316 |     }
-ERROR in src/context/AuthContext.tsx:320:7
-TS2304: Cannot find name 'dispatch'.
-    318 |     try {
-    319 |       const updatedUser = await authService.updateProfile(data);
-  > 320 |       dispatch({ type: "UPDATE_USER", payload: updatedUser });
-        |       ^^^^^^^^
-    321 |       toast.success("Profile updated successfully!");
-    322 |     } catch (error: any) {
-    323 |       const errorMessage =
-ERROR in src/context/AuthContext.tsx:358:7
-TS2304: Cannot find name 'dispatch'.
-    356 |     if (USE_MOCK_AUTH) {
-    357 |       console.log("Mock token refresh");
-  > 358 |       dispatch({
-        |       ^^^^^^^^
-    359 |         type: "AUTH_SUCCESS",
-    360 |         payload: { user: MOCK_USER, tokens: MOCK_TOKENS },
-    361 |       });
-ERROR in src/context/AuthContext.tsx:366:12
-TS2304: Cannot find name 'state'.
-    364 |
-    365 |     try {
-  > 366 |       if (!state.tokens?.refreshToken) {
-        |            ^^^^^
-    367 |         throw new Error("No refresh token available");
-    368 |       }
-    369 |
-ERROR in src/context/AuthContext.tsx:371:9
-TS2304: Cannot find name 'state'.
-    369 |
-    370 |       const response = await authService.refreshToken(
-  > 371 |         state.tokens.refreshToken
-        |         ^^^^^
-    372 |       );
-    373 |       authService.storeTokens(response.tokens);
-    374 |
-ERROR in src/context/AuthContext.tsx:375:7
-TS2304: Cannot find name 'dispatch'.
-    373 |       authService.storeTokens(response.tokens);
-    374 |
-  > 375 |       dispatch({
-        |       ^^^^^^^^
-    376 |         type: "AUTH_SUCCESS",
-    377 |         payload: { user: state.user!, tokens: response.tokens },
-    378 |       });
-ERROR in src/context/AuthContext.tsx:377:26
-TS2304: Cannot find name 'state'.
-    375 |       dispatch({
-    376 |         type: "AUTH_SUCCESS",
-  > 377 |         payload: { user: state.user!, tokens: response.tokens },
-        |                          ^^^^^
-    378 |       });
-    379 |     } catch (error) {
-    380 |       authService.clearStoredTokens();
-ERROR in src/context/AuthContext.tsx:381:7
-TS2304: Cannot find name 'dispatch'.
-    379 |     } catch (error) {
-    380 |       authService.clearStoredTokens();
-  > 381 |       dispatch({ type: "AUTH_LOGOUT" });
-        |       ^^^^^^^^
-    382 |       throw error;
-    383 |     }
-    384 |   }, [state.tokens, state.user]);
-ERROR in src/context/AuthContext.tsx:384:7
-TS2304: Cannot find name 'state'.
-    382 |       throw error;
-    383 |     }
-  > 384 |   }, [state.tokens, state.user]);
-        |       ^^^^^
-    385 |
-    386 |   // Clear error function
-    387 |   const clearError = () => {
-ERROR in src/context/AuthContext.tsx:384:21
-TS2304: Cannot find name 'state'.
-    382 |       throw error;
-    383 |     }
-  > 384 |   }, [state.tokens, state.user]);
-        |                     ^^^^^
-    385 |
-    386 |   // Clear error function
-    387 |   const clearError = () => {
-ERROR in src/context/AuthContext.tsx:388:5
-TS2304: Cannot find name 'dispatch'.
-    386 |   // Clear error function
-    387 |   const clearError = () => {
-  > 388 |     dispatch({ type: "CLEAR_ERROR" });
-        |     ^^^^^^^^
-    389 |   };
-    390 |
-    391 |   // Context value
-ERROR in src/context/AuthContext.tsx:393:8
-TS2304: Cannot find name 'state'.
-    391 |   // Context value
-    392 |   const value: AuthContextType = {
-  > 393 |     ...state,
-        |        ^^^^^
-    394 |     login,
-    395 |     register,
-    396 |     logout,
-ERROR in src/context/AuthContext.tsx:394:5
-TS18004: No value exists in scope for the shorthand property 'login'. Either declare one or provide an initializer.
-    392 |   const value: AuthContextType = {
-    393 |     ...state,
-  > 394 |     login,
-        |     ^^^^^
-    395 |     register,
-    396 |     logout,
-    397 |     updateProfile,
-ERROR in src/context/AuthContext.tsx:404:1
-TS1128: Declaration or statement expected.
-    402 |
-    403 |   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-  > 404 | }
-        | ^
-    405 |
-    406 | // Custom hook to use auth context
-    407 | export function useAuth(): AuthContextType {
+[20:12:37.214] Running build in Washington, D.C., USA (East) – iad1
+[20:12:37.214] Build machine configuration: 2 cores, 8 GB
+[20:12:37.242] Cloning github.com/Atwoto/construction (Branch: main, Commit: 0216978)
+[20:12:37.610] Cloning completed: 368.000ms
+[20:12:39.309] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
+[20:12:41.404] Running "vercel build"
+[20:12:41.799] Vercel CLI 47.0.5
+[20:12:42.580] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
+[20:12:43.693] 
+[20:12:43.694] up to date, audited 17 packages in 861ms
+[20:12:43.695] 
+[20:12:43.695] found 0 vulnerabilities
+[20:12:46.523] 
+[20:12:46.524] up to date, audited 1639 packages in 3s
+[20:12:46.525] 
+[20:12:46.525] 316 packages are looking for funding
+[20:12:46.525]   run `npm fund` for details
+[20:12:46.530] 
+[20:12:46.530] 9 vulnerabilities (3 moderate, 6 high)
+[20:12:46.531] 
+[20:12:46.531] To address all issues (including breaking changes), run:
+[20:12:46.531]   npm audit fix --force
+[20:12:46.531] 
+[20:12:46.531] Run `npm audit` for details.
+[20:12:48.028] 
+[20:12:48.029] up to date, audited 828 packages in 1s
+[20:12:48.030] 
+[20:12:48.031] 155 packages are looking for funding
+[20:12:48.031]   run `npm fund` for details
+[20:12:48.037] 
+[20:12:48.038] 6 low severity vulnerabilities
+[20:12:48.038] 
+[20:12:48.039] To address issues that do not require attention, run:
+[20:12:48.039]   npm audit fix
+[20:12:48.039] 
+[20:12:48.039] To address all issues (including breaking changes), run:
+[20:12:48.040]   npm audit fix --force
+[20:12:48.040] 
+[20:12:48.040] Run `npm audit` for details.
+[20:12:48.675] 
+[20:12:48.676] > construction-crm-frontend@1.0.0 build
+[20:12:48.676] > react-scripts build
+[20:12:48.676] 
+[20:12:50.104] Creating an optimized production build...
+[20:13:21.767] 
+[20:13:21.767] Treating warnings as errors because process.env.CI = true.
+[20:13:21.768] Most CI servers set it automatically.
+[20:13:21.768] 
+[20:13:21.776] Failed to compile.
+[20:13:21.776] 
+[20:13:21.778] [eslint] 
+[20:13:21.778] src/pages/ComponentTestPage.tsx
+[20:13:21.778]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
+[20:13:21.778]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+[20:13:21.778]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
+[20:13:21.779]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+[20:13:21.779]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
+[20:13:21.779]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
+[20:13:21.779]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
+[20:13:21.779]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
+[20:13:21.779] 
+[20:13:21.779] src/pages/clients/ClientDetailsPage.tsx
+[20:13:21.779]   Line 4:10:  'useAuth' is defined but never used  @typescript-eslint/no-unused-vars
+[20:13:21.779] 
+[20:13:21.779] src/pages/projects/ProjectDetailsPage.tsx
+[20:13:21.779]   Line 6:10:  'useAuth' is defined but never used  @typescript-eslint/no-unused-vars
+[20:13:21.781] 
+[20:13:21.782] 
+[20:13:21.835] Error: Command "cd frontend && npm run build" exited with 1
