@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>API Test</title>
+    <title>Health Check</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <h1>API Test</h1>
-    <button id="testBtn">Test API Connection</button>
+    <h1>Health Check</h1>
+    <button id="testBtn">Test Health Endpoint</button>
     <div id="result"></div>
 
     <script>
@@ -15,8 +15,8 @@
             resultDiv.innerHTML = 'Testing...';
             
             try {
-                // Try to access the API directly
-                const response = await axios.get('/api/projects/stats');
+                // Try to access the health endpoint
+                const response = await axios.get('/api');
                 resultDiv.innerHTML = '<pre>' + JSON.stringify(response.data, null, 2) + '</pre>';
             } catch (error) {
                 resultDiv.innerHTML = '<pre>Error: ' + JSON.stringify(error.response?.data || error.message, null, 2) + '</pre>';
