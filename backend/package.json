@@ -11,7 +11,8 @@
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo",
     "seed": "npx sequelize-cli db:seed:all",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "create-test-user": "node create-test-user.js"
   },
   "keywords": [
     "construction",
