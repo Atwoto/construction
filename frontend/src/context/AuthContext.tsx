@@ -204,7 +204,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ); // Refresh every 15 minutes
 
     return () => clearInterval(refreshInterval);
-  }, [state.tokens]);
+  }, [state.tokens, refreshToken]);
 
   // Login function
   const login = async (credentials: LoginCredentials) => {

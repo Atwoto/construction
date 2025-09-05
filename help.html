@@ -1,38 +1,69 @@
-Compiled with problems:
-×
-ERROR in src/pages/clients/ClientManagement.tsx:84:16
-TS2448: Block-scoped variable 'loadClients' used before its declaration.
-    82 |     loadStats();
-    83 |     loadAssignedUsers();
-  > 84 |   }, [filters, loadClients]);
-       |                ^^^^^^^^^^^
-    85 |
-    86 |   const loadClients = useCallback(async () => {
-    87 |     try {
-ERROR in src/pages/clients/ClientManagement.tsx:84:16
-TS2454: Variable 'loadClients' is used before being assigned.
-    82 |     loadStats();
-    83 |     loadAssignedUsers();
-  > 84 |   }, [filters, loadClients]);
-       |                ^^^^^^^^^^^
-    85 |
-    86 |   const loadClients = useCallback(async () => {
-    87 |     try {
-ERROR in src/pages/projects/ProjectManagement.tsx:68:16
-TS2448: Block-scoped variable 'loadProjects' used before its declaration.
-    66 |     loadStats();
-    67 |     loadSupportingData();
-  > 68 |   }, [filters, loadProjects]);
-       |                ^^^^^^^^^^^^
-    69 |
-    70 |   const loadProjects = async () => {
-    71 |     try {
-ERROR in src/pages/projects/ProjectManagement.tsx:68:16
-TS2454: Variable 'loadProjects' is used before being assigned.
-    66 |     loadStats();
-    67 |     loadSupportingData();
-  > 68 |   }, [filters, loadProjects]);
-       |                ^^^^^^^^^^^^
-    69 |
-    70 |   const loadProjects = async () => {
-    71 |     try {
+[19:59:34.971] Running build in Washington, D.C., USA (East) – iad1
+[19:59:34.971] Build machine configuration: 2 cores, 8 GB
+[19:59:35.005] Cloning github.com/Atwoto/construction (Branch: main, Commit: a8d5380)
+[19:59:35.486] Cloning completed: 481.000ms
+[19:59:36.883] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
+[19:59:39.001] Running "vercel build"
+[19:59:39.392] Vercel CLI 47.0.5
+[19:59:40.148] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
+[19:59:41.251] 
+[19:59:41.252] up to date, audited 17 packages in 856ms
+[19:59:41.253] 
+[19:59:41.253] found 0 vulnerabilities
+[19:59:44.171] 
+[19:59:44.171] up to date, audited 1639 packages in 3s
+[19:59:44.172] 
+[19:59:44.173] 316 packages are looking for funding
+[19:59:44.173]   run `npm fund` for details
+[19:59:44.185] 
+[19:59:44.185] 9 vulnerabilities (3 moderate, 6 high)
+[19:59:44.185] 
+[19:59:44.185] To address all issues (including breaking changes), run:
+[19:59:44.185]   npm audit fix --force
+[19:59:44.186] 
+[19:59:44.186] Run `npm audit` for details.
+[19:59:45.656] 
+[19:59:45.657] up to date, audited 828 packages in 1s
+[19:59:45.657] 
+[19:59:45.657] 155 packages are looking for funding
+[19:59:45.657]   run `npm fund` for details
+[19:59:45.666] 
+[19:59:45.667] 6 low severity vulnerabilities
+[19:59:45.667] 
+[19:59:45.667] To address issues that do not require attention, run:
+[19:59:45.668]   npm audit fix
+[19:59:45.668] 
+[19:59:45.668] To address all issues (including breaking changes), run:
+[19:59:45.668]   npm audit fix --force
+[19:59:45.668] 
+[19:59:45.669] Run `npm audit` for details.
+[19:59:45.883] 
+[19:59:45.884] > construction-crm-frontend@1.0.0 build
+[19:59:45.884] > react-scripts build
+[19:59:45.884] 
+[19:59:47.343] Creating an optimized production build...
+[20:00:19.468] 
+[20:00:19.470] Treating warnings as errors because process.env.CI = true.
+[20:00:19.471] Most CI servers set it automatically.
+[20:00:19.471] 
+[20:00:19.472] Failed to compile.
+[20:00:19.472] 
+[20:00:19.474] [eslint] 
+[20:00:19.475] src/context/AuthContext.tsx
+[20:00:19.475]   Line 207:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[20:00:19.475] 
+[20:00:19.476] src/pages/ComponentTestPage.tsx
+[20:00:19.481]   Line 21:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+[20:00:19.481]   Line 21:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
+[20:00:19.481]   Line 21:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
+[20:00:19.482]   Line 21:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
+[20:00:19.482]   Line 21:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
+[20:00:19.482] 
+[20:00:19.483] src/pages/clients/ClientDetailsPage.tsx
+[20:00:19.483]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[20:00:19.483] 
+[20:00:19.484] src/pages/projects/ProjectDetailsPage.tsx
+[20:00:19.484]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[20:00:19.486] 
+[20:00:19.489] 
+[20:00:19.536] Error: Command "cd frontend && npm run build" exited with 1
