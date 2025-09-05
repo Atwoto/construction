@@ -1,26 +1,27 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/src/server.js",
-      "use": "@vercel/node"
+    "buildCommand": "cd frontend && npm run build",
+    "outputDirectory": "frontend/build",
+    "installCommand": "npm install && cd frontend && npm install && cd backend && npm install",
+    "functions": {
+        "backend/src/server.js": {
+            "maxDuration": 30
+        }
     },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/backend/src/server.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ],
+    "env": {
+        "VERCEL": "1",
+        "SUPABASE_URL": "https://rrkwxtdnefcymxaplnox.supabase.co",
+        "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM",
+        "NEXT_PUBLIC_SUPABASE_URL": "https://rrkwxtdnefcymxaplnox.supabase.co",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm5veCIsImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/src/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
 }
