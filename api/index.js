@@ -1,18 +1,40 @@
 // api/index.js
-const app = require('../backend/src/server');
+const express = require('express');
 const serverless = require('serverless-http');
+const cors = require('cors');
 const { supabaseAdmin } = require('../backend/src/config/supabase');
 const logger = require('../backend/src/utils/logger');
 
-// This is the main handler for the Vercel serverless function.
-module.exports = async (req, res) => {
-  // Basic check to ensure the admin client is initialized.
-  // The real connection is handled by the Supabase client library itself.
-  if (!supabaseAdmin) {
-    logger.error('CRITICAL: supabaseAdmin client is not initialized. Check SUPABASE_SERVICE_ROLE_KEY.');
-    return res.status(500).json({ error: 'Internal Server Error: Database client not configured.' });
-  }
+// Create a new, lightweight Express app specifically for Vercel
+const app = express();
 
-  // Pass the request to the Express app.
-  return serverless(app)(req, res);
-};
+// --- Essential Middleware ---
+// Use CORS - this is critical. Using permissive CORS for now.
+app.use(cors({ origin: '*' }));
+// Body parser
+app.use(express.json());
+
+// --- Health Check Route ---
+app.get('/api', (req, res) => {
+  res.status(200).json({ message: 'Lightweight API handler is running' });
+});
+
+// --- Import and use ONLY the routes that are timing out ---
+// This avoids loading the entire slow server
+const projectRoutes = require('../backend/src/routes/projectRoutes');
+const clientRoutes = require('../backend/src/routes/clientRoutes');
+const authRoutes = require('../backend/src/routes/authRoutes'); // Auth is needed for profile
+
+app.use('/api/projects', projectRoutes);
+app.use('/api/clients', clientRoutes);
+app.use('/api/auth', authRoutes);
+
+
+// --- Simple Error Handler ---
+app.use((err, req, res, next) => {
+  logger.error('Unhandled error in lightweight handler:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
+// Export the handler
+module.exports = serverless(app);
