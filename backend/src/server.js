@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 require('dotenv').config();
 
 const { initializeModels } = require('./config/database');
@@ -92,6 +93,16 @@ app.get('/health', (req, res) => {
     version: require('../package.json').version,
   });
 });
+
+// Serve static files from the React app build directory in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../../frontend/build')));
+  
+  // For any request that doesn't match an API route, serve the React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/build/index.html'));
+  });
+}
 
 // API routes
 app.use('/api/auth', authRoutes);
