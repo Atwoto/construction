@@ -115,7 +115,7 @@ async function createTestData() {
         actual_revenue: 0,
         progress: 45,
         client_id: createdClients[0].id,
-        project_manager_id: 1, // Assuming user ID 1 exists
+        project_manager_id: 29, // Using the test user ID
         notes: "Project is on schedule",
         tags: ["office", "downtown", "high-rise"],
         weather_dependency: true,
@@ -142,7 +142,7 @@ async function createTestData() {
         actual_revenue: 0,
         progress: 0,
         client_id: createdClients[1].id,
-        project_manager_id: 1, // Assuming user ID 1 exists
+        project_manager_id: 29, // Using the test user ID
         notes: "Awaiting permits",
         tags: ["residential", "housing", "development"],
         weather_dependency: true,
@@ -167,7 +167,7 @@ async function createTestData() {
         actual_revenue: 0,
         progress: 20,
         client_id: createdClients[2].id,
-        project_manager_id: 1, // Assuming user ID 1 exists
+        project_manager_id: 29, // Using the test user ID
         notes: "Interior work in progress",
         tags: ["renovation", "technology", "office"],
         weather_dependency: false,
