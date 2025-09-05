@@ -20,6 +20,8 @@ import ProjectManagement from "./pages/projects/ProjectManagement";
 import ProjectDetailsPage from "./pages/projects/ProjectDetailsPage";
 import ClientManagement from "./pages/clients/ClientManagement";
 import ClientDetailsPage from "./pages/clients/ClientDetailsPage";
+import SimpleClientTable from "./pages/clients/SimpleClientTable";
+import ApiTestPage from "./pages/ApiTestPage";
 import LoadingSpinner from "./components/common/LoadingSpinner";
 import { TooltipProvider } from "./components/ui/Tooltip";
 import ComponentTestPage from "./pages/ComponentTestPage";
