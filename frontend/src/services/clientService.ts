@@ -5,11 +5,25 @@ export const clientService = {
   async getClients(params: ClientListParams): Promise<ClientListResponse> {
     try {
       console.log('🔍 Fetching clients from API with params:', params);
-      const response = await apiClient.get('/clients', { params });
+      
+      // Set default pagination values to prevent loading too much data
+      const queryParams = {
+        page: params.page || 1,
+        limit: params.limit || 20, // Reduced from default to prevent timeouts
+        ...params
+      };
+      
+      const response = await apiClient.get('/clients', { params: queryParams });
       console.log('✅ API response:', response.data);
       return response.data.data;
     } catch (error: any) {
       console.error('❌ Error fetching clients:', error);
+      
+      // Handle timeout errors specifically
+      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+        throw new Error('Request timeout - please try again or use filters to reduce data size');
+      }
+      
       throw new Error(error.response?.data?.message || 'Failed to fetch clients');
     }
   },

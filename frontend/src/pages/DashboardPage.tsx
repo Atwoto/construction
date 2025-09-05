@@ -48,17 +48,26 @@ function DashboardPage() {
     try {
       setLoading(true);
       setError("");
-      const [projectStats, clientStatsData] = await Promise.all([
+      
+      // Add a timeout to prevent hanging
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout - dashboard data is taking too long to load')), 30000)
+      );
+      
+      const dataPromise = Promise.all([
         projectService.getProjectStats(),
         clientService.getClientStats(),
       ]);
+      
+      const [projectStats, clientStatsData] = await Promise.race([dataPromise, timeoutPromise]) as [ProjectStats, ClientStats];
+      
       setStats(projectStats);
       setClientStats(clientStatsData);
     } catch (error: any) {
-      setError(
-        error.response?.data?.message || "Failed to load dashboard data"
-      );
-      toast.error("Failed to load dashboard data");
+      console.error('Dashboard data loading error:', error);
+      const errorMessage = error.message || "Failed to load dashboard data - please try again";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

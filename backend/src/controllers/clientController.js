@@ -614,88 +614,111 @@ const setNextFollowUp = asyncHandler(async (req, res) => {
   }
 });
 
-/**
- * Get client statistics
- */
+/**\n * Get client statistics\n */
 const getClientStats = asyncHandler(async (req, res) => {
   try {
-    // Get counts for different statuses
-    const { count: totalClients, error: totalError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true });
+    const startTime = Date.now();
+    logger.info('Starting client statistics calculation');
+    
+    // Get all client counts in a single query using count with filters
+    const { data: stats, error } = await supabaseAdmin
+      .rpc('get_client_statistics');
 
-    if (totalError) {
-      throw createError.internal('Error counting total clients', totalError);
-    }
-
-    const { count: activeClients, error: activeError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'active');
-
-    if (activeError) {
-      throw createError.internal('Error counting active clients', activeError);
-    }
-
-    const { count: leads, error: leadsError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'lead');
-
-    if (leadsError) {
-      throw createError.internal('Error counting leads', leadsError);
-    }
-
-    const { count: opportunities, error: opportunitiesError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'opportunity');
-
-    if (opportunitiesError) {
-      throw createError.internal('Error counting opportunities', opportunitiesError);
-    }
-
-    const { count: inactiveClients, error: inactiveError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'inactive');
-
-    if (inactiveError) {
-      throw createError.internal('Error counting inactive clients', inactiveError);
-    }
-
-    const { count: lostClients, error: lostError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'lost');
-
-    if (lostError) {
-      throw createError.internal('Error counting lost clients', lostError);
-    }
-
-    // Overdue follow-ups
-    const now = new Date().toISOString();
-    const { count: overdueFollowUps, error: overdueError } = await supabaseAdmin
-      .from('clients')
-      .select('*', { count: 'exact', head: true })
-      .lt('next_follow_up_date', now)
-      .in('status', ['lead', 'opportunity']);
-
-    if (overdueError) {
-      throw createError.internal('Error counting overdue follow-ups', overdueError);
-    }
-
-    res.json({
-      data: {
-        totalClients,
-        activeClients,
-        leads,
-        opportunities,
-        inactiveClients,
-        lostClients,
-        overdueFollowUps,
+    if (error) {
+      // Fallback to individual queries if the RPC function doesn't exist
+      logger.warn('Client statistics RPC not available, using fallback method');
+      
+      // Get counts for different statuses using a single query with group by
+      const { data: statusCounts, error: statusError } = await supabaseAdmin
+        .from('clients')
+        .select('status, count')
+        .group('status');
+        
+      if (statusError) {
+        throw createError.internal('Error counting clients by status', statusError);
       }
-    });
+      
+      // Initialize counts
+      const counts = {
+        totalClients: 0,
+        activeClients: 0,
+        leads: 0,
+        opportunities: 0,
+        inactiveClients: 0,
+        lostClients: 0
+      };
+      
+      // Sum up the counts
+      statusCounts.forEach(item => {
+        counts.totalClients += item.count;
+        switch(item.status) {
+          case 'active': counts.activeClients = item.count; break;
+          case 'lead': counts.leads = item.count; break;
+          case 'opportunity': counts.opportunities = item.count; break;
+          case 'inactive': counts.inactiveClients = item.count; break;
+          case 'lost': counts.lostClients = item.count; break;
+        }
+      });
+      
+      // Overdue follow-ups
+      const now = new Date().toISOString();
+      const { count: overdueFollowUps, error: overdueError } = await supabaseAdmin
+        .from('clients')
+        .select('*', { count: 'exact', head: true })
+        .lt('next_follow_up_date', now)
+        .in('status', ['lead', 'opportunity']);
+
+      if (overdueError) {
+        throw createError.internal('Error counting overdue follow-ups', overdueError);
+      }
+      
+      // Calculate total estimated value
+      const { data: valueData, error: valueError } = await supabaseAdmin
+        .from('clients')
+        .select('estimated_value');
+        
+      if (valueError) {
+        throw createError.internal('Error fetching client estimated values', valueError);
+      }
+      
+      const totalEstimatedValue = valueData.reduce((sum, client) => sum + (client.estimated_value || 0), 0);
+      
+      // Calculate conversion rate
+      const totalLeadsAndOpportunities = counts.leads + counts.opportunities;
+      const conversionRate = totalLeadsAndOpportunities > 0 
+        ? (counts.activeClients / totalLeadsAndOpportunities) * 100 
+        : 0;
+
+      const endTime = Date.now();
+      logger.info(`Client statistics calculation completed in ${endTime - startTime}ms using fallback method`);
+        
+      res.json({
+        data: {
+          ...counts,
+          overdueFollowUps,
+          totalEstimatedValue,
+          conversionRate: Math.round(conversionRate * 100) / 100
+        }
+      });
+    } else {
+      // Use the RPC function result
+      const endTime = Date.now();
+      logger.info(`Client statistics calculation completed in ${endTime - startTime}ms using RPC function`);
+      
+      res.json({
+        data: stats[0] || {
+          total_clients: 0,
+          active_clients: 0,
+          leads: 0,
+          opportunities: 0,
+          inactive_clients: 0,
+          lost_clients: 0,
+          overdue_follow_ups: 0,
+          total_estimated_value: 0,
+          conversion_rate: 0
+        }
+      });
+    }
   } catch (error) {
     logger.error('Error fetching client statistics:', error);
     throw error;

@@ -4,12 +4,13 @@ import { User, AuthTokens, LoginCredentials, RegisterData, ApiResponse } from '.
 // API base configuration - Make sure this matches your backend port
 const API_BASE_URL = '/api';
 
-// Create axios instance
+// Create axios instance with timeout configuration
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 25000, // 25 second timeout to prevent Vercel 60s timeout
 });
 
 // Token storage keys
