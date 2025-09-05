@@ -43,26 +43,26 @@ const SimpleClientTable: React.FC = () => {
     <div>
       <h1>Simple Client Table</h1>
       <p>Total clients: {clients.length}</p>
-      <table border="1" cellPadding="5" cellSpacing="0">
+      <table style={{ border: "1px solid black", borderCollapse: "collapse" }}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Company Name</th>
-            <th>Contact Person</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
+            <th style={{ border: "1px solid black", padding: "5px" }}>ID</th>
+            <th style={{ border: "1px solid black", padding: "5px" }}>Company Name</th>
+            <th style={{ border: "1px solid black", padding: "5px" }}>Contact Person</th>
+            <th style={{ border: "1px solid black", padding: "5px" }}>Email</th>
+            <th style={{ border: "1px solid black", padding: "5px" }}>Phone</th>
+            <th style={{ border: "1px solid black", padding: "5px" }}>Status</th>
           </tr>
         </thead>
         <tbody>
           {clients.map((client) => (
             <tr key={client.id}>
-              <td>{client.id}</td>
-              <td>{client.companyName}</td>
-              <td>{client.contactPerson}</td>
-              <td>{client.email}</td>
-              <td>{client.phone}</td>
-              <td>{client.status}</td>
+              <td style={{ border: "1px solid black", padding: "5px" }}>{client.id}</td>
+              <td style={{ border: "1px solid black", padding: "5px" }}>{client.companyName}</td>
+              <td style={{ border: "1px solid black", padding: "5px" }}>{client.contactPerson}</td>
+              <td style={{ border: "1px solid black", padding: "5px" }}>{client.email}</td>
+              <td style={{ border: "1px solid black", padding: "5px" }}>{client.phone}</td>
+              <td style={{ border: "1px solid black", padding: "5px" }}>{client.status}</td>
             </tr>
           ))}
         </tbody>

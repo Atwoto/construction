@@ -1,22 +1,26 @@
 const axios = require('axios');
 
-const testAPI = async () => {
+// Test the API directly
+async function testApi() {
   try {
-    console.log('Testing API connectivity...');
+    console.log('Testing API connection...');
     
-    // Test health endpoint
-    const healthResponse = await axios.get('http://localhost:5000/health');
-    console.log('Health check:', healthResponse.data);
+    // Replace with your actual API URL
+    const apiUrl = 'http://localhost:5000/api/clients';
     
-    if (healthResponse.data.status === 'OK') {
-      console.log('✅ Backend API is running correctly');
-    } else {
-      console.log('❌ Backend health check failed');
-    }
+    // If you have a token, you can add it here
+    // const token = 'your-jwt-token';
+    
+    const response = await axios.get(apiUrl, {
+      // headers: {
+      //   'Authorization': `Bearer ${token}`
+      // }
+    });
+    
+    console.log('API Response:', response.data);
   } catch (error) {
-    console.error('❌ API connection failed:', error.message);
+    console.error('API Error:', error.response?.data || error.message);
   }
-};
+}
 
-// Run the test
-testAPI();
+testApi();
