@@ -115,7 +115,9 @@ function AppRoutes() {
 
         {/* Client Routes */}
         <Route path="clients" element={<ClientManagement />} />
+        <Route path="clients/simple" element={<SimpleClientTable />} />
         <Route path="clients/:id" element={<ClientDetailsPage />} />
+        <Route path="api-test" element={<ApiTestPage />} />
         <Route path="projects" element={<ProjectManagement />} />
         <Route path="projects/:id" element={<ProjectDetailsPage />} />
         <Route
