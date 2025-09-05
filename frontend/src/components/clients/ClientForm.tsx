@@ -5,7 +5,7 @@ import * as yup from "yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { Client, CreateClientData, ClientStatus, ClientSource, CompanySize, ContactMethod, ClientFormData, CLIENT_STATUSES, CLIENT_SOURCES, COMPANY_SIZES, CONTACT_METHODS } from "../../types/client";
+import { Client, ClientFormData, CLIENT_STATUSES, CLIENT_SOURCES, COMPANY_SIZES, CONTACT_METHODS } from "../../types/client";
 import { Input } from "../ui/shadcn-input";
 import { Button } from "../ui/shadcn-button";
 import { Label } from "../ui/label";

@@ -1,3 +1,118 @@
-2025-09-05T14:02:53.520Z [error] No exports found in module "/var/task/api/auth/login.js".
-Did you forget to export a function or a server?
-Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+[17:54:50.915] Running build in Washington, D.C., USA (East) – iad1
+[17:54:50.915] Build machine configuration: 2 cores, 8 GB
+[17:54:50.929] Cloning github.com/Atwoto/construction (Branch: main, Commit: 02908e7)
+[17:54:51.640] Cloning completed: 711.000ms
+[17:54:52.178] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
+[17:54:55.235] Running "vercel build"
+[17:54:55.671] Vercel CLI 47.0.5
+[17:54:56.444] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
+[17:54:57.538] 
+[17:54:57.539] up to date, audited 17 packages in 751ms
+[17:54:57.539] 
+[17:54:57.540] found 0 vulnerabilities
+[17:55:00.224] 
+[17:55:00.225] up to date, audited 1639 packages in 3s
+[17:55:00.225] 
+[17:55:00.226] 316 packages are looking for funding
+[17:55:00.226]   run `npm fund` for details
+[17:55:00.233] 
+[17:55:00.234] 9 vulnerabilities (3 moderate, 6 high)
+[17:55:00.234] 
+[17:55:00.235] To address all issues (including breaking changes), run:
+[17:55:00.235]   npm audit fix --force
+[17:55:00.235] 
+[17:55:00.235] Run `npm audit` for details.
+[17:55:01.791] 
+[17:55:01.792] up to date, audited 828 packages in 1s
+[17:55:01.792] 
+[17:55:01.792] 155 packages are looking for funding
+[17:55:01.792]   run `npm fund` for details
+[17:55:01.801] 
+[17:55:01.801] 6 low severity vulnerabilities
+[17:55:01.801] 
+[17:55:01.801] To address issues that do not require attention, run:
+[17:55:01.801]   npm audit fix
+[17:55:01.801] 
+[17:55:01.801] To address all issues (including breaking changes), run:
+[17:55:01.801]   npm audit fix --force
+[17:55:01.802] 
+[17:55:01.802] Run `npm audit` for details.
+[17:55:02.152] 
+[17:55:02.153] > construction-crm-frontend@1.0.0 build
+[17:55:02.153] > react-scripts build
+[17:55:02.153] 
+[17:55:03.770] Creating an optimized production build...
+[17:55:35.859] 
+[17:55:35.860] Treating warnings as errors because process.env.CI = true.
+[17:55:35.861] Most CI servers set it automatically.
+[17:55:35.861] 
+[17:55:35.865] Failed to compile.
+[17:55:35.866] 
+[17:55:35.868] [eslint] 
+[17:55:35.868] src/components/clients/ClientFilters.tsx
+[17:55:35.868]   Line 4:3:  'ClientStatus' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.869]   Line 5:3:  'ClientSource' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.869]   Line 6:3:  'CompanySize' is defined but never used   @typescript-eslint/no-unused-vars
+[17:55:35.869] 
+[17:55:35.869] src/components/clients/ClientForm.tsx
+[17:55:35.869]   Line 8:18:  'CreateClientData' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.869]   Line 8:36:  'ClientStatus' is defined but never used      @typescript-eslint/no-unused-vars
+[17:55:35.869]   Line 8:50:  'ClientSource' is defined but never used      @typescript-eslint/no-unused-vars
+[17:55:35.869]   Line 8:64:  'CompanySize' is defined but never used       @typescript-eslint/no-unused-vars
+[17:55:35.869]   Line 8:77:  'ContactMethod' is defined but never used     @typescript-eslint/no-unused-vars
+[17:55:35.869] 
+[17:55:35.869] src/components/clients/ClientStats.tsx
+[17:55:35.869]   Line 4:49:  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.870] 
+[17:55:35.874] src/components/clients/ClientTable.tsx
+[17:55:35.874]   Line 3:10:   'clientService' is defined but never used       @typescript-eslint/no-unused-vars
+[17:55:35.874]   Line 8:109:  'PaginationEllipsis' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.877] 
+[17:55:35.877] src/components/projects/ProjectStats.tsx
+[17:55:35.877]   Line 3:10:  'projectService' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 4:8:   'LoadingSpinner' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878] 
+[17:55:35.878] src/components/ui/shadcn-card.tsx
+[17:55:35.878]   Line 36:3:  Headings must have content and the content must be accessible by a screen reader  jsx-a11y/heading-has-content
+[17:55:35.878] 
+[17:55:35.878] src/context/AuthContext.tsx
+[17:55:35.878]   Line 13:23:  'TypesLoginCredentials' is defined but never used                                                                @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 14:19:  'TypesRegisterData' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 208:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[17:55:35.878] 
+[17:55:35.878] src/pages/ComponentTestPage.tsx
+[17:55:35.878]   Line 21:3:   'Tooltip' is defined but never used         @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 22:3:   'TooltipTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 23:3:   'TooltipContent' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 26:10:  'MoreHorizontal' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 26:26:  'TrendingUp' is defined but never used      @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 26:38:  'Users' is defined but never used           @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 26:45:  'Building' is defined but never used        @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 26:55:  'DollarSign' is defined but never used      @typescript-eslint/no-unused-vars
+[17:55:35.878] 
+[17:55:35.878] src/pages/DashboardPage.tsx
+[17:55:35.878]   Line 9:8:    'Card' is defined but never used                   @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 16:22:  'ShadcnCardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 18:17:  'ShadcnCardFooter' is defined but never used       @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 20:10:  'Badge' is defined but never used                  @typescript-eslint/no-unused-vars
+[17:55:35.878] 
+[17:55:35.878] src/pages/ProfilePage.tsx
+[17:55:35.878]   Line 4:10:  'User' is defined but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878] 
+[17:55:35.878] src/pages/clients/ClientDetailsPage.tsx
+[17:55:35.878]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
+[17:55:35.878]   Line 16:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[17:55:35.878] 
+[17:55:35.878] src/pages/clients/ClientManagement.tsx
+[17:55:35.879]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[17:55:35.879] 
+[17:55:35.879] src/pages/projects/ProjectDetailsPage.tsx
+[17:55:35.879]   Line 2:21:   'Link' is defined but never used           @typescript-eslint/no-unused-vars
+[17:55:35.879]   Line 15:11:  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[17:55:35.879] 
+[17:55:35.882] src/pages/projects/ProjectManagement.tsx
+[17:55:35.882]   Line 21:8:  'LoadingSpinner' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+[17:55:35.882]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[17:55:35.882] 
+[17:55:35.883] 
+[17:55:35.936] Error: Command "cd frontend && npm run build" exited with 1

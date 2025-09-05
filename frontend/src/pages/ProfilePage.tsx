@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
-import { User } from '../types';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
 import LoadingSpinner from '../components/common/LoadingSpinner';

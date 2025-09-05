@@ -66,7 +66,7 @@ const ProjectManagement = () => {
     loadProjects();
     loadStats();
     loadSupportingData();
-  }, [filters]);
+  }, [filters, loadProjects, loadStats, loadSupportingData]);
 
   const loadProjects = async () => {
     try {
