@@ -5,6 +5,16 @@ const logger = require('../../backend/src/utils/logger');
 // This is a standalone serverless function, much faster than loading the whole Express app.
 module.exports = async (req, res) => {
   try {
+    // Set CORS headers for cross-origin requests
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust this for production
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-control-Allow-Headers', 'Content-Type, Authorization');
+
+    // Handle OPTIONS request for pre-flight
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+
     if (!supabaseAdmin) {
       logger.error('CRITICAL: supabaseAdmin client is not initialized.');
       return res.status(500).json({ error: 'Server configuration error' });
@@ -18,7 +28,8 @@ module.exports = async (req, res) => {
     }
 
     // Vercel automatically handles JSON serialization and headers
-    res.status(200).send(data[0] || {});
+    // IMPORTANT: Wrap the response in a `data` object to match frontend expectations
+    res.status(200).json({ data: data[0] || {} });
 
   } catch (e) {
     logger.error('Unexpected error in /api/projects/stats:', e);

@@ -1,40 +1,21 @@
-{
-    "message": "timeout of 25000ms exceeded",
-    "name": "AxiosError",
-    "stack": "AxiosError: timeout of 25000ms exceeded\n    at m.ontimeout (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:417092)\n    at ya.request (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:427528)\n    at async Object.getProjectStats (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:479421)\n    at async Promise.all (index 0)\n    at async g (https://construction-six-lovat.vercel.app/static/js/main.d3a0e61a.js:2:604067)",
-    "config": {
-        "transitional": {
-            "silentJSONParsing": true,
-            "forcedJSONParsing": true,
-            "clarifyTimeoutError": false
-        },
-        "adapter": [
-            "xhr",
-            "http",
-            "fetch"
-        ],
-        "transformRequest": [
-            null
-        ],
-        "transformResponse": [
-            null
-        ],
-        "timeout": 25000,
-        "xsrfCookieName": "XSRF-TOKEN",
-        "xsrfHeaderName": "X-XSRF-TOKEN",
-        "maxContentLength": -1,
-        "maxBodyLength": -1,
-        "env": {},
-        "headers": {
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJlbWFpbCI6Im5nY29ib2hhcnJ5MTJAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzU3MDc1ODE2LCJleHAiOjE3NTcxNjIyMTZ9.z2N7qPFH0x-IqkdA5AEwzf7RYuo04ieZHzIfFf2EBII"
-        },
-        "baseURL": "/api",
-        "params": {},
-        "method": "get",
-        "url": "/projects/stats",
-        "allowAbsoluteUrls": true
-    },
-    "code": "ECONNABORTED"
-}
+Critical Issues Found:
+1. API Response Structure Mismatch
+Your service files expect the API to return data in response.data.data format, but your standalone serverless functions (/api/projects/stats.js and /api/clients/stats.js) are returning data directly with res.status(200).send(data[0] || {}).
+Problem:
+
+Services expect: response.data.data
+API returns: response.data (directly)
+
+2. Vercel Routing Configuration Issue
+Your vercel.json has ALL API routes going to /api/index.js (the Express server), but you want the stats endpoints to use the faster standalone functions.
+Problem: The rewrites rule "/api/(.*)": "/api/index.js" catches /api/projects/stats and routes it to Express instead of your optimized /api/projects/stats.js function.
+3. Missing CORS Headers in Standalone Functions
+Your standalone functions don't set CORS headers, which could cause browser requests to fail.
+4. Database Connection in Express Server
+Your Express server calls initializeModels() which may be causing the 25-second timeout when the full Express app loads.
+Tell Your Agent To:
+
+Fix the Vercel routing - Update vercel.json to route stats endpoints to standalone functions BEFORE the catch-all Express route
+Fix API response format - Either make standalone functions return {data: result} OR update services to expect direct response
+Add CORS headers - Add proper CORS headers to standalone functions
+Check database initialization - The initializeModels() call in Express server might be hanging
