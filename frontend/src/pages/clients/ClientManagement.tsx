@@ -81,7 +81,7 @@ const ClientManagement: React.FC = () => {
     loadClients();
     loadStats();
     loadAssignedUsers();
-  }, [filters]);
+  }, [filters, loadClients]);
 
   const loadClients = async () => {
     try {

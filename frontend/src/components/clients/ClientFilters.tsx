@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
   ClientListParams,
-  ClientStatus,
-  ClientSource,
-  CompanySize,
 } from "../../types/client";
 import { UserSummary } from "../../types/client";
 import {

@@ -10,8 +10,6 @@ import { authService } from "../services/authService";
 import {
   User,
   AuthTokens,
-  LoginCredentials as TypesLoginCredentials,
-  RegisterData as TypesRegisterData,
 } from "../types";
 
 // Mock authentication flag - set to true to enable mock auth
@@ -205,7 +203,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ); // Refresh every 15 minutes
 
     return () => clearInterval(refreshInterval);
-  }, [state.tokens]);
+  }, [state.tokens, refreshToken]);
 
   // Login function
   const login = async (credentials: LoginCredentials) => {

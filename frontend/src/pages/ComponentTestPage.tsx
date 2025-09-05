@@ -17,11 +17,6 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator
 } from "../components/ui/DropdownMenu";
-import { 
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent
-} from "../components/ui/Tooltip";
 import { Avatar, AvatarFallback } from "../components/ui/Avatar";
 import { MoreHorizontal, TrendingUp, Users, Building, DollarSign } from "lucide-react";
 
