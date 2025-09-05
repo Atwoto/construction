@@ -1,35 +1,50 @@
-2025-09-05T20:33:57.706536868Z ==> Cloning from https://github.com/Atwoto/construction
-2025-09-05T20:33:58.278594459Z ==> Checking out commit 96a1daf6a10dd51753b2ff3fb4efb7afbb3479df in branch render-deployment
-2025-09-05T20:34:01.214377054Z ==> Using Node.js version 22.16.0 (default)
-2025-09-05T20:34:01.250725697Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
-2025-09-05T20:34:04.976172495Z ==> Running build command 'npm run render-build'...
-2025-09-05T20:34:06.044941986Z 
-2025-09-05T20:34:06.044987287Z > construction@1.0.0 render-build
-2025-09-05T20:34:06.045000667Z > cd frontend && npm install && npm run build
-2025-09-05T20:34:06.045004227Z 
-2025-09-05T20:34:51.098081978Z 
-2025-09-05T20:34:51.098119498Z added 1627 packages, and audited 1628 packages in 45s
-2025-09-05T20:34:51.098123958Z 
-2025-09-05T20:34:51.098131979Z 315 packages are looking for funding
-2025-09-05T20:34:51.098136649Z   run `npm fund` for details
-2025-09-05T20:34:51.10472171Z 
-2025-09-05T20:34:51.104755601Z 9 vulnerabilities (3 moderate, 6 high)
-2025-09-05T20:34:51.104810492Z 
-2025-09-05T20:34:51.104816572Z To address all issues (including breaking changes), run:
-2025-09-05T20:34:51.104821312Z   npm audit fix --force
-2025-09-05T20:34:51.104825102Z 
-2025-09-05T20:34:51.104833022Z Run `npm audit` for details.
-2025-09-05T20:34:51.724402028Z 
-2025-09-05T20:34:51.724427038Z > construction-crm-frontend@1.0.0 build
-2025-09-05T20:34:51.724431848Z > react-scripts build
-2025-09-05T20:34:51.724435488Z 
-2025-09-05T20:34:53.579334731Z Creating an optimized production build...
-2025-09-05T20:35:27.14704048Z Failed to compile.
-2025-09-05T20:35:27.14706484Z 
-2025-09-05T20:35:27.147386987Z Error: Cannot find module '@tailwindcss/forms'
-2025-09-05T20:35:27.147400887Z Require stack:
-2025-09-05T20:35:27.147405967Z - /opt/render/project/src/frontend/tailwind.config.js
-2025-09-05T20:35:27.147409527Z 
-2025-09-05T20:35:27.147417168Z 
-2025-09-05T20:35:28.965633532Z ==> Build failed 😞
-2025-09-05T20:35:28.965655033Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-09-05T20:40:44.988221161Z   230.56 kB  build/static/js/main.5b76ab5b.js
+2025-09-05T20:40:44.988244282Z   17.57 kB   build/static/css/main.f3174940.css
+2025-09-05T20:40:44.988260392Z   1.78 kB    build/static/js/453.3388fa3d.chunk.js
+2025-09-05T20:40:44.988275503Z 
+2025-09-05T20:40:44.98853309Z The project was built assuming it is hosted at /.
+2025-09-05T20:40:44.988653493Z You can control this with the homepage field in your package.json.
+2025-09-05T20:40:44.988842048Z 
+2025-09-05T20:40:44.988880539Z The build folder is ready to be deployed.
+2025-09-05T20:40:44.988944671Z You may serve it with a static server:
+2025-09-05T20:40:44.988965011Z 
+2025-09-05T20:40:44.989022503Z   npm install -g serve
+2025-09-05T20:40:44.989029393Z   serve -s build
+2025-09-05T20:40:44.989052304Z 
+2025-09-05T20:40:44.989077244Z Find out more about deployment here:
+2025-09-05T20:40:44.989085654Z 
+2025-09-05T20:40:44.989129276Z   https://cra.link/deployment
+2025-09-05T20:40:44.989135706Z 
+2025-09-05T20:40:47.065607353Z ==> Uploading build...
+2025-09-05T20:41:05.483317679Z ==> Uploaded in 8.9s. Compression took 9.5s
+2025-09-05T20:41:05.519690435Z ==> Build successful 🎉
+2025-09-05T20:41:07.889473264Z ==> Deploying...
+2025-09-05T20:41:47.916852604Z ==> Running 'npm start'
+2025-09-05T20:41:48.919342847Z 
+2025-09-05T20:41:48.919375268Z > construction@1.0.0 start
+2025-09-05T20:41:48.919383928Z > node backend/src/server.js
+2025-09-05T20:41:48.919386888Z 
+2025-09-05T20:41:49.122034085Z node:internal/modules/cjs/loader:1404
+2025-09-05T20:41:49.122060635Z   throw err;
+2025-09-05T20:41:49.122063475Z   ^
+2025-09-05T20:41:49.122065566Z 
+2025-09-05T20:41:49.122068126Z Error: Cannot find module 'express'
+2025-09-05T20:41:49.122070786Z Require stack:
+2025-09-05T20:41:49.122073266Z - /opt/render/project/src/backend/src/server.js
+2025-09-05T20:41:49.122076436Z     at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+2025-09-05T20:41:49.122078586Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+2025-09-05T20:41:49.122080706Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+2025-09-05T20:41:49.122083516Z     at Function._load (node:internal/modules/cjs/loader:1211:37)
+2025-09-05T20:41:49.122085486Z     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-09-05T20:41:49.122087606Z     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+2025-09-05T20:41:49.122089706Z     at Module.require (node:internal/modules/cjs/loader:1487:12)
+2025-09-05T20:41:49.122091726Z     at require (node:internal/modules/helpers:135:16)
+2025-09-05T20:41:49.122093836Z     at Object.<anonymous> (/opt/render/project/src/backend/src/server.js:1:17)
+2025-09-05T20:41:49.122095886Z     at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+2025-09-05T20:41:49.122098676Z   code: 'MODULE_NOT_FOUND',
+2025-09-05T20:41:49.122101056Z   requireStack: [ '/opt/render/project/src/backend/src/server.js' ]
+2025-09-05T20:41:49.122103406Z }
+2025-09-05T20:41:49.122105316Z 
+2025-09-05T20:41:49.122107756Z Node.js v22.16.0
+2025-09-05T20:41:49.944280487Z ==> Exited with status 1
+2025-09-05T20:41:49.958952596Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
