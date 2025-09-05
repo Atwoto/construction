@@ -3,14 +3,14 @@
     "outputDirectory": "frontend/build",
     "installCommand": "npm install && cd frontend && npm install && cd backend && npm install",
     "functions": {
-        "backend/src/server.js": {
+        "api/index.js": {
             "maxDuration": 30
         }
     },
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "/backend/src/server.js"
+            "destination": "/api/index.js"
         },
         {
             "source": "/(.*)",
@@ -22,6 +22,6 @@
         "SUPABASE_URL": "https://rrkwxtdnefcymxaplnox.supabase.co",
         "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM",
         "NEXT_PUBLIC_SUPABASE_URL": "https://rrkwxtdnefcymxaplnox.supabase.co",
-        "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm5veCIsImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM"
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJya3d4dGRuZWZjeW14YXBsbm94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MDU3MTAsImV4cCI6MjA3MjM4MTcxMH0.f0QJnNK7E52Ckqbr0L9uUZv4U5sM9nNEVg0MY2xieQM"
     }
 }
