@@ -1,54 +1,57 @@
-[18:00:43.864] Running build in Washington, D.C., USA (East) – iad1
-[18:00:43.866] Build machine configuration: 2 cores, 8 GB
-[18:00:43.943] Cloning github.com/Atwoto/construction (Branch: main, Commit: 4b55e84)
-[18:00:44.762] Cloning completed: 819.000ms
-[18:00:45.681] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
-[18:00:47.801] Running "vercel build"
-[18:00:48.220] Vercel CLI 47.0.5
-[18:00:48.976] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
-[18:00:50.507] 
-[18:00:50.508] up to date, audited 17 packages in 752ms
-[18:00:50.509] 
-[18:00:50.509] found 0 vulnerabilities
-[18:00:53.311] 
-[18:00:53.312] up to date, audited 1639 packages in 3s
-[18:00:53.313] 
-[18:00:53.313] 316 packages are looking for funding
-[18:00:53.313]   run `npm fund` for details
-[18:00:53.319] 
-[18:00:53.319] 9 vulnerabilities (3 moderate, 6 high)
-[18:00:53.320] 
-[18:00:53.320] To address all issues (including breaking changes), run:
-[18:00:53.320]   npm audit fix --force
-[18:00:53.320] 
-[18:00:53.321] Run `npm audit` for details.
-[18:00:54.863] 
-[18:00:54.864] up to date, audited 828 packages in 1s
-[18:00:54.864] 
-[18:00:54.865] 155 packages are looking for funding
-[18:00:54.865]   run `npm fund` for details
-[18:00:54.874] 
-[18:00:54.875] 6 low severity vulnerabilities
-[18:00:54.875] 
-[18:00:54.875] To address issues that do not require attention, run:
-[18:00:54.875]   npm audit fix
-[18:00:54.876] 
-[18:00:54.876] To address all issues (including breaking changes), run:
-[18:00:54.876]   npm audit fix --force
-[18:00:54.876] 
-[18:00:54.876] Run `npm audit` for details.
-[18:00:55.100] 
-[18:00:55.101] > construction-crm-frontend@1.0.0 build
-[18:00:55.101] > react-scripts build
-[18:00:55.101] 
-[18:00:56.592] Creating an optimized production build...
-[18:01:29.164] Failed to compile.
-[18:01:29.165] 
-[18:01:29.165] [eslint] 
-[18:01:29.170] src/pages/DashboardPage.tsx
-[18:01:29.170]   Line 73:10:  'LoadingSpinner' is not defined  react/jsx-no-undef
-[18:01:29.170] 
-[18:01:29.170] Search for the keywords to learn more about each error.
-[18:01:29.170] 
-[18:01:29.170] 
-[18:01:29.225] Error: Command "cd frontend && npm run build" exited with 1
+[18:03:22.675] Running build in Washington, D.C., USA (East) – iad1
+[18:03:22.676] Build machine configuration: 2 cores, 8 GB
+[18:03:22.718] Cloning github.com/Atwoto/construction (Branch: main, Commit: af83a61)
+[18:03:23.359] Cloning completed: 641.000ms
+[18:03:24.542] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
+[18:03:27.061] Running "vercel build"
+[18:03:27.451] Vercel CLI 47.0.5
+[18:03:28.231] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
+[18:03:29.403] 
+[18:03:29.404] up to date, audited 17 packages in 747ms
+[18:03:29.405] 
+[18:03:29.405] found 0 vulnerabilities
+[18:03:32.080] 
+[18:03:32.081] up to date, audited 1639 packages in 3s
+[18:03:32.082] 
+[18:03:32.085] 316 packages are looking for funding
+[18:03:32.085]   run `npm fund` for details
+[18:03:32.124] 
+[18:03:32.124] 9 vulnerabilities (3 moderate, 6 high)
+[18:03:32.124] 
+[18:03:32.124] To address all issues (including breaking changes), run:
+[18:03:32.125]   npm audit fix --force
+[18:03:32.125] 
+[18:03:32.125] Run `npm audit` for details.
+[18:03:33.545] 
+[18:03:33.545] up to date, audited 828 packages in 1s
+[18:03:33.546] 
+[18:03:33.546] 155 packages are looking for funding
+[18:03:33.547]   run `npm fund` for details
+[18:03:33.556] 
+[18:03:33.556] 6 low severity vulnerabilities
+[18:03:33.556] 
+[18:03:33.556] To address issues that do not require attention, run:
+[18:03:33.556]   npm audit fix
+[18:03:33.556] 
+[18:03:33.556] To address all issues (including breaking changes), run:
+[18:03:33.556]   npm audit fix --force
+[18:03:33.556] 
+[18:03:33.556] Run `npm audit` for details.
+[18:03:33.835] 
+[18:03:33.835] > construction-crm-frontend@1.0.0 build
+[18:03:33.835] > react-scripts build
+[18:03:33.835] 
+[18:03:35.259] Creating an optimized production build...
+[18:04:05.032] Failed to compile.
+[18:04:05.032] 
+[18:04:05.033] TS2448: Block-scoped variable 'refreshToken' used before its declaration.
+[18:04:05.033]   [0m [90m 206 |[39m
+[18:04:05.033]    [90m 207 |[39m     [36mreturn[39m () [33m=>[39m clearInterval(refreshInterval)[33m;[39m
+[18:04:05.033]   [31m[1m>[22m[39m[90m 208 |[39m   }[33m,[39m [state[33m.[39mtokens[33m,[39m refreshToken[33m,[39m logout])[33m;[39m
+[18:04:05.034]    [90m     |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[18:04:05.034]    [90m 209 |[39m
+[18:04:05.034]    [90m 210 |[39m   [90m// Login function[39m
+[18:04:05.034]    [90m 211 |[39m   [36mconst[39m login [33m=[39m [36masync[39m (credentials[33m:[39m [33mLoginCredentials[39m) [33m=>[39m {[0m
+[18:04:05.034] 
+[18:04:05.034] 
+[18:04:05.103] Error: Command "cd frontend && npm run build" exited with 1
