@@ -81,7 +81,7 @@ const ClientManagement: React.FC = () => {
     loadClients();
     loadStats();
     loadAssignedUsers();
-  }, [filters, loadClients, loadStats, loadAssignedUsers]);
+  }, [filters]); // loadClients, loadStats, and loadAssignedUsers are defined after this useEffect, so we can't include them in the dependency array
 
   const loadClients = async () => {
     try {
