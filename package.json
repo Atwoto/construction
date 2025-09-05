@@ -12,7 +12,7 @@
     "server": "nodemon backend/src/server.js",
     "client": "npm start --prefix frontend",
     "build": "cd frontend && npm run build",
-    "render-build": "cd frontend && npm install && npm run build",
+    "render-build": "cd frontend && npm ci && npm run build",
     "postinstall": "npm run build"
   },
   "keywords": [],
