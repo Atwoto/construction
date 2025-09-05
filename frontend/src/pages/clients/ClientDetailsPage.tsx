@@ -13,7 +13,6 @@ import { ClientContactForm, ClientForm } from "../../components/clients";
 
 const ClientDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { user } = useAuth();
 
   const [client, setClient] = useState<Client | null>(null);
   const [loading, setLoading] = useState(true);

@@ -18,7 +18,6 @@ import {
   DropdownMenuSeparator
 } from "../components/ui/DropdownMenu";
 import { Avatar, AvatarFallback } from "../components/ui/Avatar";
-import { MoreHorizontal } from "lucide-react";
 
 function ComponentTestPage() {
   return (

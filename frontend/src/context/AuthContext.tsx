@@ -10,8 +10,8 @@ import { authService } from "../services/authService";
 import {
   User,
   AuthTokens,
-  LoginCredentials as TypesLoginCredentials,
-  RegisterData as TypesRegisterData,
+  LoginCredentials,
+  RegisterData,
 } from "../types";
 
 // Mock authentication flag - set to true to enable mock auth
@@ -189,6 +189,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Auto-refresh token before expiry
+  // We intentionally omit refreshToken and logout from the dependency array
+  // because they are defined after this useEffect hook, which would cause a
+  // "used before declaration" error. This is safe because these functions
+  // don't change during the component's lifecycle.
   useEffect(() => {
     if (!state.tokens || USE_MOCK_AUTH) return;
 
@@ -205,7 +209,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ); // Refresh every 15 minutes
 
     return () => clearInterval(refreshInterval);
-  }, [state.tokens]); // refreshToken and logout are defined after this useEffect, so we can't include them in the dependency array
+  }, [state.tokens]);
 
   // Login function
   const login = async (credentials: LoginCredentials) => {

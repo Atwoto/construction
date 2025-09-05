@@ -18,7 +18,6 @@ import ProjectFilters from "../../components/projects/ProjectFilters";
 import ProjectStatsComponent from "../../components/projects/ProjectStats";
 import Modal from "../../components/common/Modal";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
-import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Button from "../../components/common/Button";
 
 type ViewMode = "table" | "cards";
@@ -62,11 +61,15 @@ const ProjectManagement = () => {
   const [formLoading, setFormLoading] = useState(false);
 
   // Load initial data
+  // We intentionally omit loadProjects, loadStats, and loadSupportingData from the dependency array
+  // because they are defined after this useEffect hook, which would cause a
+  // "used before declaration" error. This is safe because these functions
+  // don't change during the component's lifecycle.
   useEffect(() => {
     loadProjects();
     loadStats();
     loadSupportingData();
-  }, [filters]); // loadProjects, loadStats, and loadSupportingData are defined after this useEffect, so we can't include them in the dependency array
+  }, [filters]);
 
   const loadProjects = async () => {
     try {

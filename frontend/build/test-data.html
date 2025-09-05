@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Data Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .result {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .loading {
+            color: #007bff;
+        }
+        .error {
+            color: #dc3545;
+        }
+        .success {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Supabase Data Test</h1>
+        <p>This page tests direct data retrieval from the Supabase database through our API endpoints.</p>
+        
+        <button id="testClientsBtn">Test Clients Endpoint</button>
+        <button id="testProjectsBtn">Test Projects Endpoint</button>
+        <button id="clearBtn">Clear Results</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // Base API URL - adjust based on your deployment
+        const API_BASE_URL = '/api'; // For Vercel deployment
+        // const API_BASE_URL = 'http://localhost:5000/api'; // For local development
+
+        // DOM elements
+        const testClientsBtn = document.getElementById('testClientsBtn');
+        const testProjectsBtn = document.getElementById('testProjectsBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const resultsDiv = document.getElementById('results');
+
+        // Function to display results
+        function displayResult(title, data, isError = false) {
+            const resultElement = document.createElement('div');
+            resultElement.className = `result ${isError ? 'error' : 'success'}`;
+            resultElement.innerHTML = `<h2>${title}</h2><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            resultsDiv.appendChild(resultElement);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        // Function to display loading state
+        function displayLoading(message) {
+            const loadingElement = document.createElement('div');
+            loadingElement.className = 'result loading';
+            loadingElement.innerHTML = `<h2>Loading...</h2><p>${message}</p>`;
+            resultsDiv.appendChild(loadingElement);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+            return loadingElement;
+        }
+
+        // Function to test clients endpoint
+        async function testClients() {
+            const loadingElement = displayLoading('Fetching clients data...');
+            
+            try {
+                const response = await fetch('/test/test-clients');
+                const data = await response.json();
+                
+                // Remove loading element
+                loadingElement.remove();
+                
+                if (response.ok) {
+                    displayResult('Clients Data', data);
+                } else {
+                    displayResult('Clients Data - Error', data, true);
+                }
+            } catch (error) {
+                loadingElement.remove();
+                displayResult('Clients Data - Network Error', { error: error.message }, true);
+            }
+        }
+
+        // Function to test projects endpoint
+        async function testProjects() {
+            const loadingElement = displayLoading('Fetching projects data...');
+            
+            try {
+                const response = await fetch('/test/test-projects');
+                const data = await response.json();
+                
+                // Remove loading element
+                loadingElement.remove();
+                
+                if (response.ok) {
+                    displayResult('Projects Data', data);
+                } else {
+                    displayResult('Projects Data - Error', data, true);
+                }
+            } catch (error) {
+                loadingElement.remove();
+                displayResult('Projects Data - Network Error', { error: error.message }, true);
+            }
+        }
+
+        // Function to clear results
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+
+        // Event listeners
+        testClientsBtn.addEventListener('click', testClients);
+        testProjectsBtn.addEventListener('click', testProjects);
+        clearBtn.addEventListener('click', clearResults);
+
+        // Initial message
+        displayResult('Ready', 'Click the buttons above to test data retrieval from Supabase.');
+    </script>
+</body>
+</html>
