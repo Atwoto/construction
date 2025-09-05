@@ -10,26 +10,42 @@ if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables. Please check your .env file.');
 }
 
-// Create Supabase client for public operations (with RLS)
-const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: false
-  }
-});
+// Lazy-loaded Supabase clients
+let supabaseInstance = null;
+let supabaseAdminInstance = null;
 
-// Create Supabase admin client for server-side operations (bypasses RLS)
-const supabaseAdmin = supabaseServiceRoleKey 
-  ? createClient(supabaseUrl, supabaseServiceRoleKey, {
+// Function to get the Supabase client (with RLS)
+function getSupabaseClient() {
+  if (!supabaseInstance) {
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: false
+      }
+    });
+  }
+  return supabaseInstance;
+}
+
+// Function to get the Supabase admin client (bypasses RLS)
+function getSupabaseAdminClient() {
+  if (supabaseServiceRoleKey && !supabaseAdminInstance) {
+    supabaseAdminInstance = createClient(supabaseUrl, supabaseServiceRoleKey, {
       auth: {
         autoRefreshToken: false,
         persistSession: false
       }
-    })
-  : null;
+    });
+  }
+  return supabaseAdminInstance;
+}
 
 module.exports = {
-  supabase,
-  supabaseAdmin
+  get supabase() {
+    return getSupabaseClient();
+  },
+  get supabaseAdmin() {
+    return getSupabaseAdminClient();
+  }
 };

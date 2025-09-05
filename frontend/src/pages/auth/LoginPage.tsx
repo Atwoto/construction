@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../../components/common/Button";
@@ -11,8 +11,15 @@ function LoginPage() {
     password: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const { login, isLoading, error } = useAuth();
+  const { login, isLoading, error, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  // Redirect to dashboard if already authenticated (or if auth is bypassed)
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -57,6 +64,12 @@ function LoginPage() {
       // Error is already handled by the AuthContext
       console.error("Login failed:", error);
     }
+  };
+
+  // Auto-login bypass for testing
+  const handleBypassLogin = () => {
+    // This will trigger the bypass in AuthContext
+    login({ email: "bypass", password: "bypass" });
   };
 
   return (
@@ -147,6 +160,17 @@ function LoginPage() {
                   className="mt-6 h-12 text-base font-semibold shadow-colored hover:shadow-colored-lg transition-all"
                 >
                   {isLoading ? "Signing in..." : "Sign In"}
+                </Button>
+                
+                {/* Bypass login button for testing */}
+                <Button
+                  type="button"
+                  variant="outline"
+                  fullWidth
+                  className="mt-3 h-12 text-base font-semibold"
+                  onClick={handleBypassLogin}
+                >
+                  Bypass Login (Testing Only)
                 </Button>
               </div>
             </form>
