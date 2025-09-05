@@ -139,6 +139,12 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5001;
 const HOST = process.env.HOST || '0.0.0.0';
 
+// Log environment variables for debugging (remove in production)
+logger.info('Environment variables:');
+logger.info(`SUPABASE_URL: ${process.env.SUPABASE_URL ? 'SET' : 'NOT SET'}`);
+logger.info(`SUPABASE_ANON_KEY: ${process.env.SUPABASE_ANON_KEY ? 'SET' : 'NOT SET'}`);
+logger.info(`SUPABASE_SERVICE_ROLE_KEY: ${process.env.SUPABASE_SERVICE_ROLE_KEY ? 'SET' : 'NOT SET'}`);
+
 async function startServer() {
   try {
     // Initialize models
@@ -176,7 +182,10 @@ async function startServer() {
 
 // Start the server only if this file is run directly
 if (require.main === module) {
-  startServer();
+  // Add a small delay to ensure environment variables are loaded
+  setTimeout(() => {
+    startServer();
+  }, 1000);
 }
 
 module.exports = app;
