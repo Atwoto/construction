@@ -1,46 +1,33 @@
-[01:30:58.117] Running build in Washington, D.C., USA (East) – iad1
-[01:30:58.117] Build machine configuration: 2 cores, 8 GB
-[01:30:58.131] Cloning github.com/Atwoto/construction (Branch: main, Commit: 7404ce9)
-[01:30:58.887] Cloning completed: 756.000ms
-[01:31:00.625] Restored build cache from previous deployment (2uVZxJ3EsoUkCTCZkaFFQzgsKbYL)
-[01:31:02.702] Running "vercel build"
-[01:31:03.078] Vercel CLI 47.0.4
-[01:31:03.876] Running "install" command: `npm install && cd frontend && npm install && cd ../backend && npm install && cd ../api && npm install`...
-[01:31:04.914] 
-[01:31:04.922] up to date, audited 17 packages in 788ms
-[01:31:04.937] 
-[01:31:04.939] found 0 vulnerabilities
-[01:31:07.768] 
-[01:31:07.769] up to date, audited 1639 packages in 3s
-[01:31:07.769] 
-[01:31:07.769] 316 packages are looking for funding
-[01:31:07.770]   run `npm fund` for details
-[01:31:07.773] 
-[01:31:07.773] 9 vulnerabilities (3 moderate, 6 high)
-[01:31:07.773] 
-[01:31:07.774] To address all issues (including breaking changes), run:
-[01:31:07.774]   npm audit fix --force
-[01:31:07.774] 
-[01:31:07.775] Run `npm audit` for details.
-[01:31:09.251] 
-[01:31:09.252] up to date, audited 828 packages in 1s
-[01:31:09.252] 
-[01:31:09.253] 155 packages are looking for funding
-[01:31:09.253]   run `npm fund` for details
-[01:31:09.261] 
-[01:31:09.263] 6 low severity vulnerabilities
-[01:31:09.264] 
-[01:31:09.264] To address issues that do not require attention, run:
-[01:31:09.264]   npm audit fix
-[01:31:09.264] 
-[01:31:09.264] To address all issues (including breaking changes), run:
-[01:31:09.265]   npm audit fix --force
-[01:31:09.265] 
-[01:31:09.265] Run `npm audit` for details.
-[01:31:09.547] npm error code EJSONPARSE
-[01:31:09.551] npm error path /vercel/path0/api/package.json
-[01:31:09.551] npm error JSON.parse Expected property name or '}' in JSON at position 1 (line 1 column 2) while parsing near "{\\n  \\\"name\\\": \\\"api-..."
-[01:31:09.552] npm error JSON.parse Failed to parse JSON data.
-[01:31:09.552] npm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
-[01:31:09.552] npm error A complete log of this run can be found in: /vercel/.npm/_logs/2025-09-04T22_31_09_328Z-debug-0.log
-[01:31:09.560] Error: Command "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../api && npm install" exited with 1
+[03:02:30.731] Running build in Washington, D.C., USA (East) – iad1
+[03:02:30.732] Build machine configuration: 2 cores, 8 GB
+[03:02:30.744] Cloning github.com/Atwoto/construction (Branch: main, Commit: 4a7242f)
+[03:02:31.591] Cloning completed: 846.000ms
+[03:02:32.407] Restored build cache from previous deployment (GuDXz4BvD43RoxoHfMfiRMuyWiq2)
+[03:02:34.485] Running "vercel build"
+[03:02:34.859] Vercel CLI 47.0.5
+[03:02:35.025] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+[03:02:35.596] Installing dependencies...
+[03:02:38.477] 
+[03:02:38.477] up to date in 2s
+[03:02:38.478] 
+[03:02:38.478] 316 packages are looking for funding
+[03:02:38.478]   run `npm fund` for details
+[03:02:38.514] Running "npm run build"
+[03:02:38.617] 
+[03:02:38.618] > construction-crm-frontend@1.0.0 build
+[03:02:38.618] > CI=false react-scripts build
+[03:02:38.618] 
+[03:02:40.058] Creating an optimized production build...
+[03:03:07.357] Failed to compile.
+[03:03:07.358] 
+[03:03:07.359] TS2741: Property 'isEmailVerified' is missing in type '{ id: any; email: any; firstName: any; lastName: any; role: any; isActive: true; createdAt: any; updatedAt: any; }' but required in type 'User'.
+[03:03:07.359]   [0m [90m 65 |[39m         [36mconst[39m { user[33m,[39m session } [33m=[39m response[33m.[39mdata[33m.[39mdata[33m;[39m
+[03:03:07.359]    [90m 66 |[39m         [36mreturn[39m {
+[03:03:07.359]   [31m[1m>[22m[39m[90m 67 |[39m           user[33m:[39m {
+[03:03:07.360]    [90m    |[39m           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+[03:03:07.360]    [90m 68 |[39m             id[33m:[39m user[33m.[39mid[33m,[39m
+[03:03:07.360]    [90m 69 |[39m             email[33m:[39m user[33m.[39memail[33m,[39m
+[03:03:07.360]    [90m 70 |[39m             firstName[33m:[39m user[33m.[39muser_metadata[33m?[39m[33m.[39mfirstName [33m||[39m user[33m.[39memail[33m.[39msplit([32m'@'[39m)[[35m0[39m][33m,[39m[0m
+[03:03:07.361] 
+[03:03:07.361] 
+[03:03:07.414] Error: Command "npm run build" exited with 1

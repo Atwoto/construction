@@ -71,6 +71,7 @@ class AuthService {
             lastName: user.user_metadata?.lastName || '',
             role: user.user_metadata?.role || 'user',
             isActive: true,
+            isEmailVerified: !!user.email_confirmed_at,
             createdAt: user.created_at,
             updatedAt: user.updated_at,
           },
