@@ -2,9 +2,15 @@ const fs = require('fs');
 const path = require('path');
 
 // Ensure logs directory exists
-const logsDir = path.join(__dirname, '../../logs');
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir, { recursive: true });
+// Use /tmp directory in Vercel environment as it's the only writable directory
+const logsDir = process.env.VERCEL ? path.join('/tmp', 'logs') : path.join(__dirname, '../../logs');
+try {
+  if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+  }
+} catch (err) {
+  // If we can't create the logs directory, that's okay - we'll just log to console
+  console.warn('Could not create logs directory, logging to console only:', err.message);
 }
 
 // Log levels
@@ -27,7 +33,8 @@ const currentLogLevel = LOG_LEVELS[process.env.LOG_LEVEL?.toUpperCase()] ?? LOG_
 function formatMessage(level, message, meta = null) {
   const timestamp = new Date().toISOString();
   const metaString = meta ? ` | ${JSON.stringify(meta)}` : '';
-  return `[${timestamp}] [${level.toUpperCase()}] ${message}${metaString}\n`;
+  return `[${timestamp}] [${level.toUpperCase()}] ${message}${metaString}
+`;
 }
 
 /**
@@ -37,7 +44,8 @@ function formatMessage(level, message, meta = null) {
  * @param {any} meta - Additional metadata
  */
 function writeToFile(level, message, meta) {
-  if (process.env.NODE_ENV === 'test') return;
+  // Skip file logging in test environment or if logs directory doesn't exist
+  if (process.env.NODE_ENV === 'test' || !fs.existsSync(logsDir)) return;
 
   const logFile = path.join(logsDir, `${level}.log`);
   const formattedMessage = formatMessage(level, message, meta);
