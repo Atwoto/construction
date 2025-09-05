@@ -1,26 +1,16 @@
-[03:25:27.316] Running build in Washington, D.C., USA (East) – iad1
-[03:25:27.317] Build machine configuration: 2 cores, 8 GB
-[03:25:27.359] Cloning github.com/Atwoto/construction (Branch: main, Commit: 5cc9388)
-[03:25:28.238] Cloning completed: 879.000ms
-[03:25:29.323] Restored build cache from previous deployment (7RvE4GJY2gY4B27oe4B8Eg31xSrw)
-[03:25:31.495] Running "vercel build"
-[03:25:31.894] Vercel CLI 47.0.5
-[03:25:32.690] Running "install" command: `npm install && cd frontend && npm install && cd backend && npm install`...
-[03:25:34.112] 
-[03:25:34.113] up to date, audited 17 packages in 771ms
-[03:25:34.114] 
-[03:25:34.114] found 0 vulnerabilities
-[03:25:36.935] 
-[03:25:36.936] up to date, audited 1639 packages in 3s
-[03:25:36.937] 
-[03:25:36.937] 316 packages are looking for funding
-[03:25:36.938]   run `npm fund` for details
-[03:25:36.945] 
-[03:25:36.946] 9 vulnerabilities (3 moderate, 6 high)
-[03:25:36.946] 
-[03:25:36.946] To address all issues (including breaking changes), run:
-[03:25:36.946]   npm audit fix --force
-[03:25:36.947] 
-[03:25:36.947] Run `npm audit` for details.
-[03:25:36.955] sh: line 1: cd: backend: No such file or directory
-[03:25:36.959] Error: Command "npm install && cd frontend && npm install && cd backend && npm install" exited with 1
+2025-09-05T01:10:18.915Z [error] /var/task/backend/src/server.js:171
+  } catch (error) {
+  ^
+
+SyntaxError: Unexpected token '}'
+    at wrapSafe (node:internal/modules/cjs/loader:1662:18)
+    at Module._compile (node:internal/modules/cjs/loader:1704:20)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1282:12)
+    at /opt/rust/nodejs.js:2:13284
+    at Function.Mr (/opt/rust/nodejs.js:2:13662)
+    at De.e.<computed>.Me._load (/opt/rust/nodejs.js:2:13254)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+Node.js process exited with exit status: 1. The logs above can help with debugging the issue.

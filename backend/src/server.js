@@ -140,10 +140,13 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 // Database connection and server startup
-initializeModels();
+initializeModels(); // This line should be here
 
 const PORT = process.env.PORT || 5001;
+const HOST = process.env.HOST || 'localhost'; // This line was missing
 
+async function startServer() {
+  try {
     // Start server
     const server = app.listen(PORT, HOST, () => {
       logger.info(`🚀 Construction CRM API Server running on http://${HOST}:${PORT}`);
