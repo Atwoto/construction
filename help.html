@@ -1,57 +1,38 @@
-[19:47:16.800] Running build in Washington, D.C., USA (East) – iad1
-[19:47:16.801] Build machine configuration: 2 cores, 8 GB
-[19:47:16.863] Cloning github.com/Atwoto/construction (Branch: main, Commit: 6644852)
-[19:47:17.946] Cloning completed: 1.083s
-[19:47:18.785] Restored build cache from previous deployment (FQvjdTMmCQwUH8dHVgsWfADK2gky)
-[19:47:20.861] Running "vercel build"
-[19:47:21.237] Vercel CLI 47.0.5
-[19:47:21.955] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
-[19:47:23.473] 
-[19:47:23.473] up to date, audited 17 packages in 735ms
-[19:47:23.474] 
-[19:47:23.474] found 0 vulnerabilities
-[19:47:26.321] 
-[19:47:26.321] up to date, audited 1639 packages in 3s
-[19:47:26.321] 
-[19:47:26.322] 316 packages are looking for funding
-[19:47:26.322]   run `npm fund` for details
-[19:47:26.329] 
-[19:47:26.329] 9 vulnerabilities (3 moderate, 6 high)
-[19:47:26.330] 
-[19:47:26.330] To address all issues (including breaking changes), run:
-[19:47:26.331]   npm audit fix --force
-[19:47:26.331] 
-[19:47:26.331] Run `npm audit` for details.
-[19:47:27.911] 
-[19:47:27.911] up to date, audited 828 packages in 2s
-[19:47:27.912] 
-[19:47:27.912] 155 packages are looking for funding
-[19:47:27.913]   run `npm fund` for details
-[19:47:27.921] 
-[19:47:27.921] 6 low severity vulnerabilities
-[19:47:27.921] 
-[19:47:27.922] To address issues that do not require attention, run:
-[19:47:27.922]   npm audit fix
-[19:47:27.922] 
-[19:47:27.923] To address all issues (including breaking changes), run:
-[19:47:27.923]   npm audit fix --force
-[19:47:27.923] 
-[19:47:27.923] Run `npm audit` for details.
-[19:47:28.140] 
-[19:47:28.141] > construction-crm-frontend@1.0.0 build
-[19:47:28.142] > react-scripts build
-[19:47:28.142] 
-[19:47:29.553] Creating an optimized production build...
-[19:47:59.230] Failed to compile.
-[19:47:59.230] 
-[19:47:59.230] TS2448: Block-scoped variable 'refreshToken' used before its declaration.
-[19:47:59.231]   [0m [90m 205 |[39m
-[19:47:59.231]    [90m 206 |[39m     [36mreturn[39m () [33m=>[39m clearInterval(refreshInterval)[33m;[39m
-[19:47:59.231]   [31m[1m>[22m[39m[90m 207 |[39m   }[33m,[39m [state[33m.[39mtokens[33m,[39m refreshToken])[33m;[39m
-[19:47:59.232]    [90m     |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
-[19:47:59.232]    [90m 208 |[39m
-[19:47:59.232]    [90m 209 |[39m   [90m// Login function[39m
-[19:47:59.232]    [90m 210 |[39m   [36mconst[39m login [33m=[39m [36masync[39m (credentials[33m:[39m [33mLoginCredentials[39m) [33m=>[39m {[0m
-[19:47:59.232] 
-[19:47:59.233] 
-[19:47:59.505] Error: Command "cd frontend && npm run build" exited with 1
+Compiled with problems:
+×
+ERROR in src/pages/clients/ClientManagement.tsx:84:16
+TS2448: Block-scoped variable 'loadClients' used before its declaration.
+    82 |     loadStats();
+    83 |     loadAssignedUsers();
+  > 84 |   }, [filters, loadClients]);
+       |                ^^^^^^^^^^^
+    85 |
+    86 |   const loadClients = useCallback(async () => {
+    87 |     try {
+ERROR in src/pages/clients/ClientManagement.tsx:84:16
+TS2454: Variable 'loadClients' is used before being assigned.
+    82 |     loadStats();
+    83 |     loadAssignedUsers();
+  > 84 |   }, [filters, loadClients]);
+       |                ^^^^^^^^^^^
+    85 |
+    86 |   const loadClients = useCallback(async () => {
+    87 |     try {
+ERROR in src/pages/projects/ProjectManagement.tsx:68:16
+TS2448: Block-scoped variable 'loadProjects' used before its declaration.
+    66 |     loadStats();
+    67 |     loadSupportingData();
+  > 68 |   }, [filters, loadProjects]);
+       |                ^^^^^^^^^^^^
+    69 |
+    70 |   const loadProjects = async () => {
+    71 |     try {
+ERROR in src/pages/projects/ProjectManagement.tsx:68:16
+TS2454: Variable 'loadProjects' is used before being assigned.
+    66 |     loadStats();
+    67 |     loadSupportingData();
+  > 68 |   }, [filters, loadProjects]);
+       |                ^^^^^^^^^^^^
+    69 |
+    70 |   const loadProjects = async () => {
+    71 |     try {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Project, Client, User, ProjectStats } from "../../types";
@@ -60,14 +60,7 @@ const ProjectManagement = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [formLoading, setFormLoading] = useState(false);
 
-  // Load initial data
-  useEffect(() => {
-    loadProjects();
-    loadStats();
-    loadSupportingData();
-  }, [filters, loadProjects]);
-
-  const loadProjects = async () => {
+  const loadProjects = useCallback(async () => {
     try {
       setLoading(true);
       const response = await projectService.getProjects(filters);
@@ -78,7 +71,7 @@ const ProjectManagement = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   const loadStats = async () => {
     try {
@@ -130,6 +123,13 @@ const ProjectManagement = () => {
       setUsers([]);
     }
   };
+
+  // Load initial data
+  useEffect(() => {
+    loadProjects();
+    loadStats();
+    loadSupportingData();
+  }, [filters, loadProjects]);
 
   // Filter and search handlers
   const handleFilterChange = (newFilters: Partial<ProjectListParams>) => {

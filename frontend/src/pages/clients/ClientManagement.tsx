@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext";
@@ -77,13 +77,7 @@ const ClientManagement: React.FC = () => {
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [selectedClients, setSelectedClients] = useState<string[]>([]);
 
-  useEffect(() => {
-    loadClients();
-    loadStats();
-    loadAssignedUsers();
-  }, [filters, loadClients]);
-
-  const loadClients = async () => {
+  const loadClients = useCallback(async () => {
     try {
       setLoading(true);
       const response = await clientService.getClients(filters);
@@ -94,7 +88,7 @@ const ClientManagement: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   const loadStats = async () => {
     try {
@@ -122,6 +116,13 @@ const ClientManagement: React.FC = () => {
       setAssignedUsers([]);
     }
   };
+
+  // Load initial data
+  useEffect(() => {
+    loadClients();
+    loadStats();
+    loadAssignedUsers();
+  }, [filters, loadClients]);
 
   const handleFilterChange = (newFilters: Partial<ClientListParams>) => {
     setFilters((prev) => ({
