@@ -1,29 +1,50 @@
-2025-09-05T20:46:20.121802369Z ==> Cloning from https://github.com/Atwoto/construction
-2025-09-05T20:46:20.643801472Z ==> Checking out commit 6b4626e6a566852dc9712a413b604f7d02a28f5f in branch render-deployment
-2025-09-05T20:46:22.186144156Z ==> Using Node.js version 22.16.0 (default)
-2025-09-05T20:46:22.21134658Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
-2025-09-05T20:46:24.030085988Z ==> Running build command 'npm run render-build'...
-2025-09-05T20:46:24.133226948Z 
-2025-09-05T20:46:24.133246608Z > construction@1.0.0 render-build
-2025-09-05T20:46:24.133250878Z > npm ci && cd backend && npm ci && cd ../frontend && npm ci && npm run build
-2025-09-05T20:46:24.133252968Z 
-2025-09-05T20:46:25.688147246Z 
-2025-09-05T20:46:25.688166476Z > construction@1.0.0 postinstall
-2025-09-05T20:46:25.688170256Z > npm run build
-2025-09-05T20:46:25.688172476Z 
-2025-09-05T20:46:25.796958198Z 
-2025-09-05T20:46:25.796986269Z > construction@1.0.0 build
-2025-09-05T20:46:25.796990629Z > cd frontend && npm run build
-2025-09-05T20:46:25.796994039Z 
-2025-09-05T20:46:25.906095956Z 
-2025-09-05T20:46:25.906119437Z > construction-crm-frontend@1.0.0 build
-2025-09-05T20:46:25.906122937Z > react-scripts build
-2025-09-05T20:46:25.906125197Z 
-2025-09-05T20:46:25.910592707Z sh: 1: react-scripts: not found
-2025-09-05T20:46:25.939065881Z npm error code 127
-2025-09-05T20:46:25.939079961Z npm error path /opt/render/project/src
-2025-09-05T20:46:25.939094441Z npm error command failed
-2025-09-05T20:46:25.939167302Z npm error command sh -c npm run build
-2025-09-05T20:46:25.939994717Z npm error A complete log of this run can be found in: /opt/render/.cache/_logs/2025-09-05T20_46_24_198Z-debug-0.log
-2025-09-05T20:46:26.021428956Z ==> Build failed 😞
-2025-09-05T20:46:26.021444076Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-09-05T20:41:49.944280487Z ==> Exited with status 1
+2025-09-05T20:41:49.958952596Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-09-05T20:41:59.449835216Z   throw err;
+2025-09-05T20:41:59.449838136Z   ^
+2025-09-05T20:41:59.449840176Z 
+2025-09-05T20:41:59.449842276Z Error: Cannot find module 'express'
+2025-09-05T20:41:59.449844476Z Require stack:
+2025-09-05T20:41:59.449846467Z - /opt/render/project/src/backend/src/server.js
+2025-09-05T20:41:59.449849496Z     at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+2025-09-05T20:41:59.449851627Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+2025-09-05T20:41:59.449853577Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+2025-09-05T20:41:59.449856907Z     at Function._load (node:internal/modules/cjs/loader:1211:37)
+2025-09-05T20:41:59.449858967Z     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-09-05T20:41:59.449860937Z     at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+2025-09-05T20:41:59.449863147Z     at Module.require (node:internal/modules/cjs/loader:1487:12)
+2025-09-05T20:41:59.449865197Z     at require (node:internal/modules/helpers:135:16)
+2025-09-05T20:41:59.449867217Z     at Object.<anonymous> (/opt/render/project/src/backend/src/server.js:1:17)
+2025-09-05T20:41:59.449869367Z     at Module._compile (node:internal/modules/cjs/loader:1730:14) {
+2025-09-05T20:41:59.449872217Z   code: 'MODULE_NOT_FOUND',
+2025-09-05T20:41:59.449874197Z   requireStack: [ '/opt/render/project/src/backend/src/server.js' ]
+2025-09-05T20:41:59.449876217Z }
+2025-09-05T20:41:59.449878027Z 
+2025-09-05T20:41:59.449879947Z Node.js v22.16.0
+2025-09-05T20:49:59.899531741Z ==> Deploying...
+2025-09-05T20:50:39.049608701Z ==> Running 'npm start'
+2025-09-05T20:50:40.461909966Z 
+2025-09-05T20:50:40.461946497Z > construction@1.0.0 start
+2025-09-05T20:50:40.461952087Z > cd backend && npm start
+2025-09-05T20:50:40.461954327Z 
+2025-09-05T20:50:41.649968058Z 
+2025-09-05T20:50:41.650001349Z > construction-crm-backend@1.0.0 start
+2025-09-05T20:50:41.650005369Z > node src/server.js
+2025-09-05T20:50:41.650007829Z 
+2025-09-05T20:50:46.952596662Z [2025-09-05T20:50:46.951Z] [INFO] Database models initialized (Supabase mode)
+2025-09-05T20:50:47.060651536Z [2025-09-05T20:50:47.059Z] [INFO] 🚀 Construction CRM API Server running on http://localhost:10000
+2025-09-05T20:50:47.144372521Z [2025-09-05T20:50:47.144Z] [INFO] 📚 API Documentation available at http://localhost:10000/api/docs
+2025-09-05T20:50:47.146542266Z [2025-09-05T20:50:47.146Z] [INFO] 🌍 Environment: production
+2025-09-05T20:50:48.081848352Z [2025-09-05T20:50:48.081Z] [INFO] ::1 - - [05/Sep/2025:20:50:48 +0000] "HEAD / HTTP/1.1" 200 1100 "-" "Go-http-client/1.1"
+2025-09-05T20:51:03.413082273Z ==> No open ports detected on 0.0.0.0, continuing to scan...
+2025-09-05T20:51:03.522974989Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-09-05T20:52:04.4856978Z ==> No open ports detected on 0.0.0.0, continuing to scan...
+2025-09-05T20:52:04.582884167Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-09-05T20:53:05.500331781Z ==> No open ports detected on 0.0.0.0, continuing to scan...
+2025-09-05T20:53:05.61348869Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-09-05T20:54:06.517899498Z ==> No open ports detected on 0.0.0.0, continuing to scan...
+2025-09-05T20:54:06.610478617Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-09-05T20:55:07.583087899Z ==> No open ports detected on 0.0.0.0, continuing to scan...
+2025-09-05T20:55:07.722703728Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding
+2025-09-05T20:55:33.289086782Z ==> Port scan timeout reached, no open ports detected on 0.0.0.0. Detected open ports on localhost -- did you mean to bind one of these to 0.0.0.0?
+2025-09-05T20:55:33.47253453Z ==> Docs on specifying a port: https://render.com/docs/web-services#port-binding

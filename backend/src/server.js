@@ -137,7 +137,7 @@ app.use(errorHandler);
 
 // Database connection and server startup
 const PORT = process.env.PORT || 5001;
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || '0.0.0.0';
 
 async function startServer() {
   try {
