@@ -1,13 +1,29 @@
-2025-09-05T20:44:12.308668389Z ==> Cloning from https://github.com/Atwoto/construction
-2025-09-05T20:44:12.871127778Z ==> Checking out commit 4ae0fbb3295c1368212841dcbad7b58b6a3ae266 in branch render-deployment
-2025-09-05T20:44:14.352878966Z parse error: Invalid numeric literal at line 1, column 4
-2025-09-05T20:44:14.353548549Z ==> Using Node.js version 22.16.0 (default)
-2025-09-05T20:44:14.378919677Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
-2025-09-05T20:44:16.16631787Z ==> Running build command 'npm run render-build'...
-2025-09-05T20:44:16.290960043Z npm error code EJSONPARSE
-2025-09-05T20:44:16.291158357Z npm error JSON.parse Invalid package.json: JSONParseError: Expected property name or '}' in JSON at position 1 (line 1 column 2) while parsing near "{\\n  \\\"name\\\": \\\"cons..."
-2025-09-05T20:44:16.291197168Z npm error JSON.parse Failed to parse JSON data.
-2025-09-05T20:44:16.291205098Z npm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
-2025-09-05T20:44:16.292327198Z npm error A complete log of this run can be found in: /opt/render/.cache/_logs/2025-09-05T20_44_16_229Z-debug-0.log
-2025-09-05T20:44:16.31233806Z ==> Build failed 😞
-2025-09-05T20:44:16.31235115Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
+2025-09-05T20:46:20.121802369Z ==> Cloning from https://github.com/Atwoto/construction
+2025-09-05T20:46:20.643801472Z ==> Checking out commit 6b4626e6a566852dc9712a413b604f7d02a28f5f in branch render-deployment
+2025-09-05T20:46:22.186144156Z ==> Using Node.js version 22.16.0 (default)
+2025-09-05T20:46:22.21134658Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+2025-09-05T20:46:24.030085988Z ==> Running build command 'npm run render-build'...
+2025-09-05T20:46:24.133226948Z 
+2025-09-05T20:46:24.133246608Z > construction@1.0.0 render-build
+2025-09-05T20:46:24.133250878Z > npm ci && cd backend && npm ci && cd ../frontend && npm ci && npm run build
+2025-09-05T20:46:24.133252968Z 
+2025-09-05T20:46:25.688147246Z 
+2025-09-05T20:46:25.688166476Z > construction@1.0.0 postinstall
+2025-09-05T20:46:25.688170256Z > npm run build
+2025-09-05T20:46:25.688172476Z 
+2025-09-05T20:46:25.796958198Z 
+2025-09-05T20:46:25.796986269Z > construction@1.0.0 build
+2025-09-05T20:46:25.796990629Z > cd frontend && npm run build
+2025-09-05T20:46:25.796994039Z 
+2025-09-05T20:46:25.906095956Z 
+2025-09-05T20:46:25.906119437Z > construction-crm-frontend@1.0.0 build
+2025-09-05T20:46:25.906122937Z > react-scripts build
+2025-09-05T20:46:25.906125197Z 
+2025-09-05T20:46:25.910592707Z sh: 1: react-scripts: not found
+2025-09-05T20:46:25.939065881Z npm error code 127
+2025-09-05T20:46:25.939079961Z npm error path /opt/render/project/src
+2025-09-05T20:46:25.939094441Z npm error command failed
+2025-09-05T20:46:25.939167302Z npm error command sh -c npm run build
+2025-09-05T20:46:25.939994717Z npm error A complete log of this run can be found in: /opt/render/.cache/_logs/2025-09-05T20_46_24_198Z-debug-0.log
+2025-09-05T20:46:26.021428956Z ==> Build failed 😞
+2025-09-05T20:46:26.021444076Z ==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys
