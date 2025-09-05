@@ -22,6 +22,9 @@ const inventoryRoutes = require('./routes/inventoryRoutes');
 const documentRoutes = require('./routes/documentRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 
+// Test data routes
+const testDataRoutes = require('../../api/test-data-routes');
+
 // Swagger documentation
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -83,7 +86,7 @@ app.use(helmet({
 
 // CORS configuration
 const corsOrigin = process.env.VERCEL 
-  ? [process.env.CORS_ORIGIN || '*', 'https://construction.vercel.app'] 
+  ? [process.env.CORS_ORIGIN || '*', 'https://construction.vercel.app']
   : process.env.CORS_ORIGIN || 'http://localhost:3000';
 
 app.use(cors({
@@ -130,6 +133,9 @@ app.get('/', (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// Test data endpoints (for debugging)
+app.use('/test', testDataRoutes);
 
 // API routes
 const apiPrefix = '/api';
