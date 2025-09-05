@@ -205,7 +205,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ); // Refresh every 15 minutes
 
     return () => clearInterval(refreshInterval);
-  }, [state.tokens, logout]); // refreshToken is defined after this useEffect, so we can't include it in the dependency array
+  }, [state.tokens]); // refreshToken and logout are defined after this useEffect, so we can't include them in the dependency array
 
   // Login function
   const login = async (credentials: LoginCredentials) => {
