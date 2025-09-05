@@ -94,6 +94,26 @@ app.get('/health', (req, res) => {
   });
 });
 
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/clients', clientRoutes);
+app.use('/api', clientContactRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/invoices', invoiceRoutes);
+app.use('/api/employees', employeeRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/reports', reportRoutes);
+
+// Swagger documentation
+const specs = swaggerJsdoc(swaggerOptions);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Construction CRM API Documentation',
+}));
+
 // Serve static files from the React app build directory in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../frontend/build')));
@@ -101,6 +121,14 @@ if (process.env.NODE_ENV === 'production') {
   // For any request that doesn't match an API route, serve the React app
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../frontend/build/index.html'));
+  });
+} else {
+  // 404 handler for development
+  app.use('*', (req, res) => {
+    res.status(404).json({
+      error: 'Route not found',
+      message: `Cannot ${req.method} ${req.originalUrl}`,
+    });
   });
 }
 
@@ -115,6 +143,24 @@ app.use('/api/employees', employeeRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/reports', reportRoutes);
+
+// Swagger documentation
+const specs = swaggerJsdoc(swaggerOptions);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Construction CRM API Documentation',
+}));
+
+// Serve static files from the React app build directory in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../../frontend/build')));
+  
+  // For any request that doesn't match an API route, serve the React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/build/index.html'));
+  });
+}
 
 // Swagger documentation
 const specs = swaggerJsdoc(swaggerOptions);

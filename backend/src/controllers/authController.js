@@ -13,69 +13,78 @@ class AuthController {
    * User registration
    */
   static register = asyncHandler(async (req, res) => {
-    // Check validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      logger.error('Validation failed in registration:', errors.array());
       throw createError.badRequest('Validation failed', errors.array());
     }
 
-    const { email, password, firstName, lastName, role = 'employee' } = req.body;
-
-    // Check if user already exists
-    const existingUser = await User.findByEmail(email);
-    if (existingUser) {
-      throw createError.conflict('User with this email already exists');
-    }
-
-    // Validate password strength
-    const passwordValidation = AuthUtils.validatePasswordStrength(password);
-    if (!passwordValidation.isValid) {
-      throw createError.badRequest('Password does not meet requirements', {
-        errors: passwordValidation.errors,
-        score: passwordValidation.score,
-      });
-    }
+    const { email, password, first_name, last_name, role = 'employee' } = req.body;  // Changed default from 'user' to 'employee'
+    
+    logger.info(`Registration attempt for email: ${email}`);
 
     try {
-      // Create user in our database directly (without Supabase Auth)
-      const userData = {
-        email: email.toLowerCase(),
-        password: password, // Include the password here
-        first_name: firstName,
-        last_name: lastName,
-        role,
-        is_email_verified: true // Set to true to avoid verification isses
-      };
-
-      const user = await User.create(userData);
+      // Check if user already exists
+      logger.info(`Checking if user already exists with email: ${email}`);
+      const existingUser = await User.findByEmail(email);
+      logger.info(`Existing user check result: ${existingUser ? 'Found' : 'Not found'}`);
       
-      // Log registration event
-      AuthUtils.logAuthEvent('user_registered', user, req, {
-        role: user.role,
-      });
+      if (existingUser) {
+        logger.warn(`Registration failed - email already exists: ${email}`);
+        throw createError.badRequest('Email already exists');
+      }
 
-      logger.info(`New user registered: ${email}`, {
-        userId: user.id,
-        role: user.role,
-      });
+      // Validate password strength
+      if (!AuthUtils.isStrongPassword(password)) {
+        logger.warn(`Registration failed - weak password for email: ${email}`);
+        throw createError.badRequest('Password must be at least 8 characters long and contain uppercase, lowercase, number, and special character');
+      }
 
-      // Generate JWT token and refresh token for immediate login
-      const token = AuthUtils.generateToken(user);
-      const refreshToken = AuthUtils.generateRefreshToken(user);
+      // Hash password
+      logger.info(`Hashing password for user: ${email}`);
+      const hashedPassword = await AuthUtils.hashPassword(password);
+      logger.info(`Password hashed successfully for user: ${email}`);
+
+      // Create user in our database
+      logger.info(`Creating new user in database: ${email}`);
+      const userData = {
+        email,
+        password: hashedPassword,
+        first_name,
+        last_name,
+        role,
+        is_active: true
+      };
+      
+      const newUser = await User.create(userData);
+      logger.info(`User created successfully in database: ${email}`, { userId: newUser.id });
+
+      // Generate JWT token
+      const token = AuthUtils.generateToken(newUser);
+      const refreshToken = AuthUtils.generateRefreshToken(newUser);
+
+      // Log successful registration
+      AuthUtils.logAuthEvent('registration_success', newUser, req);
+
+      logger.info(`User registered successfully: ${email}`, {
+        userId: newUser.id,
+        role: newUser.role,
+      });
 
       res.status(201).json({
-        message: 'User registered successfully',
+        message: 'Registration successful',
         data: {
-          user: AuthUtils.sanitizeUser(user),
+          user: AuthUtils.sanitizeUser(newUser),
           token,
           refreshToken
         }
       });
     } catch (error) {
+      logger.error('Registration error:', error);
       if (error.statusCode) {
         throw error;
       }
-      throw createError.internal('Registration failed', error.message);
+      throw createError.internalServerError('Registration failed');
     }
   });
 
@@ -85,35 +94,47 @@ class AuthController {
   static login = asyncHandler(async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      logger.error('Validation failed in login:', errors.array());
       throw createError.badRequest('Validation failed', errors.array());
     }
 
     const { email, password } = req.body;
+    logger.info(`Login attempt for email: ${email}`);
 
     try {
       // Find user in our database
+      logger.info(`Searching for user with email: ${email}`);
       const user = await User.findByEmail(email);
+      logger.info(`User lookup result: ${user ? 'Found' : 'Not found'}`);
+      
       if (!user) {
-        throw createError.unauthorized('Invalid credentials');
+        logger.warn(`No user found with email: ${email}`);
+        throw createError.unauthorized('Invalid email or password');
       }
 
       // Check if account is locked
       if (user.isAccountLocked()) {
         const lockTime = Math.ceil((new Date(user.account_locked_until) - Date.now()) / (1000 * 60));
+        logger.warn(`Account locked for user ${email}. Try again in ${lockTime} minutes`);
         throw createError.unauthorized(`Account is locked. Try again in ${lockTime} minutes`);
       }
 
       // Check if account is active
       if (!user.is_active) {
+        logger.warn(`Account deactivated for user ${email}`);
         throw createError.unauthorized('Account is deactivated');
       }
 
-      // Validate password
+      // Log password validation attempt
+      logger.info(`Validating password for user ${email}`);
       const isPasswordValid = await AuthUtils.validatePassword(password, user.password);
+      logger.info(`Password validation result: ${isPasswordValid}`);
+      
       if (!isPasswordValid) {
         // Increment login attempts
         await user.incrementLoginAttempts();
-        throw createError.unauthorized('Invalid credentials');
+        logger.warn(`Invalid password for user ${email}`);
+        throw createError.unauthorized('Invalid email or password');
       }
 
       // Reset login attempts and update last login
@@ -126,7 +147,7 @@ class AuthController {
       // Log successful login
       AuthUtils.logAuthEvent('login_success', user, req);
 
-      logger.info(`User logged in: ${email}`, {
+      logger.info(`User logged in successfully: ${email}`, {
         userId: user.id,
         role: user.role,
       });
@@ -140,10 +161,11 @@ class AuthController {
         }
       });
     } catch (error) {
+      logger.error('Login error:', error);
       if (error.statusCode) {
         throw error;
       }
-      throw createError.unauthorized('Invalid credentials');
+      throw createError.unauthorized('Invalid email or password');
     }
   });
 
