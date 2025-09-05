@@ -6,12 +6,20 @@
         "api/index.js": {
             "maxDuration": 30,
             "memory": 1024
+        },
+        "api/test.js": {
+            "maxDuration": 30,
+            "memory": 1024
         }
     },
     "rewrites": [
         {
             "source": "/api/(.*)",
             "destination": "/api/index.js"
+        },
+        {
+            "source": "/test/(.*)",
+            "destination": "/api/test.js"
         },
         {
             "source": "/(.*)",
