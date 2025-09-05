@@ -10,6 +10,19 @@ import {
 import { Button } from "../components/ui/shadcn-button";
 import { Badge } from "../components/ui/shadcn-badge";
 import { Input } from "../components/ui/shadcn-input";
+import { 
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator
+} from "../components/ui/DropdownMenu";
+import { 
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent
+} from "../components/ui/Tooltip";
+import { Avatar, AvatarFallback } from "../components/ui/Avatar";
 import { MoreHorizontal, TrendingUp, Users, Building, DollarSign } from "lucide-react";
 
 function ComponentTestPage() {

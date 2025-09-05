@@ -187,25 +187,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
   }, []);
 
-  // Auto-refresh token before expiry
-  useEffect(() => {
-    if (!state.tokens || USE_MOCK_AUTH) return;
-
-    const refreshInterval = setInterval(
-      async () => {
-        try {
-          await refreshToken();
-        } catch (error) {
-          console.error("Token refresh failed:", error);
-          logout();
-        }
-      },
-      15 * 60 * 1000
-    ); // Refresh every 15 minutes
-
-    return () => clearInterval(refreshInterval);
-  }, [state.tokens, refreshToken]);
-
   // Login function
   const login = async (credentials: LoginCredentials) => {
     console.log("🔐 Login function called with:", credentials.email);
@@ -363,6 +344,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw error;
     }
   }, [state.tokens, state.user]);
+
+  // Auto-refresh token before expiry
+  useEffect(() => {
+    if (!state.tokens || USE_MOCK_AUTH) return;
+
+    const refreshInterval = setInterval(
+      async () => {
+        try {
+          await refreshToken();
+        } catch (error) {
+          console.error("Token refresh failed:", error);
+          logout();
+        }
+      },
+      15 * 60 * 1000
+    ); // Refresh every 15 minutes
+
+    return () => clearInterval(refreshInterval);
+  }, [state.tokens, refreshToken]);
 
   // Clear error function
   const clearError = () => {
