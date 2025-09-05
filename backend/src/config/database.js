@@ -7,12 +7,11 @@ async function testConnection() {
 
   try {
     // Test the Supabase connection by making a simple request
-    // Using a very lightweight query
+    // Using a very lightweight query without .single() which causes issues
     const { data, error } = await supabase
       .from('users')
       .select('id')
-      .limit(1)
-      .single(); // Use single() to get just one record
+      .limit(1);
     
     // For Supabase, we check for specific error codes or messages
     // 42P01 is PostgreSQL table not found error, but Supabase may return different codes
@@ -25,7 +24,9 @@ async function testConnection() {
           // Don't fail the connection test for timeout issues in Vercel
           supabaseConnected = true;
         } else {
-          throw error;
+          // Log the error but don't throw it, just mark connection as failed
+          logger.error('Supabase connection test failed:', error.message);
+          supabaseConnected = false;
         }
       } else {
         // Table doesn't exist, but connection is working
@@ -42,6 +43,8 @@ async function testConnection() {
     if (process.env.VERCEL) {
       logger.warn('In Vercel environment, continuing despite connection error');
       supabaseConnected = true; // Optimistically continue in Vercel
+    } else {
+      supabaseConnected = false;
     }
   }
 
