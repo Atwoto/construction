@@ -6,12 +6,18 @@ import { projectService } from "../services/projectService";
 import { ProjectStats } from "../types";
 import { ClientStats } from "../types/client";
 import { clientService } from "../services/clientService";
+import Card from "../components/common/Card";
+import LoadingSpinner from "../components/common/LoadingSpinner";
+import Button from "../components/common/Button";
 import {
   Card as ShadcnCard,
   CardHeader as ShadcnCardHeader,
   CardTitle as ShadcnCardTitle,
+  CardDescription as ShadcnCardDescription,
   CardContent as ShadcnCardContent,
+  CardFooter as ShadcnCardFooter,
 } from "../components/ui/shadcn-card";
+import { Badge } from "../components/ui/shadcn-badge";
 import { Avatar, AvatarFallback } from "../components/ui/Avatar";
 import {
   DropdownMenu,
@@ -28,7 +34,6 @@ import {
   Building,
   DollarSign,
 } from "lucide-react";
-import Button from "../components/common/Button";
 
 function DashboardPage() {
   const { user } = useAuth();
@@ -70,7 +75,7 @@ function DashboardPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <LoadingSpinner size="lg" />
       </div>
     );
   }

@@ -77,10 +77,6 @@ const ClientManagement: React.FC = () => {
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [selectedClients, setSelectedClients] = useState<string[]>([]);
 
-  // We intentionally omit loadClients, loadStats, and loadAssignedUsers from the dependency array
-  // because they are defined after this useEffect hook, which would cause a
-  // "used before declaration" error. This is safe because these functions
-  // don't change during the component's lifecycle.
   useEffect(() => {
     loadClients();
     loadStats();

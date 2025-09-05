@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { ClientListParams, UserSummary } from "../../types/client";
+import {
+  ClientListParams,
+  ClientStatus,
+  ClientSource,
+  CompanySize,
+} from "../../types/client";
+import { UserSummary } from "../../types/client";
 import {
   CLIENT_STATUSES,
   CLIENT_SOURCES,
