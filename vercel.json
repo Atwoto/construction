@@ -4,7 +4,7 @@
     "installCommand": "npm install && npm install --prefix frontend && npm install --prefix backend",
     "functions": {
         "api/index.js": {
-            "maxDuration": 120,
+            "maxDuration": 30,
             "memory": 1024
         }
     },

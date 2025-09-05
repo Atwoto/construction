@@ -10,7 +10,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 130000, // 130 second timeout, longer than the Vercel 120s timeout
+  timeout: 25000, // 25 second timeout
 });
 
 // Token storage keys
