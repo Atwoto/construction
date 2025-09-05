@@ -234,11 +234,9 @@ class ProjectService {
   async getProjectStats(startDate?: string, endDate?: string): Promise<ProjectStats> {
     try {
       console.log('📈 Fetching project stats from API');
-      const params: any = {};
-      if (startDate) params.startDate = startDate;
-      if (endDate) params.endDate = endDate;
       
-      const response = await apiClient.get('/projects/stats', { params });
+      // Use the optimized endpoint for Vercel
+      const response = await apiClient.get('/project-stats');
       console.log('✅ Stats response:', response.data);
       return response.data.data;
     } catch (error: any) {

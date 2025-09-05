@@ -10,6 +10,10 @@
         "api/test.js": {
             "maxDuration": 30,
             "memory": 1024
+        },
+        "api/project-stats.js": {
+            "maxDuration": 30,
+            "memory": 1024
         }
     },
     "rewrites": [
@@ -20,6 +24,10 @@
         {
             "source": "/test/(.*)",
             "destination": "/api/test.js"
+        },
+        {
+            "source": "/project-stats",
+            "destination": "/api/project-stats.js"
         },
         {
             "source": "/(.*)",

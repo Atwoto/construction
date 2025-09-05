@@ -7,13 +7,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "cd backend && npm start",
+    "start": "node backend/src/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd backend && npm run dev",
+    "server": "nodemon backend/src/server.js",
     "client": "npm start --prefix frontend",
-    "build": "cd frontend && npm run build",
-    "render-build": "npm ci && cd backend && npm ci && cd ../frontend && npm ci && npm run build",
-    "postinstall": "echo \"Postinstall complete\""
+    "build": "npm run build --prefix frontend",
+    "render-build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
