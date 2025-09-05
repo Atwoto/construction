@@ -37,6 +37,10 @@ const MOCK_TOKENS = {
   expiresIn: "24h",
   tokenType: "Bearer",
 };
+
+// Bypass authentication flag - set to true to skip login
+const BYPASS_AUTH = true;
+
 export interface LoginCredentials {
   email: string;
   password: string;
@@ -151,6 +155,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Initialize auth state on app load
   useEffect(() => {
     const initAuth = async () => {
+      // Bypass authentication for testing
+      if (BYPASS_AUTH) {
+        console.log("🔐 Bypassing authentication for testing...");
+        dispatch({
+          type: "AUTH_SUCCESS",
+          payload: { user: MOCK_USER, tokens: MOCK_TOKENS },
+        });
+        return;
+      }
+
       // For development, auto-login with admin credentials
       if (process.env.NODE_ENV === 'development') {
         try {
@@ -190,6 +204,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Login function
   const login = async (credentials: LoginCredentials) => {
     console.log("🔐 Login function called with:", credentials.email);
+    
+    // Bypass authentication for testing
+    if (BYPASS_AUTH) {
+      console.log("🔐 Bypassing login for testing...");
+      dispatch({
+        type: "AUTH_SUCCESS",
+        payload: { user: MOCK_USER, tokens: MOCK_TOKENS },
+      });
+      toast.success("Login bypassed - welcome to dashboard!");
+      return;
+    }
     
     try {
       dispatch({ type: "AUTH_START" });
@@ -248,7 +273,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Logout function
   const logout = async () => {
     // Use mock auth if enabled
-    if (USE_MOCK_AUTH) {
+    if (USE_MOCK_AUTH || BYPASS_AUTH) {
       console.log("Mock logout");
       dispatch({ type: "AUTH_LOGOUT" });
       toast.success("Mock logged out successfully");
@@ -397,6 +422,11 @@ export function useAuth(): AuthContextType {
 export function withAuth<P extends object>(Component: React.ComponentType<P>) {
   return function AuthenticatedComponent(props: P) {
     const { isAuthenticated, isLoading } = useAuth();
+
+    // Bypass authentication for testing
+    if (BYPASS_AUTH) {
+      return <Component {...props} />;
+    }
 
     if (isLoading) {
       return (
