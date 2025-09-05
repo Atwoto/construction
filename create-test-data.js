@@ -94,11 +94,12 @@ async function createTestData() {
     console.log('Created clients:', createdClients);
 
     // Create test projects
+    const timestamp = Date.now();
     const projects = [
       {
         name: "Downtown Office Complex",
         description: "Construction of a 15-story office building in the downtown area",
-        project_number: "PRJ-001",
+        project_number: `PRJ-${timestamp}-001`,
         type: "commercial",
         status: "in_progress",
         priority: "high",
@@ -125,7 +126,7 @@ async function createTestData() {
       {
         name: "Residential Housing Development",
         description: "Development of 50 residential units",
-        project_number: "PRJ-002",
+        project_number: `PRJ-${timestamp}-002`,
         type: "residential",
         status: "planning",
         priority: "medium",
@@ -150,7 +151,7 @@ async function createTestData() {
       {
         name: "Tech Office Renovation",
         description: "Complete renovation of tech company office space",
-        project_number: "PRJ-003",
+        project_number: `PRJ-${timestamp}-003`,
         type: "renovation",
         status: "approved",
         priority: "medium",
