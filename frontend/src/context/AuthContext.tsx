@@ -15,7 +15,6 @@ import {
 
 // Mock authentication flag - set to true to enable mock auth
 const USE_MOCK_AUTH = process.env.REACT_APP_USE_MOCK_AUTH === 'true';
-console.log('USE_MOCK_AUTH:', USE_MOCK_AUTH);
 
 // Mock user data for testing
 const MOCK_USER = {
@@ -39,7 +38,7 @@ const MOCK_TOKENS = {
 };
 
 // Bypass authentication flag - set to true to skip login
-const BYPASS_AUTH = true;
+const BYPASS_AUTH = false;
 
 export interface LoginCredentials {
   email: string;
@@ -155,8 +154,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Initialize auth state on app load
   useEffect(() => {
     const initAuth = async () => {
-      // Bypass authentication for testing
-      if (BYPASS_AUTH) {
+      // Bypass authentication for testing - only in development
+      if (BYPASS_AUTH && process.env.NODE_ENV === 'development') {
         console.log("🔐 Bypassing authentication for testing...");
         dispatch({
           type: "AUTH_SUCCESS",
@@ -165,8 +164,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return;
       }
 
-      // For development, auto-login with admin credentials
-      if (process.env.NODE_ENV === 'development') {
+      // For development, auto-login with admin credentials - only if explicitly enabled
+      if (process.env.NODE_ENV === 'development' && process.env.REACT_APP_AUTO_LOGIN === 'true') {
         try {
           console.log('🔐 Auto-logging in with admin credentials for development...');
           await login({
@@ -205,8 +204,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (credentials: LoginCredentials) => {
     console.log("🔐 Login function called with:", credentials.email);
     
-    // Bypass authentication for testing
-    if (BYPASS_AUTH) {
+    // Bypass authentication for testing - only in development
+    if (BYPASS_AUTH && process.env.NODE_ENV === 'development') {
       console.log("🔐 Bypassing login for testing...");
       dispatch({
         type: "AUTH_SUCCESS",
@@ -272,8 +271,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Logout function
   const logout = async () => {
-    // Use mock auth if enabled
-    if (USE_MOCK_AUTH || BYPASS_AUTH) {
+    // Use mock auth if enabled - only in development
+    if (USE_MOCK_AUTH && process.env.NODE_ENV === 'development') {
       console.log("Mock logout");
       dispatch({ type: "AUTH_LOGOUT" });
       toast.success("Mock logged out successfully");
@@ -423,8 +422,8 @@ export function withAuth<P extends object>(Component: React.ComponentType<P>) {
   return function AuthenticatedComponent(props: P) {
     const { isAuthenticated, isLoading } = useAuth();
 
-    // Bypass authentication for testing
-    if (BYPASS_AUTH) {
+    // Bypass authentication for testing - only in development
+    if (BYPASS_AUTH && process.env.NODE_ENV === 'development') {
       return <Component {...props} />;
     }
 
