@@ -62,7 +62,7 @@ class AuthService {
       
       // Handle the new serverless API response format
       if (response.data.success && response.data.data) {
-        const { user, session } = response.data.data;
+        const { user, token, refreshToken } = response.data.data;
         return {
           user: {
             id: user.id,
@@ -76,9 +76,9 @@ class AuthService {
             updatedAt: user.updated_at,
           },
           tokens: {
-            accessToken: session.access_token,
-            refreshToken: session.refresh_token,
-            expiresIn: session.expires_in?.toString() || '3600',
+            accessToken: token,
+            refreshToken: refreshToken,
+            expiresIn: '3600',
             tokenType: 'Bearer',
           }
         };
