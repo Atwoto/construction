@@ -10,6 +10,8 @@ import { authService } from "../services/authService";
 import {
   User,
   AuthTokens,
+  LoginCredentials as TypesLoginCredentials,
+  RegisterData as TypesRegisterData,
 } from "../types";
 
 // Mock authentication flag - set to true to enable mock auth

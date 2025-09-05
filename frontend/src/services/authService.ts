@@ -2,15 +2,14 @@ import axios, { AxiosResponse } from 'axios';
 import { User, AuthTokens, LoginCredentials, RegisterData, ApiResponse } from '../types';
 
 // API base configuration - Make sure this matches your backend port
-const API_BASE_URL = '/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
-// Create axios instance with timeout configuration
+// Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 25000, // 25 second timeout
 });
 
 // Token storage keys
@@ -59,38 +58,42 @@ class AuthService {
   // Login user
   async login(credentials: LoginCredentials): Promise<{ user: User; tokens: AuthTokens }> {
     try {
-      const response = await api.post('/auth/login', credentials);
+      const response: AxiosResponse<ApiResponse<{ user: User; token: string; refreshToken: string }>> = await api.post(
+        '/auth/login',
+        credentials
+      );
       
-      // Handle the new serverless API response format
-      if (response.data.success && response.data.data) {
+      // Handle the response format from our backend
+      if (response.data.data) {
         const { user, token, refreshToken } = response.data.data;
         return {
-          user: {
-            id: user.id,
-            email: user.email,
-            firstName: user.user_metadata?.firstName || user.email.split('@')[0],
-            lastName: user.user_metadata?.lastName || '',
-            role: user.user_metadata?.role || 'user',
-            isActive: true,
-            isEmailVerified: !!user.email_confirmed_at,
-            createdAt: user.created_at,
-            updatedAt: user.updated_at,
-          },
+          user,
           tokens: {
             accessToken: token,
             refreshToken: refreshToken,
-            expiresIn: '3600',
+            expiresIn: '24h',
             tokenType: 'Bearer',
           }
         };
       }
       
-      throw new Error('Login failed: ' + (response.data.error || 'Unknown error'));
-    } catch (error: any) {
-      console.error('Login API error:', error);
-      if (error.response?.data?.error) {
-        throw new Error(error.response.data.error);
+      // If response is directly the data (not wrapped in data object)
+      if ((response.data as any).user && (response.data as any).token) {
+        const { user, token, refreshToken } = response.data as any;
+        return {
+          user,
+          tokens: {
+            accessToken: token,
+            refreshToken: refreshToken,
+            expiresIn: '24h',
+            tokenType: 'Bearer',
+          }
+        };
       }
+      
+      throw new Error('Unexpected response format');
+    } catch (error) {
+      console.error('Login API error:', error);
       throw error;
     }
   }

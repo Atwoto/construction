@@ -11,29 +11,6 @@ async function createTestData() {
   try {
     console.log('Creating test data...');
     
-    // First, create a test user
-    console.log('Creating test user...');
-    const { data: testUser, error: userError } = await supabase
-      .from('users')
-      .insert({
-        email: 'test@example.com',
-        first_name: 'Test',
-        last_name: 'User',
-        role: 'admin',
-        status: 'active',
-        phone: '+1-555-000-0000'
-      })
-      .select()
-      .single();
-
-    if (userError) {
-      console.error('Error creating test user:', userError);
-      // If user creation fails, we'll continue without it
-      console.log('Continuing without creating a test user...');
-    } else {
-      console.log('Created test user:', testUser);
-    }
-    
     // Create test clients
     const clients = [
       {
@@ -116,32 +93,12 @@ async function createTestData() {
 
     console.log('Created clients:', createdClients);
 
-    // Get the user ID for project_manager_id (use the first existing user or the one we just created)
-    let projectManagerId = testUser ? testUser.id : 1;
-    
-    // If we don't have a valid user ID, try to get the first user from the database
-    if (!projectManagerId || projectManagerId === 1) {
-      const { data: existingUsers, error: usersError } = await supabase
-        .from('users')
-        .select('id')
-        .limit(1);
-      
-      if (!usersError && existingUsers && existingUsers.length > 0) {
-        projectManagerId = existingUsers[0].id;
-      } else {
-        // If no users exist, we'll set a default value of 1 and handle the error gracefully
-        projectManagerId = 1;
-      }
-    }
-
     // Create test projects
-    // Generate unique project numbers to avoid duplicates
-    const timestamp = Date.now();
     const projects = [
       {
         name: "Downtown Office Complex",
         description: "Construction of a 15-story office building in the downtown area",
-        project_number: `PRJ-${timestamp}-001`,
+        project_number: "PRJ-001",
         type: "commercial",
         status: "in_progress",
         priority: "high",
@@ -157,7 +114,7 @@ async function createTestData() {
         actual_revenue: 0,
         progress: 45,
         client_id: createdClients[0].id,
-        project_manager_id: projectManagerId,
+        project_manager_id: 1, // Assuming user ID 1 exists
         notes: "Project is on schedule",
         tags: ["office", "downtown", "high-rise"],
         weather_dependency: true,
@@ -168,7 +125,7 @@ async function createTestData() {
       {
         name: "Residential Housing Development",
         description: "Development of 50 residential units",
-        project_number: `PRJ-${timestamp}-002`,
+        project_number: "PRJ-002",
         type: "residential",
         status: "planning",
         priority: "medium",
@@ -184,7 +141,7 @@ async function createTestData() {
         actual_revenue: 0,
         progress: 0,
         client_id: createdClients[1].id,
-        project_manager_id: projectManagerId,
+        project_manager_id: 1, // Assuming user ID 1 exists
         notes: "Awaiting permits",
         tags: ["residential", "housing", "development"],
         weather_dependency: true,
@@ -193,7 +150,7 @@ async function createTestData() {
       {
         name: "Tech Office Renovation",
         description: "Complete renovation of tech company office space",
-        project_number: `PRJ-${timestamp}-003`,
+        project_number: "PRJ-003",
         type: "renovation",
         status: "approved",
         priority: "medium",
@@ -209,7 +166,7 @@ async function createTestData() {
         actual_revenue: 0,
         progress: 20,
         client_id: createdClients[2].id,
-        project_manager_id: projectManagerId,
+        project_manager_id: 1, // Assuming user ID 1 exists
         notes: "Interior work in progress",
         tags: ["renovation", "technology", "office"],
         weather_dependency: false,

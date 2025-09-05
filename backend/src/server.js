@@ -22,9 +22,6 @@ const inventoryRoutes = require('./routes/inventoryRoutes');
 const documentRoutes = require('./routes/documentRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 
-// Test data routes
-const testDataRoutes = require('../../api/test-data-routes');
-
 // Swagger documentation
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -32,15 +29,10 @@ const swaggerOptions = require('./config/swagger');
 
 const app = express();
 
-// Trust proxy for accurate IP addresses in Vercel
-// Vercel uses a proxy, so we need to trust the first proxy
-if (process.env.VERCEL) {
-  app.set('trust proxy', 1);
-} else {
-  app.set('trust proxy', false);
-}
+// Trust proxy for accurate IP addresses
+app.set('trust proxy', 1);
 
-// Rate limiting with proper IP detection for Vercel
+// Rate limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
@@ -49,26 +41,6 @@ const limiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
-  // Custom key generator to handle IP detection in Vercel
-  keyGenerator: (req) => {
-    // For Vercel deployments, try to get the real IP from headers
-    if (process.env.VERCEL) {
-      // Try different headers that might contain the real IP
-      const realIP = req.headers['x-real-ip'] || 
-                    req.headers['x-forwarded-for'] || 
-                    req.connection.remoteAddress || 
-                    req.socket.remoteAddress || 
-                    (req.connection.socket ? req.connection.socket.remoteAddress : null);
-      
-      if (realIP) {
-        // Handle multiple IPs in x-forwarded-for (comma-separated)
-        return realIP.split(',')[0].trim();
-      }
-    }
-    
-    // Default behavior
-    return req.ip;
-  }
 });
 
 // Security middleware
@@ -85,12 +57,8 @@ app.use(helmet({
 }));
 
 // CORS configuration
-const corsOrigin = process.env.VERCEL 
-  ? [process.env.CORS_ORIGIN || '*', 'https://construction.vercel.app']
-  : process.env.CORS_ORIGIN || 'http://localhost:3000';
-
 app.use(cors({
-  origin: corsOrigin,
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -125,44 +93,25 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Additional health check for Vercel
-app.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'OK',
-    message: 'Construction CRM API is running',
-    timestamp: new Date().toISOString(),
-  });
-});
-
-// Test data endpoints (for debugging)
-app.use('/test', testDataRoutes);
-
 // API routes
-const apiPrefix = '/api';
-app.use(apiPrefix + '/auth', authRoutes);
-app.use(apiPrefix + '/users', userRoutes);
-app.use(apiPrefix + '/clients', clientRoutes);
-app.use(apiPrefix + '/client-contacts', clientContactRoutes);
-app.use(apiPrefix + '/projects', projectRoutes);
-app.use(apiPrefix + '/invoices', invoiceRoutes);
-app.use(apiPrefix + '/employees', employeeRoutes);
-app.use(apiPrefix + '/inventory', inventoryRoutes);
-app.use(apiPrefix + '/documents', documentRoutes);
-app.use(apiPrefix + '/reports', reportRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/clients', clientRoutes);
+app.use('/api', clientContactRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/invoices', invoiceRoutes);
+app.use('/api/employees', employeeRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/reports', reportRoutes);
 
 // Swagger documentation
-if (!process.env.VERCEL) {
-  const swaggerJsdoc = require('swagger-jsdoc');
-  const swaggerUi = require('swagger-ui-express');
-  const swaggerOptions = require('./config/swagger');
-  const specs = swaggerJsdoc(swaggerOptions);
-  const docsPrefix = '/api';
-  app.use(docsPrefix + '/docs', swaggerUi.serve, swaggerUi.setup(specs, {
-    explorer: true,
-    customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: 'Construction CRM API Documentation',
-  }));
-}
+const specs = swaggerJsdoc(swaggerOptions);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Construction CRM API Documentation',
+}));
 
 // 404 handler
 app.use('*', (req, res) => {
@@ -176,13 +125,14 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 // Database connection and server startup
-initializeModels(); // This line should be here
-
 const PORT = process.env.PORT || 5001;
-const HOST = process.env.HOST || 'localhost'; // This line was missing
+const HOST = process.env.HOST || 'localhost';
 
 async function startServer() {
   try {
+    // Initialize models
+    initializeModels();
+
     // Start server
     const server = app.listen(PORT, HOST, () => {
       logger.info(`🚀 Construction CRM API Server running on http://${HOST}:${PORT}`);

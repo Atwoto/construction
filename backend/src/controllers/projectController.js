@@ -700,149 +700,54 @@ class ProjectController {
   // Get project statistics
   getProjectStats = asyncHandler(async (req, res) => {
     try {
-      const startTime = Date.now();
-      logger.info('Starting project statistics calculation');
-      
-      // Try to use the RPC function for better performance
-      const { data: stats, error } = await supabaseAdmin
-        .rpc('get_project_statistics');
+      // Get all projects for statistics calculation
+      const { data: allProjects, error: projectsError } = await supabaseAdmin
+        .from('projects')
+        .select('*');
 
-      if (error) {
-        logger.error('Project statistics RPC error:', error);
-        logger.warn('Project statistics RPC not available, using fallback method');
-        
-        // Get total projects count
-        const { count: totalProjects, error: totalError } = await supabaseAdmin
-          .from('projects')
-          .select('*', { count: 'exact', head: true });
-
-        if (totalError) {
-          throw createError.internal('Error counting total projects', totalError);
-        }
-
-        // Get active projects count
-        const { count: activeProjects, error: activeError } = await supabaseAdmin
-          .from('projects')
-          .select('*', { count: 'exact', head: true })
-          .eq('status', 'in_progress');
-
-        if (activeError) {
-          throw createError.internal('Error counting active projects', activeError);
-        }
-
-        // Get completed projects count
-        const { count: completedProjects, error: completedError } = await supabaseAdmin
-          .from('projects')
-          .select('*', { count: 'exact', head: true })
-          .eq('status', 'completed');
-
-        if (completedError) {
-          throw createError.internal('Error counting completed projects', completedError);
-        }
-
-        // Get on-hold projects count
-        const { count: onHoldProjects, error: onHoldError } = await supabaseAdmin
-          .from('projects')
-          .select('*', { count: 'exact', head: true })
-          .eq('status', 'on_hold');
-
-        if (onHoldError) {
-          throw createError.internal('Error counting on-hold projects', onHoldError);
-        }
-
-        // Get average progress
-        const { data: avgProgressData, error: avgProgressError } = await supabaseAdmin
-          .from('projects')
-          .select('progress')
-          .not('progress', 'is', null);
-
-        if (avgProgressError) {
-          throw createError.internal('Error fetching project progress data', avgProgressError);
-        }
-
-        const averageProgress = avgProgressData.length > 0 
-          ? avgProgressData.reduce((sum, project) => sum + (project.progress || 0), 0) / avgProgressData.length 
-          : 0;
-
-        // Get total budget
-        const { data: budgetData, error: budgetError } = await supabaseAdmin
-          .from('projects')
-          .select('budget');
-
-        if (budgetError) {
-          throw createError.internal('Error fetching project budget data', budgetError);
-        }
-
-        const totalBudget = budgetData.reduce((sum, project) => sum + (project.budget || 0), 0);
-
-        // Get total actual cost
-        const { data: actualCostData, error: actualCostError } = await supabaseAdmin
-          .from('projects')
-          .select('actual_cost');
-
-        if (actualCostError) {
-          throw createError.internal('Error fetching project actual cost data', actualCostError);
-        }
-
-        const totalActualCost = actualCostData.reduce((sum, project) => sum + (project.actual_cost || 0), 0);
-
-        // Get total revenue
-        const { data: revenueData, error: revenueError } = await supabaseAdmin
-          .from('projects')
-          .select('actual_revenue');
-
-        if (revenueError) {
-          throw createError.internal('Error fetching project revenue data', revenueError);
-        }
-
-        const totalRevenue = revenueData.reduce((sum, project) => sum + (project.actual_revenue || 0), 0);
-
-        const endTime = Date.now();
-        logger.info(`Project statistics calculation completed in ${endTime - startTime}ms using fallback method`);
-        
-        res.json({
-          success: true,
-          data: {
-            totalProjects,
-            activeProjects,
-            completedProjects,
-            onHoldProjects,
-            averageProgress: Math.round(averageProgress * 100) / 100,
-            totalBudget,
-            totalActualCost,
-            totalRevenue
-          }
-        });
-      } else {
-        // Use the RPC function result
-        const stat = stats[0] || {
-          total_projects: 0,
-          active_projects: 0,
-          completed_projects: 0,
-          on_hold_projects: 0,
-          average_progress: 0,
-          total_budget: 0,
-          total_actual_cost: 0,
-          total_revenue: 0
-        };
-
-        const endTime = Date.now();
-        logger.info(`Project statistics calculation completed in ${endTime - startTime}ms using RPC function`);
-        
-        res.json({
-          success: true,
-          data: {
-            totalProjects: stat.total_projects,
-            activeProjects: stat.active_projects,
-            completedProjects: stat.completed_projects,
-            onHoldProjects: stat.on_hold_projects,
-            averageProgress: stat.average_progress,
-            totalBudget: stat.total_budget,
-            totalActualCost: stat.total_actual_cost,
-            totalRevenue: stat.total_revenue
-          }
-        });
+      if (projectsError) {
+        throw createError.internal('Error fetching projects', projectsError);
       }
+
+      // Calculate project statistics
+      const totalProjects = allProjects.length;
+      
+      // Count projects by status
+      const statusCounts = allProjects.reduce((acc, project) => {
+        acc[project.status] = (acc[project.status] || 0) + 1;
+        return acc;
+      }, {});
+      
+      const activeProjects = (statusCounts['approved'] || 0) + (statusCounts['in_progress'] || 0);
+      const completedProjects = statusCounts['completed'] || 0;
+      const onHoldProjects = statusCounts['on_hold'] || 0;
+      
+      // Calculate average progress
+      const totalProgress = allProjects.reduce((sum, project) => sum + (project.progress || 0), 0);
+      const averageProgress = totalProjects > 0 ? totalProgress / totalProjects : 0;
+      
+      // Calculate total budget and actual cost
+      const totalBudget = allProjects.reduce((sum, project) => sum + (parseFloat(project.budget) || 0), 0);
+      const totalActualCost = allProjects.reduce((sum, project) => sum + (parseFloat(project.actual_cost) || 0), 0);
+      
+      // Calculate total revenue (from completed projects)
+      const totalRevenue = allProjects
+        .filter(project => project.status === 'completed')
+        .reduce((sum, project) => sum + (parseFloat(project.actual_revenue) || 0), 0);
+
+      res.json({
+        success: true,
+        data: {
+          totalProjects,
+          activeProjects,
+          completedProjects,
+          onHoldProjects,
+          averageProgress: Math.round(averageProgress * 100) / 100,
+          totalBudget,
+          totalActualCost,
+          totalRevenue
+        }
+      });
     } catch (error) {
       logger.error('Get project stats error:', error);
       throw error;

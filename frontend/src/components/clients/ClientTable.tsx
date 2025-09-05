@@ -1,10 +1,11 @@
 import React from "react";
 import { Client, ClientStatus, ClientSortField, ClientPagination } from "../../types/client";
+import { clientService } from "../../services/clientService";
 import { Button } from "../ui/shadcn-button";
 import { Checkbox } from "../ui/Checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/Table";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/DropdownMenu";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "../ui/Pagination";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "../ui/Pagination";
 import { ArrowUpDown, Loader2, MoreHorizontal } from "lucide-react";
 
 interface ClientTableProps {

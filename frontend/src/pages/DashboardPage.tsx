@@ -6,14 +6,18 @@ import { projectService } from "../services/projectService";
 import { ProjectStats } from "../types";
 import { ClientStats } from "../types/client";
 import { clientService } from "../services/clientService";
+import Card from "../components/common/Card";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import Button from "../components/common/Button";
 import {
   Card as ShadcnCard,
   CardHeader as ShadcnCardHeader,
   CardTitle as ShadcnCardTitle,
+  CardDescription as ShadcnCardDescription,
   CardContent as ShadcnCardContent,
+  CardFooter as ShadcnCardFooter,
 } from "../components/ui/shadcn-card";
+import { Badge } from "../components/ui/shadcn-badge";
 import { Avatar, AvatarFallback } from "../components/ui/Avatar";
 import {
   DropdownMenu,
@@ -48,26 +52,17 @@ function DashboardPage() {
     try {
       setLoading(true);
       setError("");
-      
-      // Add a timeout to prevent hanging
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Request timeout - dashboard data is taking too long to load')), 30000)
-      );
-      
-      const dataPromise = Promise.all([
+      const [projectStats, clientStatsData] = await Promise.all([
         projectService.getProjectStats(),
         clientService.getClientStats(),
       ]);
-      
-      const [projectStats, clientStatsData] = await Promise.race([dataPromise, timeoutPromise]) as [ProjectStats, ClientStats];
-      
       setStats(projectStats);
       setClientStats(clientStatsData);
     } catch (error: any) {
-      console.error('Dashboard data loading error:', error);
-      const errorMessage = error.message || "Failed to load dashboard data - please try again";
-      setError(errorMessage);
-      toast.error(errorMessage);
+      setError(
+        error.response?.data?.message || "Failed to load dashboard data"
+      );
+      toast.error("Failed to load dashboard data");
     } finally {
       setLoading(false);
     }

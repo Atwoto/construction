@@ -1,27 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// Determine logs directory based on environment
-let logsDir;
-
-if (process.env.VERCEL) {
-  // In Vercel serverless environment, use tmp directory for logs
-  logsDir = path.join('/tmp', 'logs');
-} else {
-  // In other environments, use local logs directory
-  logsDir = path.join(__dirname, '../../logs');
-}
-
-// Ensure logs directory exists (only in non-Vercel environments since /tmp might not be writable in some cases)
-if (!process.env.VERCEL) {
-  try {
-    if (!fs.existsSync(logsDir)) {
-      fs.mkdirSync(logsDir, { recursive: true });
-    }
-  } catch (err) {
-    // If we can't create the logs directory, we'll skip file logging
-    console.warn('Could not create logs directory, file logging disabled:', err.message);
-  }
+// Ensure logs directory exists
+const logsDir = path.join(__dirname, '../../logs');
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir, { recursive: true });
 }
 
 // Log levels
@@ -54,18 +37,7 @@ function formatMessage(level, message, meta = null) {
  * @param {any} meta - Additional metadata
  */
 function writeToFile(level, message, meta) {
-  // Skip file logging in Vercel serverless environment
-  if (process.env.NODE_ENV === 'test' || process.env.VERCEL) return;
-
-  // Skip file logging if logs directory doesn't exist and can't be created
-  try {
-    if (!fs.existsSync(logsDir)) {
-      fs.mkdirSync(logsDir, { recursive: true });
-    }
-  } catch (err) {
-    // If we can't create the logs directory, skip file logging
-    return;
-  }
+  if (process.env.NODE_ENV === 'test') return;
 
   const logFile = path.join(logsDir, `${level}.log`);
   const formattedMessage = formatMessage(level, message, meta);
@@ -167,7 +139,7 @@ const logger = {
   },
   
   // Log file paths (for reference)
-  getLogPath: (level = 'combined') => process.env.VERCEL ? null : path.join(logsDir, `${level}.log`),
+  getLogPath: (level = 'combined') => path.join(logsDir, `${level}.log`),
 };
 
 module.exports = logger;

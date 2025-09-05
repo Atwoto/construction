@@ -18,7 +18,7 @@ import ProjectFilters from "../../components/projects/ProjectFilters";
 import ProjectStatsComponent from "../../components/projects/ProjectStats";
 import Modal from "../../components/common/Modal";
 import ConfirmDialog from "../../components/common/ConfirmDialog";
-
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 import Button from "../../components/common/Button";
 
 type ViewMode = "table" | "cards";

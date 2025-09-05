@@ -123,25 +123,11 @@ class ProjectService {
   async getProjects(params: ProjectListParams = {}): Promise<ProjectListResponse> {
     try {
       console.log('🔍 Fetching projects from API with params:', params);
-      
-      // Set default pagination values to prevent loading too much data
-      const queryParams = {
-        page: params.page || 1,
-        limit: params.limit || 20, // Reduced from default to prevent timeouts
-        ...params
-      };
-      
-      const response = await apiClient.get('/projects', { params: queryParams });
+      const response = await apiClient.get('/projects', { params });
       console.log('✅ API response:', response.data);
       return response.data.data;
     } catch (error: any) {
       console.error('❌ Error fetching projects:', error);
-      
-      // Handle timeout errors specifically
-      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
-        throw new Error('Request timeout - please try again or use filters to reduce data size');
-      }
-      
       throw new Error(error.response?.data?.message || 'Failed to fetch projects');
     }
   }
