@@ -2,14 +2,13 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const cors = require('cors');
-const { supabaseAdmin } = require('../backend/src/config/supabase');
 const logger = require('../backend/src/utils/logger');
 
 // Create a new, lightweight Express app specifically for Vercel
 const app = express();
 
 // --- Essential Middleware ---
-// Use CORS - this is critical. Using permissive CORS for now.
+// Use CORS - this is critical. Using a permissive CORS for now.
 app.use(cors({ origin: '*' }));
 // Body parser
 app.use(express.json());

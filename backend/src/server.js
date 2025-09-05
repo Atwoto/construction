@@ -104,7 +104,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(compression());
 
 // Apply rate limiting to all requests
-// app.use(limiter);
+app.use(limiter);
 
 // Logging middleware
 if (process.env.NODE_ENV !== 'test') {
