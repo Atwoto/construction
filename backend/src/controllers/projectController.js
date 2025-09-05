@@ -708,6 +708,7 @@ class ProjectController {
         .rpc('get_project_statistics');
 
       if (error) {
+        logger.error('Project statistics RPC error:', error);
         logger.warn('Project statistics RPC not available, using fallback method');
         
         // Get total projects count

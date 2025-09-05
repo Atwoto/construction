@@ -626,6 +626,7 @@ const getClientStats = asyncHandler(async (req, res) => {
 
     if (error) {
       // Fallback to individual queries if the RPC function doesn't exist
+      logger.error('Client statistics RPC error:', error);
       logger.warn('Client statistics RPC not available, using fallback method');
       
       // Get counts for different statuses using a single query with group by
