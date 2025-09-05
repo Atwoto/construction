@@ -66,7 +66,7 @@ const ProjectManagement = () => {
     loadProjects();
     loadStats();
     loadSupportingData();
-  }, [filters, loadProjects, loadStats, loadSupportingData]);
+  }, [filters]); // loadProjects, loadStats, and loadSupportingData are defined after this useEffect, so we can't include them in the dependency array
 
   const loadProjects = async () => {
     try {
