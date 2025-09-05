@@ -2,12 +2,18 @@
   "name": "construction",
   "version": "1.0.0",
   "description": "A comprehensive Customer Relationship Management system specifically designed for construction companies to manage all aspects of their business operations.",
-  "main": "create-test-data.js",
+  "main": "backend/src/server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/src/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon backend/src/server.js",
+    "client": "npm start --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "render-build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
