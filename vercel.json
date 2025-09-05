@@ -14,10 +14,6 @@
             "destination": "/api/index.js"
         },
         {
-            "source": "/api/test-rpc",
-            "destination": "/api/test-rpc.js"
-        },
-        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
