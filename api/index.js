@@ -18,16 +18,44 @@ app.get('/api', (req, res) => {
   res.status(200).json({ message: 'Lightweight API handler is running' });
 });
 
-// --- Import and use ONLY the routes that are timing out ---
-// This avoids loading the entire slow server
-const projectRoutes = require('../backend/src/routes/projectRoutes');
-const clientRoutes = require('../backend/src/routes/clientRoutes');
-const authRoutes = require('../backend/src/routes/authRoutes'); // Auth is needed for profile
+// --- Lazy-load routes only when requested ---
+// This avoids heavy initialization during function startup
 
-app.use('/api/projects', projectRoutes);
-app.use('/api/clients', clientRoutes);
-app.use('/api/auth', authRoutes);
+// Auth routes
+app.use('/api/auth', (req, res, next) => {
+  try {
+    const authRoutes = require('../backend/src/routes/authRoutes');
+    req.url = req.url; // Keep original URL
+    authRoutes(req, res, next);
+  } catch (error) {
+    logger.error('Error loading auth routes:', error);
+    res.status(500).json({ error: 'Failed to load auth routes' });
+  }
+});
 
+// Client routes
+app.use('/api/clients', (req, res, next) => {
+  try {
+    const clientRoutes = require('../backend/src/routes/clientRoutes');
+    req.url = req.url; // Keep original URL
+    clientRoutes(req, res, next);
+  } catch (error) {
+    logger.error('Error loading client routes:', error);
+    res.status(500).json({ error: 'Failed to load client routes' });
+  }
+});
+
+// Project routes
+app.use('/api/projects', (req, res, next) => {
+  try {
+    const projectRoutes = require('../backend/src/routes/projectRoutes');
+    req.url = req.url; // Keep original URL
+    projectRoutes(req, res, next);
+  } catch (error) {
+    logger.error('Error loading project routes:', error);
+    res.status(500).json({ error: 'Failed to load project routes' });
+  }
+});
 
 // --- Simple Error Handler ---
 app.use((err, req, res, next) => {
