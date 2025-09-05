@@ -401,17 +401,6 @@ class UserController {
         roleCounts[user.role] = (roleCounts[user.role] || 0) + 1;
       });
 
-      // Get recent users
-      const { data: recentUsers, error: recentError } = await supabaseAdmin
-        .from('users')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(5);
-
-      if (recentError) {
-        throw createError.internal('Failed to get recent users', recentError);
-      }
-
       res.json({
         success: true,
         data: {
@@ -422,11 +411,6 @@ class UserController {
             role,
             count
           })),
-          recentUsers: recentUsers.map(user => {
-            // Remove sensitive fields
-            const { password, password_reset_token, email_verification_token, ...safeUser } = user;
-            return safeUser;
-          })
         }
       });
     } catch (error) {

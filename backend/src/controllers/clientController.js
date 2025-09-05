@@ -685,112 +685,6 @@ const getClientStats = asyncHandler(async (req, res) => {
       throw createError.internal('Error counting overdue follow-ups', overdueError);
     }
 
-    // Clients by source - simplified approach
-    const { data: allClients, error: allClientsError } = await supabaseAdmin
-      .from('clients')
-      .select('source, company_size, status, city, rating, estimated_value');
-
-    if (allClientsError) {
-      throw createError.internal('Error fetching client data for statistics', allClientsError);
-    }
-
-    // Calculate statistics from the data
-    const clientsBySource = {};
-    const clientsBySize = {};
-    const clientsByStatus = {};
-    const clientsByLocation = {};
-    let totalEstimatedValue = 0;
-    let ratingSum = 0;
-    let ratingCount = 0;
-
-    allClients.forEach(client => {
-      // By source
-      clientsBySource[client.source] = (clientsBySource[client.source] || 0) + 1;
-      
-      // By size
-      if (client.company_size) {
-        clientsBySize[client.company_size] = (clientsBySize[client.company_size] || 0) + 1;
-      }
-      
-      // By status
-      clientsByStatus[client.status] = (clientsByStatus[client.status] || 0) + 1;
-      
-      // By location
-      if (client.city) {
-        clientsByLocation[client.city] = (clientsByLocation[client.city] || 0) + 1;
-      }
-      
-      // Total estimated value
-      if (client.estimated_value && ['lead', 'opportunity', 'active'].includes(client.status)) {
-        totalEstimatedValue += parseFloat(client.estimated_value);
-      }
-      
-      // Rating calculation
-      if (client.rating) {
-        ratingSum += parseFloat(client.rating);
-        ratingCount++;
-      }
-    });
-
-    // Average rating
-    const avgRating = ratingCount > 0 ? ratingSum / ratingCount : 0;
-
-    // Conversion rate
-    const totalLeadsAndOpportunities = leads + opportunities;
-    const conversionRate = totalLeadsAndOpportunities > 0 
-      ? (activeClients / (totalLeadsAndOpportunities + activeClients)) * 100 
-      : 0;
-
-    // Convert objects to arrays with percentages
-    const clientsBySourceWithPercentage = Object.entries(clientsBySource).map(([source, count]) => {
-      const percentage = totalClients > 0 ? (count / totalClients) * 100 : 0;
-      return {
-        source,
-        count,
-        percentage: Math.round(percentage * 100) / 100
-      };
-    });
-
-    const clientsBySizeWithPercentage = Object.entries(clientsBySize).map(([size, count]) => {
-      const percentage = totalClients > 0 ? (count / totalClients) * 100 : 0;
-      return {
-        size,
-        count,
-        percentage: Math.round(percentage * 100) / 100
-      };
-    });
-
-    const clientsByStatusWithPercentage = Object.entries(clientsByStatus).map(([status, count]) => {
-      const percentage = totalClients > 0 ? (count / totalClients) * 100 : 0;
-      return {
-        status,
-        count,
-        percentage: Math.round(percentage * 100) / 100
-      };
-    });
-
-    const clientsByLocationWithPercentage = Object.entries(clientsByLocation).map(([location, count]) => {
-      const percentage = totalClients > 0 ? (count / totalClients) * 100 : 0;
-      return {
-        location,
-        count,
-        percentage: Math.round(percentage * 100) / 100
-      };
-    });
-
-    // Mock monthly conversions data (in a real app, this would come from the database)
-    const monthlyConversions = [
-      { month: "Jan 2023", count: 2, value: 1500000 },
-      { month: "Feb 2023", count: 1, value: 750000 },
-      { month: "Mar 2023", count: 3, value: 2250000 },
-      { month: "Apr 2023", count: 2, value: 1500000 },
-      { month: "May 2023", count: 1, value: 750000 },
-      { month: "Jun 2023", count: 2, value: 1500000 }
-    ];
-
-    // Mock recent activities (in a real app, this would come from the database)
-    const recentActivities = [];
-
     res.json({
       data: {
         totalClients,
@@ -800,15 +694,6 @@ const getClientStats = asyncHandler(async (req, res) => {
         inactiveClients,
         lostClients,
         overdueFollowUps,
-        conversionRate: Math.round(conversionRate * 100) / 100,
-        averageRating: Math.round(avgRating * 100) / 100,
-        totalEstimatedValue: parseFloat(totalEstimatedValue || 0),
-        clientsBySource: clientsBySourceWithPercentage,
-        clientsBySize: clientsBySizeWithPercentage,
-        clientsByStatus: clientsByStatusWithPercentage,
-        clientsByLocation: clientsByLocationWithPercentage,
-        monthlyConversions,
-        recentActivities
       }
     });
   } catch (error) {

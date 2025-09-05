@@ -700,41 +700,6 @@ class ProjectController {
   // Get project statistics
   getProjectStats = asyncHandler(async (req, res) => {
     try {
-      // Get all projects for statistics calculation
-      const { data: allProjects, error: projectsError } = await supabaseAdmin
-        .from('projects')
-        .select('*');
-
-      if (projectsError) {
-        throw createError.internal('Error fetching projects', projectsError);
-      }
-
-      // Calculate project statistics
-      const totalProjects = allProjects.length;
-      
-      // Count projects by status
-      const statusCounts = allProjects.reduce((acc, project) => {
-        acc[project.status] = (acc[project.status] || 0) + 1;
-        return acc;
-      }, {});
-      
-      const activeProjects = (statusCounts['approved'] || 0) + (statusCounts['in_progress'] || 0);
-      const completedProjects = statusCounts['completed'] || 0;
-      const onHoldProjects = statusCounts['on_hold'] || 0;
-      
-      // Calculate average progress
-      const totalProgress = allProjects.reduce((sum, project) => sum + (project.progress || 0), 0);
-      const averageProgress = totalProjects > 0 ? totalProgress / totalProjects : 0;
-      
-      // Calculate total budget and actual cost
-      const totalBudget = allProjects.reduce((sum, project) => sum + (parseFloat(project.budget) || 0), 0);
-      const totalActualCost = allProjects.reduce((sum, project) => sum + (parseFloat(project.actual_cost) || 0), 0);
-      
-      // Calculate total revenue (from completed projects)
-      const totalRevenue = allProjects
-        .filter(project => project.status === 'completed')
-        .reduce((sum, project) => sum + (parseFloat(project.actual_revenue) || 0), 0);
-
       res.json({
         success: true,
         data: {
