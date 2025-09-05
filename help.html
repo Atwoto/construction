@@ -1,97 +1,31 @@
-[16:18:47.747] Running build in Washington, D.C., USA (East) – iad1
-[16:18:47.748] Build machine configuration: 2 cores, 8 GB
-[16:18:47.762] Cloning github.com/Atwoto/construction (Branch: main, Commit: ef3a076)
-[16:18:48.486] Cloning completed: 724.000ms
-[16:18:49.024] Restored build cache from previous deployment (B6Jc3ucZkmdS575xyaw6UckvuMSW)
-[16:18:51.105] Running "vercel build"
-[16:18:51.488] Vercel CLI 47.0.5
-[16:18:52.234] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
-[16:18:53.221] 
-[16:18:53.221] up to date, audited 17 packages in 744ms
-[16:18:53.222] 
-[16:18:53.222] found 0 vulnerabilities
-[16:18:55.977] 
-[16:18:55.978] up to date, audited 1639 packages in 3s
-[16:18:55.979] 
-[16:18:55.979] 316 packages are looking for funding
-[16:18:55.979]   run `npm fund` for details
-[16:18:55.986] 
-[16:18:55.987] 9 vulnerabilities (3 moderate, 6 high)
-[16:18:55.987] 
-[16:18:55.987] To address all issues (including breaking changes), run:
-[16:18:55.988]   npm audit fix --force
-[16:18:55.988] 
-[16:18:55.988] Run `npm audit` for details.
-[16:18:57.433] 
-[16:18:57.434] up to date, audited 828 packages in 1s
-[16:18:57.434] 
-[16:18:57.434] 155 packages are looking for funding
-[16:18:57.434]   run `npm fund` for details
-[16:18:57.443] 
-[16:18:57.443] 6 low severity vulnerabilities
-[16:18:57.444] 
-[16:18:57.444] To address issues that do not require attention, run:
-[16:18:57.444]   npm audit fix
-[16:18:57.445] 
-[16:18:57.446] To address all issues (including breaking changes), run:
-[16:18:57.446]   npm audit fix --force
-[16:18:57.446] 
-[16:18:57.446] Run `npm audit` for details.
-[16:18:57.662] 
-[16:18:57.663] > construction-crm-frontend@1.0.0 build
-[16:18:57.663] > CI=false react-scripts build
-[16:18:57.663] 
-[16:18:59.194] Creating an optimized production build...
-[16:19:28.372] Compiled with warnings.
-[16:19:28.373] 
-[16:19:28.374] [eslint] 
-[16:19:28.374] src/context/AuthContext.tsx
-[16:19:28.374]   Line 206:6:  React Hook useEffect has a missing dependency: 'refreshToken'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[16:19:28.374] 
-[16:19:28.375] src/pages/clients/ClientDetailsPage.tsx
-[16:19:28.375]   Line 4:10:  'useAuth' is defined but never used  @typescript-eslint/no-unused-vars
-[16:19:28.375] 
-[16:19:28.375] src/pages/clients/ClientManagement.tsx
-[16:19:28.376]   Line 84:6:  React Hook useEffect has a missing dependency: 'loadClients'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[16:19:28.376] 
-[16:19:28.376] src/pages/projects/ProjectDetailsPage.tsx
-[16:19:28.376]   Line 6:10:  'useAuth' is defined but never used  @typescript-eslint/no-unused-vars
-[16:19:28.377] 
-[16:19:28.377] src/pages/projects/ProjectManagement.tsx
-[16:19:28.377]   Line 69:6:  React Hook useEffect has a missing dependency: 'loadProjects'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-[16:19:28.378] 
-[16:19:28.378] Search for the keywords to learn more about each warning.
-[16:19:28.379] To ignore, add // eslint-disable-next-line to the line before.
-[16:19:28.379] 
-[16:19:28.379] File sizes after gzip:
-[16:19:28.379] 
-[16:19:28.411]   231.14 kB (-33.22 kB)  build/static/js/main.d3a0e61a.js
-[16:19:28.411]   17.57 kB (+29 B)       build/static/css/main.f3174940.css
-[16:19:28.412]   1.78 kB                build/static/js/453.3388fa3d.chunk.js
-[16:19:28.412] 
-[16:19:28.414] The project was built assuming it is hosted at /.
-[16:19:28.414] You can control this with the homepage field in your package.json.
-[16:19:28.414] 
-[16:19:28.414] The build folder is ready to be deployed.
-[16:19:28.414] You may serve it with a static server:
-[16:19:28.414] 
-[16:19:28.414]   npm install -g serve
-[16:19:28.415]   serve -s build
-[16:19:28.415] 
-[16:19:28.415] Find out more about deployment here:
-[16:19:28.415] 
-[16:19:28.415]   https://cra.link/deployment
-[16:19:28.415] 
-[16:19:28.518] Installing dependencies...
-[16:19:29.008] 
-[16:19:29.009] up to date in 420ms
-[16:19:29.010] 
-[16:19:29.010] 18 packages are looking for funding
-[16:19:29.010]   run `npm fund` for details
-[16:19:29.904] Warning: Node.js functions are compiled from ESM to CommonJS. If this is not intended, add "type": "module" to your package.json file.
-[16:19:29.905] Compiling "login.js" from ESM to CommonJS...
-[16:19:30.745] Compiling "debug.js" from ESM to CommonJS...
-[16:19:30.982] Compiling "health.js" from ESM to CommonJS...
-[16:19:35.814] Build Completed in /vercel/output [44s]
-[16:19:36.315] Deploying outputs...
-[16:19:38.610] Error: No more than 12 Serverless Functions can be added to a Deployment on the Hobby plan. Create a team (Pro plan) to deploy more. Learn More: https://vercel.link/function-count-limit
+[16:47:15.560] Running build in Washington, D.C., USA (East) – iad1
+[16:47:15.561] Build machine configuration: 2 cores, 8 GB
+[16:47:15.619] Cloning github.com/Atwoto/construction (Branch: main, Commit: 186684d)
+[16:47:17.067] Cloning completed: 1.448s
+[16:47:17.240] Restored build cache from previous deployment (B6Jc3ucZkmdS575xyaw6UckvuMSW)
+[16:47:19.347] Running "vercel build"
+[16:47:19.734] Vercel CLI 47.0.5
+[16:47:20.509] Running "install" command: `npm install && npm install --prefix frontend && npm install --prefix backend`...
+[16:47:21.578] 
+[16:47:21.579] up to date, audited 17 packages in 817ms
+[16:47:21.580] 
+[16:47:21.580] found 0 vulnerabilities
+[16:47:24.201] 
+[16:47:24.202] up to date, audited 1639 packages in 3s
+[16:47:24.203] 
+[16:47:24.203] 316 packages are looking for funding
+[16:47:24.203]   run `npm fund` for details
+[16:47:24.211] 
+[16:47:24.211] 9 vulnerabilities (3 moderate, 6 high)
+[16:47:24.211] 
+[16:47:24.211] To address all issues (including breaking changes), run:
+[16:47:24.212]   npm audit fix --force
+[16:47:24.212] 
+[16:47:24.212] Run `npm audit` for details.
+[16:47:24.502] npm error code EJSONPARSE
+[16:47:24.503] npm error path /vercel/path0/backend/package.json
+[16:47:24.504] npm error JSON.parse Expected double-quoted property name in JSON at position 334 (line 10 column 20) while parsing near "...\n    \"test\": \"jest\",,\n    \"test:watch\": ..."
+[16:47:24.504] npm error JSON.parse Failed to parse JSON data.
+[16:47:24.505] npm error JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+[16:47:24.505] npm error A complete log of this run can be found in: /vercel/.npm/_logs/2025-09-05T13_47_24_280Z-debug-0.log
+[16:47:24.512] Error: Command "npm install && npm install --prefix frontend && npm install --prefix backend" exited with 1

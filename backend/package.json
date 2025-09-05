@@ -7,7 +7,7 @@
     "start": "node src/startServer.js",
     "dev": "nodemon src/startServer.js",
     "vercel-build": "echo 'Building backend for Vercel'",
-    "test": "jest",,
+    "test": "jest",
     "test:watch": "jest --watch",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo",
