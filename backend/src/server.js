@@ -140,13 +140,9 @@ app.use('*', (req, res) => {
 app.use(errorHandler);
 
 // Database connection and server startup
-const PORT = process.env.PORT || 5001;
-const HOST = process.env.HOST || 'localhost';
+initializeModels();
 
-async function startServer() {
-  try {
-    // Initialize models
-    initializeModels();
+const PORT = process.env.PORT || 5001;
 
     // Start server
     const server = app.listen(PORT, HOST, () => {
