@@ -29,10 +29,15 @@ const swaggerOptions = require('./config/swagger');
 
 const app = express();
 
-// Trust proxy for accurate IP addresses
-app.set('trust proxy', 1);
+// Trust proxy for accurate IP addresses in Vercel
+// Vercel uses a proxy, so we need to trust the first proxy
+if (process.env.VERCEL) {
+  app.set('trust proxy', 1);
+} else {
+  app.set('trust proxy', false);
+}
 
-// Rate limiting
+// Rate limiting with proper IP detection for Vercel
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
@@ -41,6 +46,26 @@ const limiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
+  // Custom key generator to handle IP detection in Vercel
+  keyGenerator: (req) => {
+    // For Vercel deployments, try to get the real IP from headers
+    if (process.env.VERCEL) {
+      // Try different headers that might contain the real IP
+      const realIP = req.headers['x-real-ip'] || 
+                    req.headers['x-forwarded-for'] || 
+                    req.connection.remoteAddress || 
+                    req.socket.remoteAddress || 
+                    (req.connection.socket ? req.connection.socket.remoteAddress : null);
+      
+      if (realIP) {
+        // Handle multiple IPs in x-forwarded-for (comma-separated)
+        return realIP.split(',')[0].trim();
+      }
+    }
+    
+    // Default behavior
+    return req.ip;
+  }
 });
 
 // Security middleware
