@@ -236,7 +236,7 @@ class ProjectService {
       console.log('📈 Fetching project stats from API');
       
       // Use the optimized endpoint for Vercel
-      const response = await apiClient.get('/project-stats');
+      const response = await apiClient.get('/projects/stats');
       console.log('✅ Stats response:', response.data);
       return response.data.data;
     } catch (error: any) {

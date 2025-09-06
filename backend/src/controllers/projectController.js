@@ -700,10 +700,16 @@ class ProjectController {
   // Get project statistics
   getProjectStats = asyncHandler(async (req, res) => {
     try {
-      // Get all projects for statistics calculation
-      const { data: allProjects, error: projectsError } = await supabaseAdmin
-        .from('projects')
-        .select('*');
+      // Get projects for the current user only
+      let query = supabaseAdmin.from('projects').select('*');
+      
+      // Filter by user role
+      if (req.user.role !== 'admin') {
+        // For non-admin users, filter by project manager or team member
+        query = query.or(`project_manager_id.eq.${req.user.id},team_members.cs.{${req.user.id}}`);
+      }
+      
+      const { data: allProjects, error: projectsError } = await query;
 
       if (projectsError) {
         throw createError.internal('Error fetching projects', projectsError);
