@@ -19,7 +19,9 @@ class AuthController {
       throw createError.badRequest('Validation failed', errors.array());
     }
 
-    const { email, password, first_name, last_name, role = 'employee' } = req.body;  // Changed default from 'user' to 'employee'
+    const { email, password, firstName, lastName, role = 'employee' } = req.body;
+    const first_name = firstName;
+    const last_name = lastName;
     
     logger.info(`Registration attempt for email: ${email}`);
 
