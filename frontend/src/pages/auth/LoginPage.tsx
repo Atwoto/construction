@@ -66,12 +66,6 @@ function LoginPage() {
     }
   };
 
-  // Auto-login bypass for testing
-  const handleBypassLogin = () => {
-    // This will trigger the bypass in AuthContext
-    login({ email: "bypass", password: "bypass" });
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background decorations */}
@@ -160,17 +154,6 @@ function LoginPage() {
                   className="mt-6 h-12 text-base font-semibold shadow-colored hover:shadow-colored-lg transition-all"
                 >
                   {isLoading ? "Signing in..." : "Sign In"}
-                </Button>
-                
-                {/* Bypass login button for testing */}
-                <Button
-                  type="button"
-                  variant="outline"
-                  fullWidth
-                  className="mt-3 h-12 text-base font-semibold"
-                  onClick={handleBypassLogin}
-                >
-                  Bypass Login (Testing Only)
                 </Button>
               </div>
             </form>

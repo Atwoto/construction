@@ -422,11 +422,6 @@ export function withAuth<P extends object>(Component: React.ComponentType<P>) {
   return function AuthenticatedComponent(props: P) {
     const { isAuthenticated, isLoading } = useAuth();
 
-    // Bypass authentication for testing - only in development
-    if (BYPASS_AUTH && process.env.NODE_ENV === 'development') {
-      return <Component {...props} />;
-    }
-
     if (isLoading) {
       return (
         <div className="min-h-screen flex items-center justify-center">
