@@ -84,7 +84,7 @@ class AuthController {
       if (error.statusCode) {
         throw error;
       }
-      throw createError.internalServerError('Registration failed');
+      throw createError.internal('Registration failed');
     }
   });
 
