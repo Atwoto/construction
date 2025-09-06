@@ -35,7 +35,8 @@ class AuthController {
       }
 
       // Validate password strength
-      if (!AuthUtils.isStrongPassword(password)) {
+      const passwordValidation = AuthUtils.validatePasswordStrength(password);
+      if (!passwordValidation.isValid) {
         logger.warn(`Registration failed - weak password for email: ${email}`);
         throw createError.badRequest('Password must be at least 8 characters long and contain uppercase, lowercase, number, and special character');
       }
