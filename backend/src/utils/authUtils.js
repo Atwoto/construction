@@ -40,7 +40,9 @@ class AuthUtils {
       role: user.role,
     };
     
-    return jwt.sign(payload, process.env.JWT_SECRET, {
+    const secret = process.env.JWT_SECRET || 'default-jwt-secret-key-change-in-production';
+    
+    return jwt.sign(payload, secret, {
       expiresIn: process.env.JWT_EXPIRES_IN || '24h',
     });
   }
@@ -57,7 +59,9 @@ class AuthUtils {
       email: user.email,
     };
     
-    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
+    const secret = process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET || 'default-refresh-secret-key-change-in-production';
+    
+    return jwt.sign(payload, secret, {
       expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
     });
   }
@@ -252,7 +256,8 @@ class AuthUtils {
    */
   static verifyToken(token) {
     const jwt = require('jsonwebtoken');
-    return jwt.verify(token, process.env.JWT_SECRET);
+    const secret = process.env.JWT_SECRET || 'default-jwt-secret-key-change-in-production';
+    return jwt.verify(token, secret);
   }
 
   /**
@@ -262,7 +267,8 @@ class AuthUtils {
    */
   static verifyRefreshToken(token) {
     const jwt = require('jsonwebtoken');
-    return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+    const secret = process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET || 'default-refresh-secret-key-change-in-production';
+    return jwt.verify(token, secret);
   }
 
   /**
